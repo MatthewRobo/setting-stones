@@ -20,6 +20,9 @@ var _wScalar = 16;
 draw_primitive_begin(pr_trianglestrip);
 for (var i = array_length(trail_points) - 1; i > 2; i--) {
 	var _a0 = power((i - 2) / (array_length(trail_points) - 1), 2);
+	if (i == array_length(trail_points) - 1) {
+		_a0 = 0;
+	}
 	var _a1 = power((i - 3) / (array_length(trail_points) - 1), 2);
 	
 	var _p0 = trail_points[i];
@@ -29,8 +32,9 @@ for (var i = array_length(trail_points) - 1; i > 2; i--) {
 	var _n1 = point_direction(_p1[0], _p1[1], _p2[0], _p2[1]) + 90;
 	var _d0 = point_distance(_p0[0], _p0[1], _p1[0], _p1[1]);
 	var _d1 = point_distance(_p1[0], _p1[1], _p2[0], _p2[1]);
-	var _w0 = power(_d0 / tapdash_speed, 2) * _wScalar;
-	var _w1 = power(_d1 / tapdash_speed, 2) * _wScalar;
+	var _noise = random(max(heat - 50, 0) / 100);
+	var _w0 = (power(_d0 / tapdash_speed, 2) + _noise) * _wScalar;
+	var _w1 = (power(_d1 / tapdash_speed, 2) + _noise) * _wScalar;
 	//draw_vertex(_p0[0] + lengthdir_x(_w0, _n0), _p0[1] + lengthdir_y(_w0, _n0));
 	//draw_vertex(_p0[0] - lengthdir_x(_w0, _n0), _p0[1] - lengthdir_y(_w0, _n0));
 	//draw_vertex(_p1[0] + lengthdir_x(_w1, _n1), _p1[1] + lengthdir_y(_w1, _n1));

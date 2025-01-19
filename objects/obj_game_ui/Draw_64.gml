@@ -96,13 +96,15 @@ if(instance_exists(obj_game_manager)) {
 draw_set_color(c_black);
 var _meterXOffset = 0.1;
 var _hpXOffset = 0.1;
+var _heatXOffset = 0.9 + 0.5 / 100;
 for (var i = 0; i < array_length(players); i++) {
 	draw_set_alpha(alpha[i]);
 	var _sign = i == 0 ? -1 : 1;
 	var _x = _hMid * (1 + _sign * _meterXOffset);
 	var _y = _guiHeight * 0.065;
-	var _wid = 26;
-	var _span = 30;
+	var _span = 30 - 0.150;
+	var _wid = _span - 4;
+
 	var _div = 5;
 	var _loopLength = meter_max / _div;
 	var _angle = 315;
@@ -212,7 +214,14 @@ for (var i = 0; i < array_length(players); i++) {
 				_loopLength = _spent ? lerp_hps[i] / _div : hps[i] / _div ;
 				break;
 			case 3:
-				draw_set_color(hittables[i] ? c_white : c_grey);
+				var _hpColor = c_white;
+				if (instance_exists(players[i])) {
+					_hpColor = merge_color(c_white, c_yellow, clamp((players[i].heat - 50) / 50, 0, 1));
+				}
+				if (!hittables[i]) {
+					_hpColor = merge_color(_hpColor, c_black, 0.5);
+				}
+				draw_set_color(_hpColor);
 				_loopLength = _spent ? hps[i] / _div : lerp_hps[i] / _div;
 				break;
 		}
@@ -263,4 +272,51 @@ for (var i = 0; i < array_length(players); i++) {
 			
 		}
 	}
+	_x = _hMid * (1 + _sign * _heatXOffset);
+	_y = _guiHeight * 0.06;
+	_wid = 2;
+	_loopLength = heats[i];
+
+	draw_set_alpha(1);
+
+	draw_set_color(c_white);
+	
+	for (var k = 0; k <= 100; k += 5) {
+		var _anglePercent = k / 100;
+		var _direction = _anglePercent * 90 - 45;
+		
+		if (_anglePercent >= 0.5) {
+			draw_set_color(c_red);
+		}
+		
+		var _x0 = _x + _sign * lengthdir_x(50, _direction);
+		var _y0 = _y + lengthdir_y(50, _direction);
+
+		var _x1 = _x + _sign * lengthdir_x(60, _direction);
+		var _y1 = _y + lengthdir_y(60, _direction);
+		
+		draw_line_width(_x0, _y0, _x1, _y1, _wid);
+	}
+	
+	draw_ring2(_x, _y, 50, -4, 24, .25, 45 + _sign * 90, c_white, 1, c_white, 1);
+	
+	_spent = lerp_heats[i] >= heats[i];
+	//_loopLength = _spent ? heats[i] : lerp_heats[i];
+	_loopLength = lerp_heats[i];
+
+	
+	var _anglePercent = _loopLength / 200;
+	var _direction = _anglePercent * 90 - 45;
+	var _x0 = _x + _sign * lengthdir_x(0, _direction);
+	var _y0 = _y + lengthdir_y(0, _direction);
+
+	var _x1 = _x + _sign * lengthdir_x(50, _direction);
+	var _y1 = _y + lengthdir_y(50, _direction);
+	
+	draw_set_color(c_red);
+	draw_line_width(_x0, _y0, _x1, _y1, 2);
+
+	show_debug_message(_anglePercent);
+	show_debug_message(_direction);
+
 }

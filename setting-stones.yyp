@@ -1,6 +1,6 @@
 {
   "$GMProject":"v1",
-  "%Name":"20241228",
+  "%Name":"setting-stones",
   "AudioGroups":[
     {"$GMAudioGroup":"","%Name":"audiogroup_default","name":"audiogroup_default","resourceType":"GMAudioGroup","resourceVersion":"2.0","targets":-1,},
     {"$GMAudioGroup":"","%Name":"audiogroup_bgm","name":"audiogroup_bgm","resourceType":"GMAudioGroup","resourceVersion":"2.0","targets":-1,},
@@ -78,7 +78,7 @@
   "MetaData":{
     "IDEVersion":"2024.1300.0.720",
   },
-  "name":"20241228",
+  "name":"setting-stones",
   "resources":[
     {"id":{"name":"Font1_small","path":"fonts/Font1_small/Font1_small.yy",},},
     {"id":{"name":"Font1","path":"fonts/Font1/Font1.yy",},},

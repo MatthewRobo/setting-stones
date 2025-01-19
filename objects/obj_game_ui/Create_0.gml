@@ -41,8 +41,12 @@ lerp_hps = [0, 0];
 meters = [0, 0];
 lerp_meters = [0, 0];
 
+heats = [0, 0];
+lerp_heats = [0, 0];
+
 lerpfactor_hps = 0.05;
 lerpfactor_meters = 0.2;
+lerpfactor_heats = 0.3;
 
 players = [obj_player_1, obj_player_2];
 
