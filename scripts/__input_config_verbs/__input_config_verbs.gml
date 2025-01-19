@@ -12,60 +12,47 @@
 
 function __input_config_verbs()
 {
-    return {
-        keyboard_and_mouse:
-        {
-            up:    [input_binding_key(vk_up)],
-            down:  [input_binding_key(vk_down)],
-            left:  [input_binding_key(vk_left)],
-            right: [input_binding_key(vk_right)],
+	return {
+		keyboard_and_mouse:
+		{
+			up:    input_binding_key(vk_up),
+			down:  input_binding_key(vk_down),
+			left:  input_binding_key(vk_left),
+			right: input_binding_key(vk_right),
 			
-			summon: [input_binding_key(ord("Z"))],
-			shoot: [input_binding_key(ord("X"))],
-			melee: [input_binding_key(ord("C"))],
-			dash: [input_binding_key(ord("A"))],
-			ultimate: [input_binding_key(ord("S"))],
-			fd: [input_binding_key(ord("D"))],
+			accept: [input_binding_key(ord("Z")), input_binding_key(vk_enter)],
+			cancel:  input_binding_key(ord("X")),
+			rebind:  input_binding_key(ord("C")),
 			
-            
-            confirm:  input_binding_key(vk_enter),
-            
-        },
-        
-        gamepad:
-        {
-            up:    [input_binding_gamepad_axis(gp_axislv, true),  input_binding_gamepad_button(gp_padu)],
-            down:  [input_binding_gamepad_axis(gp_axislv, false), input_binding_gamepad_button(gp_padd)],
-            left:  [input_binding_gamepad_axis(gp_axislh, true),  input_binding_gamepad_button(gp_padl)],
-            right: [input_binding_gamepad_axis(gp_axislh, false), input_binding_gamepad_button(gp_padr)],
-            
-            summon:  input_binding_gamepad_button(gp_face2),
-            shoot:  input_binding_gamepad_button(gp_face4),
-            melee:  input_binding_gamepad_button(gp_face3),
-            dash: input_binding_gamepad_button(gp_face1),
-            
-            aim_up:    input_binding_gamepad_axis(gp_axisrv, true),
-            aim_down:  input_binding_gamepad_axis(gp_axisrv, false),
-            aim_left:  input_binding_gamepad_axis(gp_axisrh, true),
-            aim_right: input_binding_gamepad_axis(gp_axisrh, false),
-            ultimate:     [input_binding_gamepad_button(gp_shoulderlb), input_binding_gamepad_button(gp_shoulderl)],
-			fd: [input_binding_gamepad_button(gp_shoulderrb), input_binding_gamepad_button(gp_shoulderr)],
-            
-        },
-        
-        touch:
-        {
-            up:    input_binding_virtual_button(),
-            down:  input_binding_virtual_button(),
-            left:  input_binding_virtual_button(),
-            right: input_binding_virtual_button(),
-            
-            accept:  input_binding_virtual_button(),
-            cancel:  input_binding_virtual_button(),
-            action:  input_binding_virtual_button(),
-            special: input_binding_virtual_button(),
-            
-            pause: input_binding_virtual_button(),
-        }
-    };
+			summon: input_binding_key(ord("Z")),
+			shoot:  input_binding_key(ord("X")),
+			melee:  input_binding_key(ord("A")),
+			dash:   input_binding_key(vk_shift),
+			ultimate: input_binding_key(ord("C")),
+			fd:     input_binding_key(ord("S")),
+			
+			pause: input_binding_key(vk_escape),
+		},
+		
+		gamepad:
+		{
+			up:    [input_binding_gamepad_button(gp_padu), input_binding_gamepad_axis(gp_axislv, true)],
+			down:  [input_binding_gamepad_button(gp_padd), input_binding_gamepad_axis(gp_axislv, false)],
+			left:  [input_binding_gamepad_button(gp_padl), input_binding_gamepad_axis(gp_axislh, true)],
+			right: [input_binding_gamepad_button(gp_padr), input_binding_gamepad_axis(gp_axislh, false)],
+			
+			accept:  input_binding_gamepad_button(gp_face1),
+			cancel:  input_binding_gamepad_button(gp_face2),
+			rebind:  input_binding_gamepad_button(gp_face4),
+
+			summon:  input_binding_gamepad_button(gp_face3),
+			shoot: input_binding_gamepad_button(gp_face4),
+			melee: input_binding_gamepad_button(gp_face1),
+			dash: input_binding_gamepad_button(gp_shoulderr),
+			ultimate: input_binding_gamepad_button(gp_shoulderrb),
+			fd: input_binding_gamepad_button(gp_face2),
+			
+			pause: input_binding_gamepad_button(gp_start),
+		},
+	};
 }

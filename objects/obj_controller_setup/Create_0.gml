@@ -2,14 +2,14 @@
 // You can write your code in this editor
 
 //Set the number of players required to exactly 2
-input_join_params_set(2, 2, undefined, undefined);
+input_join_params_set(2, 2, "disconnect", undefined);
 
 //Start the JOIN source mode, enabling automatic device assignment
 input_source_mode_set(INPUT_SOURCE_MODE.JOIN);
 
-input_ignore_key_add(vk_escape)
-input_ignore_key_add(vk_f1)
-input_ignore_key_add(vk_f2)
+input_ignore_key_add(vk_escape);
+input_ignore_key_add(vk_f1);
+input_ignore_key_add(vk_f2);
 
 
 binded=[true,true]

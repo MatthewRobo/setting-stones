@@ -1,0 +1,25 @@
+{
+  "$GMSound":"",
+  "%Name":"bgm_movin_out",
+  "audioGroupId":{
+    "name":"audiogroup_default",
+    "path":"audiogroups/audiogroup_default",
+  },
+  "bitDepth":1,
+  "bitRate":128,
+  "compression":1,
+  "conversionMode":0,
+  "duration":356.6585,
+  "name":"bgm_movin_out",
+  "parent":{
+    "name":"Sounds",
+    "path":"folders/Sounds.yy",
+  },
+  "preload":false,
+  "resourceType":"GMSound",
+  "resourceVersion":"2.0",
+  "sampleRate":44100,
+  "soundFile":"bgm_movin_out.ogg",
+  "type":1,
+  "volume":1.0,
+}

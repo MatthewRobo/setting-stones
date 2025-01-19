@@ -1,0 +1,25 @@
+{
+  "$GMSound":"",
+  "%Name":"bgm_our_love",
+  "audioGroupId":{
+    "name":"audiogroup_bgm",
+    "path":"audiogroups/audiogroup_bgm",
+  },
+  "bitDepth":1,
+  "bitRate":128,
+  "compression":1,
+  "conversionMode":0,
+  "duration":272.57333,
+  "name":"bgm_our_love",
+  "parent":{
+    "name":"Sounds",
+    "path":"folders/Sounds.yy",
+  },
+  "preload":false,
+  "resourceType":"GMSound",
+  "resourceVersion":"2.0",
+  "sampleRate":44100,
+  "soundFile":"bgm_our_love.mp3",
+  "type":1,
+  "volume":1.0,
+}

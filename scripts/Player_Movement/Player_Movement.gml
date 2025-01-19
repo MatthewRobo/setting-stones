@@ -1,13 +1,13 @@
 // Script assets have changed for v2.3.0 see
 // https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
-function decelerate(_amt)
-{
-	var prev_sign = sign(xspd);
-	xspd -= prev_sign * _amt;
-	if (sign(xspd) != prev_sign){
-		xspd = 0;	
-	}
-}
+//function decelerate(_amt)
+//{
+	//var prev_sign = sign(xspd);
+	//xspd -= prev_sign * _amt;
+	//if (sign(xspd) != prev_sign){
+		//xspd = 0;	
+	//}
+//}
 
 function decelerate_push(_amt)
 {

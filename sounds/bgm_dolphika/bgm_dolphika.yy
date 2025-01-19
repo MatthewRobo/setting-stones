@@ -1,0 +1,25 @@
+{
+  "$GMSound":"",
+  "%Name":"bgm_dolphika",
+  "audioGroupId":{
+    "name":"audiogroup_bgm",
+    "path":"audiogroups/audiogroup_bgm",
+  },
+  "bitDepth":1,
+  "bitRate":128,
+  "compression":1,
+  "conversionMode":0,
+  "duration":301.17334,
+  "name":"bgm_dolphika",
+  "parent":{
+    "name":"Sounds",
+    "path":"folders/Sounds.yy",
+  },
+  "preload":false,
+  "resourceType":"GMSound",
+  "resourceVersion":"2.0",
+  "sampleRate":44100,
+  "soundFile":"bgm_dolphika.ogg",
+  "type":1,
+  "volume":1.0,
+}

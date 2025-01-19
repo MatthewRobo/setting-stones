@@ -3,7 +3,7 @@
 
 seconds+=1;
 opacity=1;
-if(seconds>4){
+if(seconds >= 3){
 	players[0].actionable=true;
 	players[1].actionable=true;
 	

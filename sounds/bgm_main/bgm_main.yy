@@ -7,9 +7,9 @@
   },
   "bitDepth":1,
   "bitRate":128,
-  "compression":0,
+  "compression":1,
   "conversionMode":0,
-  "duration":104.736,
+  "duration":104.735985,
   "name":"bgm_main",
   "parent":{
     "name":"Sounds",

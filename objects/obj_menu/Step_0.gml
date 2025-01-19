@@ -1,216 +1,187 @@
 /// @description Insert description here
 // You can write your code in this editor
-
-//If we get some new input from a source...
-var _new = input_source_detect_new();
-if (_new != undefined)
-{
-	//And we don't already have a source assigned...
-	if (array_length(input_source_get_array(0)) <= 0)
-	{
-		
-	    //Then set this new source as our current
-	    input_source_set(_new,0);
-		input_player_ghost_set(false, 0)
-		alarm[0]=5;
-
-	}else if (array_length(input_source_get_array(1)) <= 0)
-	{
-	    //Then set this new source as our current
-	    input_source_set(_new,1);
-		input_player_ghost_set(false, 1)
-		alarm[1]=5;
-
-	}
-}
-
-if (input_join_is_finished() && !input_player_ghost_get(0) && !input_player_ghost_get(1))
-{
-    input_source_mode_set(INPUT_SOURCE_MODE.FIXED);
-}
-
-if(keyboard_check_pressed(vk_f3)){
-	submenu=1;	
-	
-}
+create_clouds();
 
 if(keyboard_check_pressed(vk_f1)){
-	control_connected[0]=false;
-	input_profile_reset_bindings("keyboard_and_mouse",0)
-	input_profile_reset_bindings("gamepad",0)
-	input_player_ghost_set(true, 0)
-	input_binding_scan_abort(0)		
+	input_player_reset(0);
 }
 
 if(keyboard_check_pressed(vk_f2)){
-	control_connected[1]=false;
-	input_profile_reset_bindings("keyboard_and_mouse",1)
-	input_profile_reset_bindings("gamepad",1)
-	input_player_ghost_set(true, 1)
-	input_binding_scan_abort(1)		
+	input_player_reset(1);
 }
 
-if(submenu==0){
-	if(input_check_pressed("down",0) ||	input_check_pressed("down",1)){
-		select+=1
-		select=select%array_length(menu_options)
-	}
-	if(input_check_pressed("up",0) ||	input_check_pressed("up",1)){
-		select-=1
-		if(select<0){
-			select=array_length(menu_options)-1
+switch (menuState) {
+	case menu_states.MAIN_MENU:
+		for (var i = 0; i < INPUT_MAX_PLAYERS; i++ ) {
+			if (input_check_pressed(["up", "down"], i)) {
+				var _val = input_check_pressed("down", i) - input_check_pressed("up", i);
+				mainCursor += _val;
+			}
+			if (input_check_pressed("accept", i)) {
+				switch (mainCursor) {
+					case main_options.CREDITS:
+						menuState = menu_states.CREDITS;
+					break;
+					case main_options.PLAY:
+						menuState = menu_states.CONTROLLER_ASSIGN;
+						controllerAssign = [-1, -1];
+						controllerAssignReady = [false, false];
+					break;
+				}
+			}
 		}
-	}
-	if(input_check("summon",0) && input_check("summon",1)){
-		
-		if(select==0){
-			room_goto(gameplay)	
+		mainCursor = wrap(0, array_length(mainDisplay) - 1, mainCursor);
+	break;
+	case menu_states.CREDITS:
+		for (var i = 0; i < INPUT_MAX_PLAYERS; i++ ) {
+			if (input_check_pressed(["accept", "cancel"], i)) {
+				menuState = menu_states.MAIN_MENU;
+			}
 		}
-		if(select==1){
-			submenu=1
-			control_connected=[false,false]
-			alarm[0]=5;
-			alarm[1]=5;
-		}
-		if(select==2){
-			submenu=2
-		}
-	}
-	
-}
-
-if(submenu==1){
-	input_source_mode_set(INPUT_SOURCE_MODE.JOIN);
-	if(input_check_pressed("down",0) && control_connected[0]){
-		control_select[0]+=1;
-		control_select[0]=control_select[0]%3
-	}
-	if(	input_check_pressed("down",1)){
-		control_select[1]+=1;
-		control_select[1]=control_select[1]%3
-	}
-	if(input_check_pressed("up",0) && control_connected[0]){
-		control_select[0]-=1;
-		if(control_select[0]<0){
-			control_select[0]=2
-		}
-		
-	}
-	if(input_check_pressed("up",1)){
-		control_select[1]-=1;
-		if(control_select[1]<0){
-			control_select[1]=2
-		}
-	}
-	if(input_check_pressed("summon",0) && control_connected[0]){
-		if(control_select[0]==0){
-			binded[0]=false;
-			index[0]=0;
-			//for(i=0;i<array_length(verbs);i++){
-			//	input_binding_remove(verbs[i],0)
-			//}
+	break;
+	case menu_states.CONTROLLER_ASSIGN:
+		for (var i = 0; i < INPUT_MAX_PLAYERS; i++ ) {
+			if (input_check_pressed("right", i)) {
+				if (controllerAssign[0] == i) {
+					controllerAssign[0] = -1;
+					controllerAssignReady[0] = false;
+				} else if (controllerAssign[1] != i) {
+					controllerAssignReady[1] = false;
+					controllerAssign[1] = i;
+				}
+			}
 			
-		}
-		if(control_select[0]==1){
-			input_profile_reset_bindings("keyboard_and_mouse",0)
-			input_profile_reset_bindings("gamepad",0)	
-		}
-		if(control_select[0]==2 ){
+			if (input_check_pressed("left", i)) {
+				if (controllerAssign[1] == i) {
+					controllerAssign[1] = -1;
+					controllerAssignReady[1] = false;
+				} else if (controllerAssign[0] != i) {
+					controllerAssignReady[0] = false;
+					controllerAssign[0] = i;
+				}
+			}
 			
-			control_connected[0]=false;
-			input_profile_reset_bindings("keyboard_and_mouse",0)
-			input_profile_reset_bindings("gamepad",0)
-			input_player_ghost_set(true, 0)
-			input_binding_scan_abort(0)	
+			if (input_check_pressed("accept", i)) {
+				for (var j = 0; j < array_length(controllerAssign); j++) {
+					if (controllerAssign[j] == i) {
+						controllerAssignReady[j] = true;
+					}
+				}
+			}
+			if (input_check_pressed("cancel", i)) {
+				menuState = menu_states.MAIN_MENU;
+			}
 		}
-		
-	}
-	if(input_check_pressed("summon",1) && control_connected[1]){
-		if(control_select[1]==0){
-			binded[1]=false;
-			index[1]=0;
-			//for(i=0;i<array_length(verbs);i++){
-			//	input_binding_remove(verbs[i],0)
-			//}
+		var _ready = true;
+		for (var i = 0; i < array_length(controllerAssignReady); i++) {
+			if (!controllerAssignReady[i]) {
+				_ready = false;
+			}
+		}
+		if (_ready) {
+			var _newSources = [2];
+			for (var i = 0; i < array_length(controllerAssign); i++) {
+				var _newSource = input_source_get_array(controllerAssign[i])[0];
+				_newSources[i] = _newSource;
+				//input_player_swap(i, controllerAssign[i]);
+				inputLock[i] = inputLockTime;
+			}
 			
+			for (var i = 0; i < array_length(_newSources); i++) {
+				input_source_set(_newSources[i], i);
+			}
+			input_source_mode_set(INPUT_SOURCE_MODE.FIXED);
+			bindCursor = [controls_options.DONE, controls_options.DONE]
+			menuState = menu_states.CONTROLLER_BINDING;
 		}
-		if(control_select[1]==1){
-			input_profile_reset_bindings("keyboard_and_mouse",1)
-			input_profile_reset_bindings("gamepad",1)	
-		}
-		if(control_select[1]==2){
+	break;
+	case menu_states.CONTROLLER_BINDING:
+		var _ready = true;
+		for (var i = 0; i < 2; i++ ) {
+			cursorVerb[i] = "";
+			show_debug_message(cursorVerb);
+			if (bindCursor[i] < controls_options.RESET) {
+				cursorVerb[i] = verbs[bindCursor[i]];
+			}
+			if (inputLock[i] <= 0) {
+				if (input_check_pressed(["up", "down"], i)) {
+					var _val = input_check_pressed("down", i) - input_check_pressed("up", i);
+					bindCursor[i] += _val
+					bindCursor[i] = wrap(0, controls_options.DONE, bindCursor[i]);
+				} else if (input_check_pressed("accept", i)) {
+					if (bindCursor[i] < controls_options.RESET) {
+						if (i == 0) {
+							input_binding_scan_start(function(_binding) {
+								var _player = 0;
+								input_binding_set_safe(obj_menu.cursorVerb[_player], _binding, _player);
+								obj_menu.bindCursor[_player]++;
+								inputLock[_player] = inputLockTime;
+							}, function(_result) {
+								show_debug_message(_result);
+							}, i);
+						} else if (i == 1) {
+							input_binding_scan_start(function(_binding) {
+								var _player = 1;
+								input_binding_set_safe(obj_menu.cursorVerb[_player], _binding, _player);
+								obj_menu.bindCursor[_player]++;
+								inputLock[_player] = inputLockTime;
+							}, function(_result) {
+								show_debug_message(_result);
+							}, i);
+						}
+					} else {
+						switch (bindCursor[i]) {
+							case controls_options.DONE:
+								bindReady[i] = true;
+							break;
+							case controls_options.RESET:
+								input_profile_reset_bindings("keyboard_and_mouse", i);
+								input_profile_reset_bindings("gamepad", i);
+							break;
+						}
+					}
+				} else if (input_check_pressed("cancel", i)) {
+					if (bindReady[i]) {
+						bindReady[i] = false;
+					} else {
+						input_source_mode_set(INPUT_SOURCE_MODE.JOIN);
+						menuState = menu_states.CONTROLLER_ASSIGN;
+						controllerAssign = [-1, -1];
+						controllerAssignReady = [false, false];
+					}
+				}
+			}
+
+			for (var j = 0; j < array_length(verbDisplay); j++) {
+				
+				var _icon = "N/A";
+				if (j < controls_options.RESET) {
+					_icon = input_verb_get_icon(verbs[j], i);
+				}
+				show_debug_message([i,  bindCursor[i] == j, verbDisplay[j], _icon]);
+			}
 			
-			control_connected[1]=false;
-			input_profile_reset_bindings("keyboard_and_mouse",1)
-			input_profile_reset_bindings("gamepad",1)
-			input_player_ghost_set(true, 1)
-			input_binding_scan_abort(1)	
+			if (bindCursor[i] != controls_options.DONE) {
+				bindReady[i] = false;
+			}
+			
+			if (!bindReady[i]) {
+				_ready = false;
+			}
 		}
-		
-	}
-	//if(input_check_pressed("summon",1)){
-	//	if(select==1){
-	//		submenu=1
-	//	}
-	//	if(select==2){
-	//		submenu=2
-	//	}
-	//}
-	if(input_check("dash",0) && input_check("dash",1)){
-		submenu=0
-	}
-	
-}
-
-if(submenu==2){
-
-	if(input_check("dash",0) && input_check("dash",1)){
-		submenu=0
-	}
-	
-}
-
-controls = [
-	[input_binding_get("up",0), 
-	input_binding_get("left",0), 
-	input_binding_get("down",0), 
-	input_binding_get("right",0), 
-	input_binding_get("summon",0), 
-	input_binding_get("shoot",0), 
-	input_binding_get("melee",0), 
-	input_binding_get("dash",0), 
-	input_binding_get("ultimate",0), 
-	input_binding_get("fd",0)],
-	
-	[input_binding_get("up",1), 
-	input_binding_get("left",1), 
-	input_binding_get("down",1), 
-	input_binding_get("right",1), 
-	input_binding_get("summon",1), 
-	input_binding_get("shoot",1), 
-	input_binding_get("melee",1), 
-	input_binding_get("dash",1), 
-	input_binding_get("ultimate",1), 
-	input_binding_get("fd",1)]
-];
-
-for(i=0;i<array_length(controls);i++){
-	for(j=0;j<array_length(controls[i]);j++){
-		if(controls[i][j].__value==undefined){
-			controls[i][j].__value=256;
+		if (_ready) {
+			room_goto(gameplay);
 		}
+	break;
+}
+
+for (var i = 0; i < 2; i++) {
+	if (inputLock[i] > 0 && !input_binding_scan_in_progress(i)) {
+		inputLock[i]--;
 	}
 }
 
-if (array_length(input_source_get_array(0)) > 0 && !control_connected[0] && submenu==0)
-{
-	alarm[0]=5;
-}
-if (array_length(input_source_get_array(1)) > 0 && !control_connected[1] && submenu==0)
-{
-	alarm[1]=5;
-}
 
-show_debug_message("p1: "+string(array_length(input_source_get_array(0))))
-show_debug_message("p2: "+string(array_length(input_source_get_array(1))))
-
+show_debug_message(["menuState", menuState]);
+show_debug_message(["controllerAssign", controllerAssign]);
+show_debug_message(["controllerAssignReady", controllerAssignReady]);

@@ -1,35 +1,55 @@
 /// @description Insert description here
 // You can write your code in this editor
+if (global.hitstop > -1) {
+	global.hitstop--;
+}
+
 opacity-=1/45
 if(winner==0){
-	colors=[obj_player_1.color,obj_player_2.color]	
 }
 if(winner>0 && winner_triggered){
 	winner_triggered=false;
 	alarm[1]=120;
 }
 
-if(shrink && winner==0 && radius>=radius_minimum){
-	radius-=0.25
-}
-
-if(!shrink && winner==0 && radius<radius_initial){
-	radius+=0.25
+if (shrink && winner == 0) {
+	radius -= shrink_radius;
 }
 
 
-show_debug_message(alarm[2])
+//show_debug_message(alarm[2])
 if(end_game){
-	if (input_check_long(["summon","dash"], 0) && input_check_long(["summon","dash"], 1))
-    {
-        if (input_check_long("summon", 0) && input_check_long("summon", 1))
-	    {     
-	        room_restart()
-	    }else{
-			input_player_disconnect(0)
-			input_player_disconnect(1)
-			room_goto(menu)	
+	var _rematch = true;
+	for (var i = 0; i < 2; i++) { 
+		if (!rematch[i]) {
+			//endCursor[i] += input_y("left", "right", "up", "down", i); 
+			
+			if (input_check("down", i)) {
+				endCursor[i] = end_options.EXIT;
+			} else if (input_check("up", i)) {
+				endCursor[i] = end_options.REMATCH;
+			}
+			
+			_rematch = false;
+
 		}
-    }
-	
+		//endCursor[i] = wrap(end_options.REMATCH, end_options.EXIT, endCursor[i]);
+		
+		if (input_check_pressed("accept", i)) {
+			switch (endCursor[i]) {
+				case end_options.REMATCH:
+					rematch[i] = true;
+					break;
+				case end_options.EXIT:
+					room_goto(menu);
+					break;
+			}
+		}
+	}
+	if (_rematch) {
+		room_restart()
+	}
 }
+
+radius = clamp(radius, radius_minimum, radius_initial);
+display_radius = min(radius, lerp(display_radius, radius, 0.2));

@@ -1,0 +1,25 @@
+{
+  "$GMSound":"",
+  "%Name":"bgm_you_win_some_you_nuke_some",
+  "audioGroupId":{
+    "name":"audiogroup_bgm",
+    "path":"audiogroups/audiogroup_bgm",
+  },
+  "bitDepth":1,
+  "bitRate":128,
+  "compression":1,
+  "conversionMode":0,
+  "duration":172.44154,
+  "name":"bgm_you_win_some_you_nuke_some",
+  "parent":{
+    "name":"Sounds",
+    "path":"folders/Sounds.yy",
+  },
+  "preload":false,
+  "resourceType":"GMSound",
+  "resourceVersion":"2.0",
+  "sampleRate":44100,
+  "soundFile":"bgm_you_win_some_you_nuke_some.ogg",
+  "type":1,
+  "volume":1.0,
+}

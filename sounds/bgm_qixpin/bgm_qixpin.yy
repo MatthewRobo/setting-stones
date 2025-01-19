@@ -1,0 +1,25 @@
+{
+  "$GMSound":"",
+  "%Name":"bgm_qixpin",
+  "audioGroupId":{
+    "name":"audiogroup_bgm",
+    "path":"audiogroups/audiogroup_bgm",
+  },
+  "bitDepth":1,
+  "bitRate":128,
+  "compression":1,
+  "conversionMode":0,
+  "duration":242.14667,
+  "name":"bgm_qixpin",
+  "parent":{
+    "name":"Sounds",
+    "path":"folders/Sounds.yy",
+  },
+  "preload":false,
+  "resourceType":"GMSound",
+  "resourceVersion":"2.0",
+  "sampleRate":44100,
+  "soundFile":"bgm_qixpin.mp3",
+  "type":1,
+  "volume":1.0,
+}
