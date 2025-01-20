@@ -12,7 +12,7 @@ var _hmid = _width / 2;
 var _vmid = _height / 2
 
 
-var _colorBody = c_grey;
+var _colorBody = #aaaaaa;
 var _colorHeader = c_aqua;
 var _colorHover = c_white;
 var _colorActive = c_red;
@@ -26,7 +26,7 @@ switch (menuState) {
 		draw_set_valign(fa_top);
 		for (var i = 0; i < array_length(mainDisplay); i++) {
 			draw_set_color(mainCursor == i ? _colorHover : _colorBody);
-			text_outline(50, _height - 50 - (75 * array_length(mainDisplay)) + 75 * i, mainDisplay[i], 1, c_black, 8, 100, 100000);
+			text_outline(50, _height - 50 - (75 * array_length(mainDisplay)) + 75 * i, mainDisplay[i],3, c_black, 8, 100, 100000);
 		}
 		
 		draw_sprite_ext(spr_logoBig, 0, _hmid, _vmid * 0.75 + 10 * sin(global.ANIMATION_TIMER * 0.02), 0.3, 0.3, 0, c_white, 1);
@@ -35,20 +35,21 @@ switch (menuState) {
 		draw_set_font(Font2);
 		draw_set_halign(fa_center);
 		draw_set_valign(fa_middle);
-		text_outline(750,150,"Credits",1,c_black,8,30,100000);
+		draw_set_color(_colorHover);
+		text_outline(750,150,"Credits",8,c_black,8,30,100000);
 		draw_set_font(Font2_small);
-		text_outline(750,350,"Programming",1,c_black,8,30,100000);
+		text_outline(750,350,"Programming",3,c_black,8,30,100000);
 		draw_set_font(Font1);
-		text_outline(750,450,"Nick Pham",1,c_black,8,30,100000);
+		text_outline(750,475,"Nick \"AqoursBaelz\" Pham\n\nMatthew \"M-AS\" Nguyen",3,c_black,8,30,100000);
 		draw_set_font(Font2_small);
-		text_outline(750,600,"Music",1,c_black,8,30,100000);
+		text_outline(750,600,"Music",3,c_black,8,30,100000);
 		draw_set_font(Font1);
-		text_outline(750,700,"v1ris",1,c_black,8,30,100000);
+		text_outline(750,700,"v1ris",3,c_black,8,30,100000);
 		draw_set_font(Font2_small);
-		text_outline(750,850,"Special Thanks",1,c_black,8,30,100000);
+		text_outline(750,850,"Special Thanks",3,c_black,8,30,100000);
 		draw_set_font(Font1);
 		draw_set_valign(fa_top);
-		text_outline(750,950,"Matthew Nguyen\nMarcos Felipe Wang\nKamron Farrokh\nThe SoCal Fighting Game Community",1,c_black,8,100,100000);
+		text_outline(750,950,"Marcos Felipe Wang\nKamron Farrokh\nThe SoCal Fighting Game Community",3,c_black,8,100,100000);
 	break;
 	case menu_states.CONTROLLER_ASSIGN:
 			draw_set_halign(fa_center);
@@ -56,7 +57,7 @@ switch (menuState) {
 
 			draw_set_font(Font1);
 			draw_set_color(_colorHeader);
-			text_outline(_hmid, _height * 0.1,"Controllers",1,c_black,8,30,100000);
+			text_outline(_hmid, _height * 0.1,"Controllers",3,c_black,8,30,100000);
 			for (var i = 0; i < array_length(controllerAssign); i++) {
 				var _xOffset = 0;
 				var _text = "";
@@ -71,7 +72,7 @@ switch (menuState) {
 						_text = "Player 2";
 					break;
 				}
-				text_outline(_width * (0.5 + 0.25 * _xOffset), _height * 0.1, _text,1,c_black,8,30,100000);
+				text_outline(_width * (0.5 + 0.25 * _xOffset), _height * 0.1, _text,3,c_black,8,30,100000);
 			}
 			for (var i = 0; i < INPUT_MAX_PLAYERS; i++) {
 				var _xOffset = 0;
@@ -91,7 +92,7 @@ switch (menuState) {
 					}
 					_xOffset = 1;
 				}
-				text_outline(_width * (0.5 + 0.25 * _xOffset), _height * (0.2 + 0.1 * i), input_source_get_array(i),1,c_black,8,30,100000);
+				text_outline(_width * (0.5 + 0.25 * _xOffset), _height * (0.2 + 0.1 * i), input_source_get_array(i),3,c_black,8,30,100000);
 			}
 			
 	break;
@@ -123,11 +124,11 @@ switch (menuState) {
 					draw_set_color(_colorActive);
 				}
 				
-				text_outline(_width * _xMultLeft, _height * 0.2 + _lineHeight * j, _text,1,c_black,8,30,100000);
+				text_outline(_width * _xMultLeft, _height * 0.2 + _lineHeight * j, _text,3,c_black,8,30,100000);
 				if (j < controls_options.RESET) {
 					draw_set_halign(fa_right);
 					draw_set_alpha(_alpha);
-					text_outline(_width * _xMultRight, _height * 0.2 + _lineHeight * j, input_verb_get_icon(verbs[j], i),1,c_black,8,30,100000);
+					text_outline(_width * _xMultRight, _height * 0.2 + _lineHeight * j, input_verb_get_icon(verbs[j], i),3,c_black,8,30,100000);
 				}
 			}
 		}
