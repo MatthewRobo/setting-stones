@@ -279,44 +279,32 @@ for (var i = 0; i < array_length(players); i++) {
 
 	draw_set_alpha(1);
 
-	draw_set_color(c_white);
+	var _outline = 8;
 	
-	for (var k = 0; k <= 100; k += 5) {
-		var _anglePercent = k / 100;
-		var _direction = _anglePercent * 90 - 45;
-		
-		if (_anglePercent >= 0.5) {
-			draw_set_color(c_red);
-		}
-		
-		var _x0 = _x + _sign * lengthdir_x(50, _direction);
-		var _y0 = _y + lengthdir_y(50, _direction);
-
-		var _x1 = _x + _sign * lengthdir_x(60, _direction);
-		var _y1 = _y + lengthdir_y(60, _direction);
-		
-		draw_line_width(_x0, _y0, _x1, _y1, _wid);
-	}
+	draw_ring2(_x - _outline * _sign / 2, _y, 0, 50 + _outline * 2, 24, 0.25, 45 + _sign * 90, _colors[i], 1, _colors[i], 1);
+	_outline = 8;
+	draw_ring2(_x - _outline * _sign / 2, _y, 0, 50 + _outline * 1.5, 24, 0.25, 45 + _sign * 90, c_black, 1, c_black, 1);
+	//draw_ring2(_x, _y, 50, -2, 24, .25, 45 + _sign * 90, c_white, 1, c_white, 1);
+	draw_ring2(_x + _outline * _sign / 2, _y, 40, 4, 24, 0.25, 45 + _sign * 90, c_white, 1, c_white, 1);
+	draw_ring2(_x + _outline * _sign / 2, _y, 40, 4, 24, 0.125, _sign * 45 * 1.5 + 45 * 1.5, c_red, 1, c_red, 1);
 	
-	draw_ring2(_x, _y, 50, -4, 24, .25, 45 + _sign * 90, c_white, 1, c_white, 1);
+	draw_set_color(c_black);
+	draw_line_width(_x, _y, _x + 50 * _sign, _y, 4);
 	
-	_spent = lerp_heats[i] >= heats[i];
-	//_loopLength = _spent ? heats[i] : lerp_heats[i];
 	_loopLength = lerp_heats[i];
 
-	
+	draw_set_color(c_white);
+
 	var _anglePercent = _loopLength / 200;
 	var _direction = _anglePercent * 90 - 45;
-	var _x0 = _x + _sign * lengthdir_x(0, _direction);
-	var _y0 = _y + lengthdir_y(0, _direction);
+	var _x0 = _x + _outline * _sign / 2;
+	var _y0 = _y;
 
-	var _x1 = _x + _sign * lengthdir_x(50, _direction);
-	var _y1 = _y + lengthdir_y(50, _direction);
+	var _x1 = _x0 + _sign * lengthdir_x(50, _direction);
+	var _y1 = _y0 + lengthdir_y(50, _direction);
 	
-	draw_set_color(c_red);
-	draw_line_width(_x0, _y0, _x1, _y1, 2);
+	draw_set_color(c_white);
+	draw_line_width(_x0, _y0, _x1, _y1, 3);
 
-	show_debug_message(_anglePercent);
-	show_debug_message(_direction);
 
 }
