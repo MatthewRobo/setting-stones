@@ -55,3 +55,10 @@ camera_set_view_pos(global.cam, cam_x + shake_x, cam_y + shake_y);
 show_debug_message(cam_wid);
 show_debug_message(cam_x);
 show_debug_message(cam_y);
+
+
+cam_center = (cam_x + cam_wid) / 2;
+cam_middle = (cam_y + cam_hei) / 2;
+
+layer_x("Background", cam_center * 0.99 - 2453 / 2);
+layer_y("Background", cam_middle * 0.99 - 1635 / 2);

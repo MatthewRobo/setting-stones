@@ -31,3 +31,5 @@ cam_lerp_zoom_t=0.2;
 player1coords=[0,0];
 player2coords=[0,0];
 
+cam_center = (cam_x + cam_wid) / 2;
+cam_middle = (cam_y + cam_hei) / 2;

@@ -473,6 +473,7 @@
     {"id":{"name":"GM_Fire_spr_Fire","path":"sprites/GM_Fire_spr_Fire/GM_Fire_spr_Fire.yy",},},
     {"id":{"name":"GM_FlameIntensity_spr_Fire","path":"sprites/GM_FlameIntensity_spr_Fire/GM_FlameIntensity_spr_Fire.yy",},},
     {"id":{"name":"spr_background","path":"sprites/spr_background/spr_background.yy",},},
+    {"id":{"name":"spr_bg_gameplay","path":"sprites/spr_bg_gameplay/spr_bg_gameplay.yy",},},
     {"id":{"name":"spr_bg_gradient","path":"sprites/spr_bg_gradient/spr_bg_gradient.yy",},},
     {"id":{"name":"spr_logo","path":"sprites/spr_logo/spr_logo.yy",},},
     {"id":{"name":"spr_logoBig","path":"sprites/spr_logoBig/spr_logoBig.yy",},},
