@@ -96,21 +96,104 @@ if(instance_exists(obj_game_manager)) {
 draw_set_color(c_black);
 var _meterXOffset = 0.1;
 var _hpXOffset = 0.1;
-var _heatXOffset = 0.9 + 0.5 / 100;
+var _heatXOffset = 0.91;
+
+//draw_line_width(0, 0, 100, 100, 15);
+
 for (var i = 0; i < array_length(players); i++) {
 	draw_set_alpha(alpha[i]);
+	var _alpha = alpha[i];
 	var _sign = i == 0 ? -1 : 1;
-	var _x = _hMid * (1 + _sign * _meterXOffset);
-	var _y = _guiHeight * 0.065;
-	var _span = 30 - 0.150;
-	var _wid = _span - 4;
 
-	var _div = 5;
-	var _loopLength = meter_max / _div;
-	var _angle = 315;
-	var _spent = lerp_meters[i] >= meters[i];
-	var _color = _colors[i]
+
 	for (var j = 0; j < 4; j++) {
+
+		var _x = _hMid * (1 + _sign * _heatXOffset);
+		var _y = _guiHeight * 0.06;
+		var _outline = 0;
+		var _color = _colors[i];
+		var _radius = 50;
+		switch (j) {
+			case 0:
+				_outline = 12;
+				break;
+			case 1:
+				_outline = 8;
+				_color = c_black;
+				break;
+			case 2:
+				_outline = 4;
+				_color = c_black;
+				break;
+			case 3:
+				_color = c_black;
+				break;
+		}
+		draw_set_color(_color);
+		if (j < 2) {
+			draw_circle(_x, _y, 50 + _outline, false);
+		}
+		
+		if (j == 2) {
+			draw_ring2(_x, _y, _radius, -_outline, 24, 0.5, 0, c_red, _alpha, c_red, _alpha);
+			//draw_ring2(_x, _y, _radius, -_outline - (_radius - _outline) * (lerp_heats[i] / 100), 24, 0.5, 0, c_red, _alpha, c_red, _alpha);
+			draw_ring2(_x, _y, _radius, -_outline, 24, 0.5, 180, c_white, _alpha, c_white, _alpha);
+		}
+		
+		if (j == 3) {
+			_outline = 4;
+			//for (var k = -1; k <= 1; k += 1) {
+				//draw_line_width(_x, _y, _x + _sign * lengthdir_x(_radius + _outline, k * 45), _y + lengthdir_y(_radius + _outline, k * 45), k == 0 ? 4 : 8);
+			//}
+			
+			
+			var _direction = lerp_heats[i] / 200 * 90 - 45;
+			var _length = 52;
+			var _x0 = _x + _sign * lengthdir_x(_length, _direction);
+			var _y0 = _y + lengthdir_y(_length, _direction);
+			
+			
+			var _lengthStamina = _length * (1 - lerp_staminas[i] / stamina_max);
+			var _x1 = _x + _sign * lengthdir_x(_lengthStamina, _direction);
+			var _y1 = _y + lengthdir_y(_lengthStamina, _direction);
+			
+			draw_set_color(c_white);
+			
+			var _needleRadius = 3; 
+			var _x00 = _x + lengthdir_x(_needleRadius, _direction + _sign * 90);
+			var _x01 = _x + lengthdir_x(_needleRadius, _direction - _sign * 90);
+			
+			var _y00 = _y + lengthdir_y(_needleRadius, _direction + 90);
+			var _y01 = _y + lengthdir_y(_needleRadius, _direction - 90);
+
+			draw_circle(_x, _y, 4, false);
+			//draw_line_width(_x, _y, _x0, _y0, 4);
+			draw_primitive_begin(pr_trianglestrip);
+			draw_vertex(_x00, _y00);
+			draw_vertex(_x0, _y0);
+			draw_vertex(_x01, _y01);
+			draw_primitive_end();
+			draw_circle(_x1, _y1, 4, false);
+			draw_set_color(c_black);
+			draw_circle(_x1, _y1, 2, false);
+			
+			
+		}
+	}
+	
+	for (var j = 0; j < 4; j++) {
+		draw_set_alpha(alpha[i]);
+		var _color = _colors[i];
+		
+		var _x = _hMid * (1 + _sign * _meterXOffset);
+		var _y = _guiHeight * 0.065;
+		var _span = 30 - 0.150;
+		var _wid = _span - 4;
+	
+		var _div = 5;
+		var _loopLength = meter_max / _div;
+		var _angle = 315;
+		var _spent = lerp_meters[i] >= meters[i];
 		var _outline = 0;
 		switch (j) {
 			case 0:
@@ -189,16 +272,19 @@ for (var i = 0; i < array_length(players); i++) {
 		}
 	}
 	
-	_x = _hMid * (1 + _sign * _hpXOffset);
-	_y = _guiHeight * 0.055;
-	_wid = 52;
-	_span = _wid +8;
-	_div = 1;
-	_loopLength = max_hp / _div;
-	var _thickness = 8;
-	var _slant = _thickness;
-	_spent = lerp_hps[i] >= hps[i];
+
 	for (var j = 0; j < 4; j++) {
+		var _color = _colors[i];
+		
+		var _x = _hMid * (1 + _sign * _hpXOffset);
+		var _y = _guiHeight * 0.055;
+		var _wid = 52;
+		var _span = _wid +8;
+		var _div = 1;
+		var _loopLength = max_hp / _div;
+		var _thickness = 8;
+		var _slant = _thickness;
+		var _spent = lerp_hps[i] >= hps[i];
 		var _outline = 0;
 		switch (j) {
 			case 0:
@@ -216,7 +302,7 @@ for (var i = 0; i < array_length(players); i++) {
 			case 3:
 				var _hpColor = c_white;
 				if (instance_exists(players[i])) {
-					_hpColor = merge_color(c_white, c_yellow, clamp((players[i].heat - 50) / 50, 0, 1));
+					_hpColor = merge_color(c_white, c_fuchsia, clamp((players[i].heat - 50) / 50, 0, 1));
 				}
 				if (!hittables[i]) {
 					_hpColor = merge_color(_hpColor, c_black, 0.5);
@@ -233,7 +319,7 @@ for (var i = 0; i < array_length(players); i++) {
 				_len = k >= floor(_loopLength) ? _loopLength mod 1 : 1;
 				
 				if (instance_exists(players[i])) {
-					_rumble = (players[i].damage_mult - 1) * 5;
+					_rumble = power(players[i].damage_mult - 1, 2) * 5;
 					draw_set_alpha((1 - random((players[i].damage_mult - 1))) * alpha[i]);
 				}
 			} 
@@ -272,39 +358,39 @@ for (var i = 0; i < array_length(players); i++) {
 			
 		}
 	}
-	_x = _hMid * (1 + _sign * _heatXOffset);
-	_y = _guiHeight * 0.06;
-	_wid = 2;
-	_loopLength = heats[i];
-
-	draw_set_alpha(1);
-
-	var _outline = 8;
-	
-	draw_ring2(_x - _outline * _sign / 2, _y, 0, 50 + _outline * 2, 24, 0.25, 45 + _sign * 90, _colors[i], 1, _colors[i], 1);
-	_outline = 8;
-	draw_ring2(_x - _outline * _sign / 2, _y, 0, 50 + _outline * 1.5, 24, 0.25, 45 + _sign * 90, c_black, 1, c_black, 1);
-	//draw_ring2(_x, _y, 50, -2, 24, .25, 45 + _sign * 90, c_white, 1, c_white, 1);
-	draw_ring2(_x + _outline * _sign / 2, _y, 40, 4, 24, 0.25, 45 + _sign * 90, c_white, 1, c_white, 1);
-	draw_ring2(_x + _outline * _sign / 2, _y, 40, 4, 24, 0.125, _sign * 45 * 1.5 + 45 * 1.5, c_red, 1, c_red, 1);
-	
-	draw_set_color(c_black);
-	draw_line_width(_x, _y, _x + 50 * _sign, _y, 4);
-	
-	_loopLength = lerp_heats[i];
-
-	draw_set_color(c_white);
-
-	var _anglePercent = _loopLength / 200;
-	var _direction = _anglePercent * 90 - 45;
-	var _x0 = _x + _outline * _sign / 2;
-	var _y0 = _y;
-
-	var _x1 = _x0 + _sign * lengthdir_x(50, _direction);
-	var _y1 = _y0 + lengthdir_y(50, _direction);
-	
-	draw_set_color(c_white);
-	draw_line_width(_x0, _y0, _x1, _y1, 3);
+	//_x = _hMid * (1 + _sign * _heatXOffset);
+	//_y = _guiHeight * 0.06;
+	//_wid = 2;
+	//_loopLength = heats[i];
+//
+	//draw_set_alpha(1);
+//
+	//var _outline = 8;
+	//
+	//draw_ring2(_x - _outline * _sign / 2, _y, 0, 50 + _outline * 2, 24, 0.25, 45 + _sign * 90, _colors[i], 1, _colors[i], 1);
+	//_outline = 8;
+	//draw_ring2(_x - _outline * _sign / 2, _y, 0, 50 + _outline * 1.5, 24, 0.25, 45 + _sign * 90, c_black, 1, c_black, 1);
+	////draw_ring2(_x, _y, 50, -2, 24, .25, 45 + _sign * 90, c_white, 1, c_white, 1);
+	//draw_ring2(_x + _outline * _sign / 2, _y, 40, 4, 24, 0.25, 45 + _sign * 90, c_white, 1, c_white, 1);
+	//draw_ring2(_x + _outline * _sign / 2, _y, 40, 4, 24, 0.125, _sign * 45 * 1.5 + 45 * 1.5, c_red, 1, c_red, 1);
+	//
+	//draw_set_color(c_black);
+	//draw_line_width(_x, _y, _x + 50 * _sign, _y, 4);
+	//
+	//_loopLength = lerp_heats[i];
+//
+	//draw_set_color(c_white);
+//
+	//var _anglePercent = _loopLength / 200;
+	//var _direction = _anglePercent * 90 - 45;
+	//var _x0 = _x + _outline * _sign / 2;
+	//var _y0 = _y;
+//
+	//var _x1 = _x0 + _sign * lengthdir_x(50, _direction);
+	//var _y1 = _y0 + lengthdir_y(50, _direction);
+	//
+	//draw_set_color(c_white);
+	//draw_line_width(_x0, _y0, _x1, _y1, 3);
 
 
 }

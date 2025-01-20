@@ -44,9 +44,13 @@ lerp_meters = [0, 0];
 heats = [0, 0];
 lerp_heats = [0, 0];
 
+staminas = [stamina_max, stamina_max];
+lerp_staminas = [0, 0];
+
 lerpfactor_hps = 0.05;
 lerpfactor_meters = 0.2;
 lerpfactor_heats = 0.3;
+lerpfactor_staminas = lerpfactor_heats;
 
 players = [obj_player_1, obj_player_2];
 

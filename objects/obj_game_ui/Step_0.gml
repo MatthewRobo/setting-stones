@@ -6,6 +6,7 @@ for (var i = 0; i < array_length(players); i++) {
 		supercosts[i] = players[i].super_cost;
 		hittables[i] = players[i].hittable;
 		heats[i] = players[i].heat;
+		staminas[i] = players[i].stamina;
 	} else {
 		hps[i] = 0;
 		playersExist = false;
@@ -13,7 +14,8 @@ for (var i = 0; i < array_length(players); i++) {
 	
 	lerp_meters[i] = lerp(lerp_meters[i], meters[i], lerpfactor_meters);
 	lerp_hps[i] = lerp(lerp_hps[i], hps[i], lerpfactor_hps);
-	lerp_heats[i] = lerp(lerp_heats[i], heats[i], lerpfactor_heats);
+	lerp_heats[i] = lerp(lerp_heats[i], heats[i], lerpfactor_heats); 
+	lerp_staminas[i] = lerp(lerp_staminas[i], staminas[i], lerpfactor_staminas);
 
 }
 
