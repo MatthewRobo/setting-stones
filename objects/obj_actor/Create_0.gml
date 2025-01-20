@@ -75,7 +75,7 @@ tapdashing = 0;
 #macro nodash_heat_recovery 1
 #macro heat_recovery 0.5
 
-#macro dashcancel_heat 12
+#macro dashcancel_heat 7
 #macro tapdash_heat 7
 #macro dashing_heat 0.65
 
