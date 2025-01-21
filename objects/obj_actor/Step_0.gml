@@ -20,6 +20,11 @@ vmove=input_check("down",player_number-1)-input_check("up",player_number-1)
 
 if (point_distance(0,0, hmove, vmove) > 0) {
 	target_dir = point_direction(0, 0, hmove, vmove);
+} else {
+	var _target = obj_game_manager.players[target-1];
+	if (instance_exists(_target)) {
+		target_dir = point_direction(x, y, _target.x, _target.y);
+	}
 }
 
 var _current_dir = point_direction(0, 0, xspd, yspd);
