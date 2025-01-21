@@ -13,6 +13,10 @@ if (global.hitstop <= 0) {
 	if(other.summoner!=id && other.active && instance_exists(other.summoner)){
 		hittable=false;
 		was_hit = true;
+		if (fd_triggered) {
+			was_shieldbroken = true;
+			fd_triggered = false;
+		}
 		var damage_taken = 2 * damage_mult;
 		hp -= damage_taken;
 		part_particles_create(obj_particle_setup.particle_system,x,y,obj_particle_setup.particle_hitspark,200 * damage_taken);

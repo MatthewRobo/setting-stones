@@ -18,6 +18,7 @@ current_summon=0;
 summons = [];
 
 was_hit = false;
+was_shieldbroken = false;
 
 damage_mult = 1;
 
@@ -297,3 +298,17 @@ part_type_colour3(pt_hit_x, $FFFFFF, $FFFF00, $FF0000);
 part_type_alpha3(pt_hit_x, 0, 1, 0);
 part_type_blend(pt_hit_x, true);
 part_type_life(pt_hit_x, 10, 40);
+
+pt_shieldbreak = part_type_create();
+part_type_sprite(pt_shieldbreak, spr_triangle, false, true, false)
+part_type_size(pt_shieldbreak, 0, 1.5, -0.01, 0);
+part_type_scale(pt_shieldbreak, 1, 0.25);
+part_type_speed(pt_shieldbreak, 10, 25, -1, 0);
+part_type_direction(pt_shieldbreak, 0, 360, 0, 0);
+part_type_gravity(pt_shieldbreak, 0, 270);
+part_type_orientation(pt_shieldbreak, 180, 180, 0, 0, true);
+part_type_colour3(pt_shieldbreak, $FFFFFF, $00FF00, $00FF00);
+part_type_alpha3(pt_shieldbreak, 1, 1, 0);
+part_type_blend(pt_shieldbreak, true);
+part_type_life(pt_shieldbreak, 10, 80);
+
