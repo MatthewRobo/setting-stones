@@ -1,6 +1,8 @@
 /// @description Insert description here
 // You can write your code in this editor
 
+hud_surfaces = array_create(2, -1);
+
 health_bar_offset_x=0.05
 health_bar_offset_y=0.01
 

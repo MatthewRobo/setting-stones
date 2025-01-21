@@ -101,10 +101,16 @@ var _heatXOffset = 0.91;
 //draw_line_width(0, 0, 100, 100, 15);
 
 for (var i = 0; i < array_length(players); i++) {
-	draw_set_alpha(alpha[i]);
-	var _alpha = alpha[i];
+	if (!surface_exists(hud_surfaces[i])) {
+		hud_surfaces[i] = surface_create(display_get_gui_width(), display_get_gui_height());
+	}
+	
+	draw_set_alpha(1);
+	var _alpha = 1;
 	var _sign = i == 0 ? -1 : 1;
-
+	
+	surface_set_target(hud_surfaces[i]);
+	draw_clear_alpha(c_black, 0);
 
 	for (var j = 0; j < 4; j++) {
 
@@ -182,7 +188,6 @@ for (var i = 0; i < array_length(players); i++) {
 	}
 	
 	for (var j = 0; j < 4; j++) {
-		draw_set_alpha(alpha[i]);
 		var _color = _colors[i];
 		
 		var _x = _hMid * (1 + _sign * _meterXOffset);
@@ -358,6 +363,12 @@ for (var i = 0; i < array_length(players); i++) {
 			
 		}
 	}
+	
+	
+	surface_reset_target();
+	draw_set_alpha(alpha[i]);
+	draw_surface(hud_surfaces[i], 0, 0);
+	
 	//_x = _hMid * (1 + _sign * _heatXOffset);
 	//_y = _guiHeight * 0.06;
 	//_wid = 2;

@@ -41,10 +41,32 @@ for (var i = array_length(trail_points) - 1; i > 2; i--) {
 	//draw_vertex(_p1[0] - lengthdir_x(_w1, _n1), _p1[1] - lengthdir_y(_w1, _n1));
 	var _c0 = merge_color(color_slow, color_fast, power(clamp((_d0 - walk_speed) / (tapdash_speed - walk_speed), 0, 1), 2));
 	var _c1 = merge_color(color_slow, color_fast, power(clamp((_d1 - walk_speed) / (tapdash_speed - walk_speed), 0, 1), 2));
-	draw_vertex_color(_p0[0] + lengthdir_x(_w0, _n0), _p0[1] + lengthdir_y(_w0, _n0), _c0, _a0);
-	draw_vertex_color(_p0[0] - lengthdir_x(_w0, _n0), _p0[1] - lengthdir_y(_w0, _n0), _c0, _a0);
-	draw_vertex_color(_p1[0] + lengthdir_x(_w1, _n1), _p1[1] + lengthdir_y(_w1, _n1), _c1, _a1);
-	draw_vertex_color(_p1[0] - lengthdir_x(_w1, _n1), _p1[1] - lengthdir_y(_w1, _n1), _c1, _a1);
+	
+	if (heat > 100) {
+		var _dx0 = lengthdir_x(2, _n0 - 90);
+		var _dy0 = lengthdir_y(2, _n1 - 90);
+		var _dy1 = lengthdir_y(2, _n1 - 90);
+		var _dx1 = lengthdir_x(2, _n0 - 90);
+		//
+		//draw_vertex_color(_p0[0] + lengthdir_x(_w0, _n0) - _dx0, _p0[1] + lengthdir_y(_w0, _n0) - _dy0, _c0, _a0);
+		//draw_vertex_color(_p0[0] - lengthdir_x(_w0, _n0) - _dx0, _p0[1] - lengthdir_y(_w0, _n0) - _dy0, _c0, _a0);
+		//draw_vertex_color(_p1[0] + lengthdir_x(_w1, _n1) + _dx1, _p1[1] + lengthdir_y(_w1, _n1) + _dy1, _c1, _a1);
+		//draw_vertex_color(_p1[0] - lengthdir_x(_w1, _n1) + _dx1, _p1[1] - lengthdir_y(_w1, _n1) + _dy1, _c1, _a1);
+		
+		draw_vertex_color(_p0[0] + lengthdir_x(_w0, _n0) + random_range(-(heat - 100) / 50, (heat - 100) / 50), _p0[1] + lengthdir_y(_w0, _n0) - random_range(-(heat - 100) / 50, (heat - 100) / 50), _c0, _a0);
+		draw_vertex_color(_p0[0] - lengthdir_x(_w0, _n0) - random_range(-(heat - 100) / 50, (heat - 100) / 50), _p0[1] - lengthdir_y(_w0, _n0) - random_range(-(heat - 100) / 50, (heat - 100) / 50), _c0, _a0);
+		draw_vertex_color(_p1[0] + lengthdir_x(_w1, _n1) + random_range(-(heat - 100) / 50, (heat - 100) / 50), _p1[1] + lengthdir_y(_w1, _n1) + random_range(-(heat - 100) / 50, (heat - 100) / 50), _c1, _a1);
+		draw_vertex_color(_p1[0] - lengthdir_x(_w1, _n1) + random_range(-(heat - 100) / 50, (heat - 100) / 50), _p1[1] - lengthdir_y(_w1, _n1) + random_range(-(heat - 100) / 50, (heat - 100) / 50), _c1, _a1);
+
+	} else {
+		draw_vertex_color(_p0[0] + lengthdir_x(_w0, _n0), _p0[1] + lengthdir_y(_w0, _n0), _c0, _a0);
+		draw_vertex_color(_p0[0] - lengthdir_x(_w0, _n0), _p0[1] - lengthdir_y(_w0, _n0), _c0, _a0);
+		draw_vertex_color(_p1[0] + lengthdir_x(_w1, _n1), _p1[1] + lengthdir_y(_w1, _n1), _c1, _a1);
+		draw_vertex_color(_p1[0] - lengthdir_x(_w1, _n1), _p1[1] - lengthdir_y(_w1, _n1), _c1, _a1);
+
+	}
+	
+
 }
 
 draw_primitive_end();
