@@ -212,7 +212,7 @@ melee = function(){
 	bullet.target=obj_game_manager.players[target-1]
 	bullet.summoner_original=obj_game_manager.players[player_number-1]
 	alarm[0]=melee_cooldown;
-	hittable=false;
+	//hittable=false;
 	audio_play_sound(sfx_melee,0,false)
 }
 
@@ -283,3 +283,17 @@ draw_circle_width_shoot = function(inner_radius, width, segment){
 		    }
 		draw_primitive_end();
 }
+
+// particles
+pt_hit_x = part_type_create();
+part_type_shape(pt_hit_x, pt_shape_line);
+part_type_size(pt_hit_x, 0, 1, 0, 0);
+part_type_scale(pt_hit_x, 1, 1);
+part_type_speed(pt_hit_x, 10, 25, -0.65, 0);
+part_type_direction(pt_hit_x, 135, 135, 0, 0);
+part_type_gravity(pt_hit_x, 0, 270);
+part_type_orientation(pt_hit_x, 0, 0, 0, 0, true);
+part_type_colour3(pt_hit_x, $FFFFFF, $FFFF00, $FF0000);
+part_type_alpha3(pt_hit_x, 0, 1, 0);
+part_type_blend(pt_hit_x, true);
+part_type_life(pt_hit_x, 10, 40);
