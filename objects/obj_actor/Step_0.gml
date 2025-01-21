@@ -317,6 +317,6 @@ anim_stamina_limit = max(stamina_limit, lerp(anim_stamina_limit, stamina_limit, 
 
 
 if (audio_is_playing(dash_sfx)) {
-	var _dashVolume = power((max(0, dashing) + max(0, tapdashing)) / (dash_duration + tapdash_duration), 2);
+	var _dashVolume = sqrt((max(0, dashing) + max(0, tapdashing)) / (dash_duration + tapdash_duration));
 	audio_sound_gain(dash_sfx, _dashVolume, 0);
 }
