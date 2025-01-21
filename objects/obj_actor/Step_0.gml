@@ -287,5 +287,18 @@ if (instance_exists(obj_game_manager.players[target-1])) {
 
 anim_stamina_unlimit = lerp(anim_stamina_unlimit, stamina_limit, 0.1);
 anim_stamina_limit = max(stamina_limit, lerp(anim_stamina_limit, stamina_limit, 0.4));
+	} else {
+		if (was_hit) {
+			repeat(50) {
+				var _dir = 45 + choose(0, 90, 180, 270);
+				var _x = x + random_range(-25, 25);
+				var _y = y + random_range(-25, 25);
+				part_type_colour3(pt_hit_x, $FFFFFF, color, color);
+				part_type_direction(pt_hit_x, _dir, _dir, 0, 0);
+				part_particles_create(obj_particle_setup.particle_system, _x, _y, pt_hit_x, 1);
+
+			}
+
+		}
 	}
 	
