@@ -9,7 +9,7 @@
   "bitRate":128,
   "compression":1,
   "conversionMode":0,
-  "duration":301.17334,
+  "duration":0.0,
   "name":"bgm_dolphika",
   "parent":{
     "name":"Sounds",

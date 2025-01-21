@@ -228,6 +228,9 @@ if (dash_init) {
 	dash_lock = false;
 	tapdashing = tapdash_duration;
 	audio_play_sound(sfx_dash,0,false)
+	if (!audio_is_playing(dash_sfx)) {
+		dash_sfx = audio_play_sound(sfx_noise, 0, true);
+	}
 	//stamina -= 5;
 	if (move_speed < walk_speed) {
 		heat += dashcancel_heat;
@@ -310,6 +313,10 @@ anim_stamina_limit = max(stamina_limit, lerp(anim_stamina_limit, stamina_limit, 
 			part_particles_create(obj_particle_setup.particle_system, _x, _y, pt_shieldbreak, 1);
 		}
 	}
-
 }
 
+
+if (audio_is_playing(dash_sfx)) {
+	var _dashVolume = power((max(0, dashing) + max(0, tapdashing)) / (dash_duration + tapdash_duration), 2);
+	audio_sound_gain(dash_sfx, _dashVolume, 0);
+}

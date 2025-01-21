@@ -325,7 +325,7 @@ for (var i = 0; i < array_length(players); i++) {
 				
 				if (instance_exists(players[i])) {
 					_rumble = power(players[i].damage_mult - 1, 2) * 5;
-					draw_set_alpha((1 - random((players[i].damage_mult - 1))) * alpha[i]);
+					draw_set_alpha(1 - random((players[i].damage_mult - 1)));
 				}
 			} 
 			//if (k >= supercosts[i] / _div) {

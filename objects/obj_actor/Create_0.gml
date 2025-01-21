@@ -17,6 +17,8 @@ current_summon=0;
 #macro max_summon 5
 summons = [];
 
+dash_sfx = -1;
+
 was_hit = false;
 was_shieldbroken = false;
 

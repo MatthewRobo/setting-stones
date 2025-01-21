@@ -1,0 +1,25 @@
+{
+  "$GMSound":"",
+  "%Name":"bgm_meh_tuhl_hedz_von_dutch",
+  "audioGroupId":{
+    "name":"audiogroup_bgm",
+    "path":"audiogroups/audiogroup_bgm",
+  },
+  "bitDepth":1,
+  "bitRate":128,
+  "compression":1,
+  "conversionMode":0,
+  "duration":362.1,
+  "name":"bgm_meh_tuhl_hedz_von_dutch",
+  "parent":{
+    "name":"Sounds",
+    "path":"folders/Sounds.yy",
+  },
+  "preload":false,
+  "resourceType":"GMSound",
+  "resourceVersion":"2.0",
+  "sampleRate":44100,
+  "soundFile":"bgm_meh_tuhl_hedz_von_dutch.ogg",
+  "type":1,
+  "volume":1.0,
+}
