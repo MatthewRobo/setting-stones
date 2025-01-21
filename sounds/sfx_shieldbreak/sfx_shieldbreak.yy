@@ -1,0 +1,25 @@
+{
+  "$GMSound":"",
+  "%Name":"sfx_shieldbreak",
+  "audioGroupId":{
+    "name":"audiogroup_sfx",
+    "path":"audiogroups/audiogroup_sfx",
+  },
+  "bitDepth":1,
+  "bitRate":128,
+  "compression":2,
+  "conversionMode":0,
+  "duration":1.32907,
+  "name":"sfx_shieldbreak",
+  "parent":{
+    "name":"Sounds",
+    "path":"folders/Sounds.yy",
+  },
+  "preload":false,
+  "resourceType":"GMSound",
+  "resourceVersion":"2.0",
+  "sampleRate":44100,
+  "soundFile":"sfx_shieldbreak.wav",
+  "type":0,
+  "volume":1.0,
+}
