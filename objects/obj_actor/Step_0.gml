@@ -204,7 +204,7 @@ damage_mult = floor((heat + 100) / 100);
 if (damage_mult > 1) {
 	if (damage_mult > 2) {
 		part_type_speed(obj_particle_setup.particle_overheat, 3, 5, -0.02, 0); 
-		part_type_colour3(obj_particle_setup.particle_overheat, $D8008F, $960096, $000000);
+		part_type_colour3(obj_particle_setup.particle_overheat, $D8338F, $962296, $000000);
 		
 	} else {
 		part_type_speed(obj_particle_setup.particle_overheat, 1, 2, -0.02, 0);
