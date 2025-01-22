@@ -1,0 +1,25 @@
+{
+  "$GMSound":"",
+  "%Name":"bgm_tellin_myself",
+  "audioGroupId":{
+    "name":"audiogroup_bgm",
+    "path":"audiogroups/audiogroup_bgm",
+  },
+  "bitDepth":1,
+  "bitRate":128,
+  "compression":2,
+  "conversionMode":0,
+  "duration":268.74,
+  "name":"bgm_tellin_myself",
+  "parent":{
+    "name":"Sounds",
+    "path":"folders/Sounds.yy",
+  },
+  "preload":false,
+  "resourceType":"GMSound",
+  "resourceVersion":"2.0",
+  "sampleRate":44100,
+  "soundFile":"bgm_tellin_myself.ogg",
+  "type":1,
+  "volume":1.0,
+}
