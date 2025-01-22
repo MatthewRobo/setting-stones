@@ -164,7 +164,15 @@ function undash(uses_stamina = false) {
 summon_mine = function(){
 	do_summon = true;
 	undash(true);
-	var summon = instance_create_layer(x,y,"bullets",obj_mine)
+	var _x = x;
+	var _y = y;
+	var _target = obj_game_manager.players[target - 1];
+	if (instance_exists(_target)) {
+		var _dir = point_direction(x, y, _target.x, _target.y);
+		_x += lengthdir_x(1, _dir);
+		_y += lengthdir_y(1, _dir);
+	}
+	var summon = instance_create_layer(_x, _y, "bullets", obj_mine);
 	summon.target=obj_game_manager.players[target-1]
 	summon.summoner=obj_game_manager.players[player_number-1]
 	summon.summoner_original=obj_game_manager.players[player_number-1]
