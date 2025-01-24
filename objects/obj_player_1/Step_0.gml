@@ -1,13 +1,10 @@
 /// @description Insert description here
 // You can write your code in this editor
 
-
-
-particles=obj_particle_setup.particle_p1_trail;
-
+particles = obj_particle_setup.particle_p1_trail;
 
 //show_debug_message(hittable);
-summon_particles=obj_particle_setup.particle_p1_summon;
+summon_particles = obj_particle_setup.particle_p1_summon;
 // Inherit the parent event
 event_inherited();
 show_debug_message(current_summon);

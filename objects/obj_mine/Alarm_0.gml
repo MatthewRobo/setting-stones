@@ -9,4 +9,4 @@ if (instance_exists(summoner)) {
 		alarm[0] = 1;
 		active = false;
 	}
-} 
+}

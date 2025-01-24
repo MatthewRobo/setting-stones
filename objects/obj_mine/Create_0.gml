@@ -3,21 +3,21 @@
 
 // Inherit the parent event
 event_inherited();
-color=c_white
+color = c_white;
 color_up = c_green;
 color_down = c_fuchsia;
 color_left = c_aqua;
 color_right = c_red;
 color_front = c_purple;
 
-particles=noone;
-active=false;
+particles = part_type_create();
+active = false;
 
 tracker = noone;
-accel=75;
-xaccel=0;
-yaccel=0;
-shot=false;
+accel = 75;
+xaccel = 0;
+yaccel = 0;
+shot = false;
 
 last_melee = noone;
 
@@ -25,7 +25,7 @@ shift_ratio = 0;
 shift_x = x;
 shift_y = y;
 
-radius = sprite_width / 2 ;
+radius = sprite_width / 2;
 
 sides = 5;
 angles = [];
@@ -38,18 +38,15 @@ var _distMult = random_range(0.6, 0.8);
 lightDir = 20;
 lifetime = 0;
 
-grow = function()
-{
+grow = function() {
 	var _list = ds_list_create();
 	var _num = instance_position_list(x, y, obj_mine, _list, false);
-	if (_num > 1)
-{
+	if (_num > 1) {
 		var _area = 0;
 		var _hp = 0;
 		var _x = 0;
 		var _y = 0;
-		for (var i = 0; i < _num; ++i)
-{
+		for (var i = 0; i < _num; ++i) {
 			_area += pi * power(_list[| i].radius, 2);
 			_x += _list[| i].x;
 			_y += _list[| i].y;
@@ -62,13 +59,13 @@ grow = function()
 		var _scale = (radius * 2) / sprite_get_width(sprite_index);
 		image_xscale = _scale;
 		image_yscale = _scale;
-		x = _x/_num;
-		y = _y/_num;
+		x = _x / _num;
+		y = _y / _num;
 		hp = _hp;
 		var _bonusHp = hp - 1;
 		var _distMult = random_range(0.6, 0.8);
 		sides = 5 + _bonusHp;
-		for(var i = 0; i < sides; i++) {
+		for (var i = 0; i < sides; i++) {
 			angles[i] = i * (360 / sides);
 			angles[i] = (i + random(0.5)) * (360 / sides);
 			//dists[i] = irandom_range(60,72);
@@ -77,38 +74,35 @@ grow = function()
 			dists_in[i] = dists[i] * _distMult;
 			dists_in[i] = lerp(radius, dists_in[i], 1 / power(x, 2));
 		}
-		
 	}
 	ds_list_destroy(_list);
-}
+};
 
-
-shoot = function(){
-	xaccel=0;
-	yaccel=0;
-	xspd=xspd*0.1;
-	yspd=yspd*0.1;
-}
+shoot = function() {
+	xaccel = 0;
+	yaccel = 0;
+	xspd = xspd * 0.1;
+	yspd = yspd * 0.1;
+};
 //
 //while(place_meeting(x,y,target) && !active){
-	//x=summoner.x+random_range(-200,200);
-	//y=summoner.y+random_range(-200,200);
+//x=summoner.x+random_range(-200,200);
+//y=summoner.y+random_range(-200,200);
 //}
 //
 //
 
-alarm[0]=30;
+alarm[0] = 30;
 
-shoot_melee = function(melee){
-	direction=point_direction(melee.x,melee.y,x,y)
-	image_angle=direction
-	xspd=lengthdir_x(maxspeed,direction)
-	yspd=lengthdir_y(maxspeed,direction);
+shoot_melee = function(melee) {
+	direction = point_direction(melee.x, melee.y, x, y);
+	image_angle = direction;
+	xspd = lengthdir_x(maxspeed, direction);
+	yspd = lengthdir_y(maxspeed, direction);
 	//hp=1;
-}
+};
 
-
-for(var i = 0; i < sides; i++) {
+for (var i = 0; i < sides; i++) {
 	//angles[i] = i * (360 / sides);
 	angles[i] = (i + random(0.5)) * (360 / sides) + _offset;
 	//dists[i] = irandom_range(60,72);

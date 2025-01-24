@@ -7,10 +7,7 @@ enum end_options {
 	EXIT,
 }
 
-endDisplay = [
-	"Rematch",
-	"Return to Main Menu",
-]
+endDisplay = ["Rematch", "Return to Main Menu"];
 
 radius_initial = room_width * 0.4;
 
@@ -22,28 +19,41 @@ shrink = false;
 
 display_radius = radius;
 
-opacity=1
+opacity = 1;
 
 #macro start_distance 500
-players = [instance_create_layer((room_width - start_distance)/2, room_height/2, "instances", obj_player_1), instance_create_layer((room_width + start_distance)/2, room_height/2, "instances", obj_player_2)]
-colors=[obj_player_1.color,obj_player_2.color];
+players = [
+	instance_create_layer(
+		(room_width - start_distance) / 2,
+		room_height / 2,
+		"instances",
+		obj_player_1
+	),
+	instance_create_layer(
+		(room_width + start_distance) / 2,
+		room_height / 2,
+		"instances",
+		obj_player_2
+	)
+];
+colors = [obj_player_1.color, obj_player_2.color];
 
-seconds=0;
-alarm[0]=60
-ready_text=["3","2","1","GO!"]
+seconds = 0;
+alarm[0] = 60;
+ready_text = ["3", "2", "1", "GO!"];
 
-winner_triggered=false;
-winner=0;
+winner_triggered = false;
+winner = 0;
 
-end_game=false;
+end_game = false;
 
 endCursor = [0, 0];
 rematch = [false, false];
 
-alarm[2]=20*60
-audio_play_sound(sfx_countdown,0,false)
+alarm[2] = 20 * 60;
+audio_play_sound(sfx_countdown, 0, false);
 
-text_outline = function(){
+text_outline = function() {
 	//x,y: Coordinates to draw
 	//str: String to draw
 	//arugment3 = outwidth: Width of outline in pixels
@@ -52,21 +62,23 @@ text_outline = function(){
 	//argument6 = separation, for the draw_text_EXT command.
 	//argument7 = width for the draw_text_EXT command.
 
-	
 	//2,c_dkgray,4,20,500 <Personal favorite preset. (For fnt_3)
-	var dto_dcol=draw_get_color();
+	var dto_dcol = draw_get_color();
 
 	draw_set_color(argument4);
 
-	for(var dto_i=45; dto_i<405; dto_i+=360/argument5)
-	{
-	  //draw_text_ext(argument0+lengthdir_x(argument3,dto_i),argument1+lengthdir_y(argument3,dto_i),argument2,argument6,argument7);
-	  draw_text_ext(argument0+round(lengthdir_x(argument3,dto_i)),argument1+round(lengthdir_y(argument3,dto_i)),argument2,argument6,argument7);
+	for (var dto_i = 45; dto_i < 405; dto_i += 360 / argument5) {
+		//draw_text_ext(argument0+lengthdir_x(argument3,dto_i),argument1+lengthdir_y(argument3,dto_i),argument2,argument6,argument7);
+		draw_text_ext(
+			argument0 + round(lengthdir_x(argument3, dto_i)),
+			argument1 + round(lengthdir_y(argument3, dto_i)),
+			argument2,
+			argument6,
+			argument7
+		);
 	}
 
 	draw_set_color(dto_dcol);
 
-	draw_text_ext(argument0,argument1,argument2,argument6,argument7);	
-	
-	
-}
+	draw_text_ext(argument0, argument1, argument2, argument6, argument7);
+};

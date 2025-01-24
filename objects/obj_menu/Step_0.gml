@@ -2,17 +2,17 @@
 // You can write your code in this editor
 create_clouds();
 
-if(keyboard_check_pressed(vk_f1)){
+if (keyboard_check_pressed(vk_f1)) {
 	input_player_reset(0);
 }
 
-if(keyboard_check_pressed(vk_f2)){
+if (keyboard_check_pressed(vk_f2)) {
 	input_player_reset(1);
 }
 
 switch (menuState) {
 	case menu_states.MAIN_MENU:
-		for (var i = 0; i < INPUT_MAX_PLAYERS; i++ ) {
+		for (var i = 0; i < INPUT_MAX_PLAYERS; i++) {
 			if (input_check_pressed(["up", "down"], i)) {
 				var _val = input_check_pressed("down", i) - input_check_pressed("up", i);
 				mainCursor += _val;
@@ -21,26 +21,26 @@ switch (menuState) {
 				switch (mainCursor) {
 					case main_options.CREDITS:
 						menuState = menu_states.CREDITS;
-					break;
+						break;
 					case main_options.PLAY:
 						menuState = menu_states.CONTROLLER_ASSIGN;
 						controllerAssign = [-1, -1];
 						controllerAssignReady = [false, false];
-					break;
+						break;
 				}
 			}
 		}
 		mainCursor = wrap(0, array_length(mainDisplay) - 1, mainCursor);
-	break;
+		break;
 	case menu_states.CREDITS:
-		for (var i = 0; i < INPUT_MAX_PLAYERS; i++ ) {
+		for (var i = 0; i < INPUT_MAX_PLAYERS; i++) {
 			if (input_check_pressed(["accept", "cancel"], i)) {
 				menuState = menu_states.MAIN_MENU;
 			}
 		}
-	break;
+		break;
 	case menu_states.CONTROLLER_ASSIGN:
-		for (var i = 0; i < INPUT_MAX_PLAYERS; i++ ) {
+		for (var i = 0; i < INPUT_MAX_PLAYERS; i++) {
 			if (input_check_pressed("right", i)) {
 				if (controllerAssign[0] == i) {
 					controllerAssign[0] = -1;
@@ -50,7 +50,7 @@ switch (menuState) {
 					controllerAssign[1] = i;
 				}
 			}
-			
+
 			if (input_check_pressed("left", i)) {
 				if (controllerAssign[1] == i) {
 					controllerAssign[1] = -1;
@@ -60,7 +60,7 @@ switch (menuState) {
 					controllerAssign[0] = i;
 				}
 			}
-			
+
 			if (input_check_pressed("accept", i)) {
 				for (var j = 0; j < array_length(controllerAssign); j++) {
 					if (controllerAssign[j] == i) {
@@ -86,52 +86,61 @@ switch (menuState) {
 				//input_player_swap(i, controllerAssign[i]);
 				inputLock[i] = inputLockTime;
 			}
-			
+
 			for (var i = 0; i < array_length(_newSources); i++) {
 				input_source_set(_newSources[i], i);
 			}
 			input_source_mode_set(INPUT_SOURCE_MODE.FIXED);
-			bindCursor = [controls_options.DONE, controls_options.DONE]
+			bindCursor = [controls_options.DONE, controls_options.DONE];
 			menuState = menu_states.CONTROLLER_BINDING;
 		}
-	break;
+		break;
 	case menu_states.CONTROLLER_BINDING:
 		var _bindReady = true;
-		for (var i = 0; i < 2; i++ ) {
+		for (var i = 0; i < 2; i++) {
 			var _bs = {
 				player: i,
-				rebind : function(_binding) {
-					input_binding_set_safe(obj_menu.cursorVerb[self.player], _binding, self.player);
+				rebind: function(_binding) {
+					input_binding_set_safe(
+						obj_menu.cursorVerb[self.player],
+						_binding,
+						self.player
+					);
 					obj_menu.bindCursor[self.player]++;
 					obj_menu.inputLock[self.player] = inputLockTime;
 					obj_menu.is_binding[self.player] = false;
 				},
-				abort : function(_result) {
+				abort: function(_result) {
 					//show_debug_message(_result);
 					obj_menu.is_binding[self.player] = false;
-				}
+				},
 			};
 
-
-			
 			cursorVerb[i] = "";
 			//show_debug_message(cursorVerb);
 			if (bindCursor[i] < controls_options.RESET) {
 				cursorVerb[i] = verbs[bindCursor[i]];
 			}
-			
+
 			if (inputLock[i] <= 0) {
 				//show_debug_message(input_binding_scan_params_get(i));
-				if (bindCursor[i] >= controls_options.SUMMON && bindCursor[i] < controls_options.ACCEPT) {
+				if (
+					bindCursor[i] >= controls_options.SUMMON
+					&& bindCursor[i] < controls_options.ACCEPT
+				) {
 					input_binding_scan_params_set(
-					[
-						input_binding_get("left", i).__value,
-						input_binding_get("right", i).__value,
-						input_binding_get("up", i).__value,
-						input_binding_get("down", i).__value
-					], , , i);
-					
-					if(!is_binding[i]) {
+						[
+							input_binding_get("left", i).__value,
+							input_binding_get("right", i).__value,
+							input_binding_get("up", i).__value,
+							input_binding_get("down", i).__value
+						],
+						,
+						,
+						i
+					);
+
+					if (!is_binding[i]) {
 						is_binding[i] = true;
 						input_binding_scan_start(_bs.rebind, _bs.abort, i);
 					}
@@ -141,8 +150,8 @@ switch (menuState) {
 						if (input_check_pressed("cancel", i)) {
 							if (bindReady[i]) {
 								bindReady[i] = false;
-							} else { 
-								for (var j = 0; j < 2; j++ ) {
+							} else {
+								for (var j = 0; j < 2; j++) {
 									input_binding_scan_abort(j);
 									controllerAssignReady[j] = false;
 									bindReady[j] = false;
@@ -152,7 +161,7 @@ switch (menuState) {
 								menuState = menu_states.CONTROLLER_ASSIGN;
 							}
 						} else if (input_check_pressed("accept", i)) {
-							switch bindCursor[i] {
+							switch (bindCursor[i]) {
 								case controls_options.DONE:
 									bindReady[i] = true;
 									break;
@@ -169,8 +178,9 @@ switch (menuState) {
 				if (input_check_pressed(["up", "down"], i)) {
 					input_binding_scan_abort(i);
 
-					var _val = input_check_pressed("down", i) - input_check_pressed("up", i);
-					bindCursor[i] += _val
+					var _val =
+						input_check_pressed("down", i) - input_check_pressed("up", i);
+					bindCursor[i] += _val;
 					bindCursor[i] = wrap(0, controls_options.DONE, bindCursor[i]);
 					inputLock[i] = inputLockTime;
 					bindReady[i] = false;
@@ -184,11 +194,11 @@ switch (menuState) {
 				}
 				//show_debug_message([i,  bindCursor[i] == j, verbDisplay[j], _icon]);
 			}
-			
+
 			if (bindCursor[i] != controls_options.DONE) {
 				bindReady[i] = false;
 			}
-			
+
 			if (!bindReady[i]) {
 				_bindReady = false;
 			}
@@ -196,7 +206,7 @@ switch (menuState) {
 		if (_bindReady) {
 			room_goto(gameplay);
 		}
-	break;
+		break;
 }
 
 for (var i = 0; i < 2; i++) {
@@ -205,7 +215,6 @@ for (var i = 0; i < 2; i++) {
 	}
 }
 
-
 //show_debug_message(["menuState", menuState]);
 //show_debug_message(["controllerAssign", controllerAssign]);
-//show_debug_message(["controllerAssignReady", controllerAssignReady]);
+//show_debug_message(["controllerAssignReady", controllerAssignReady]); 

@@ -41,5 +41,5 @@
 //part_system_position(_ps, room_width/2, room_height/2);
 //
 
-camCenter = room_width/2;
-camMiddle = room_height/2;
+camCenter = room_width / 2;
+camMiddle = room_height / 2;

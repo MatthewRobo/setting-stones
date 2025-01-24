@@ -7,15 +7,26 @@ if (instance_exists(summoner) && instance_exists(mine)) {
 		}
 	}
 	//if (summoner.summons[0] == mine && array_length(summoner.summons) == summoner.max_summon) {
-		//color = c_white;
+	//color = c_white;
 	//}
-	
+
 	if (mine.shot) {
 		//color = c_orange;
 		color = summoner.color;
 		color_point = c_white;
-	} else if (summoner.shooting && point_distance(mine.x, mine.y, summoner.x, summoner.y) > summoner.shoot_radius) {
+	} else if (
+		summoner.shooting
+		&& point_distance(mine.x, mine.y, summoner.x, summoner.y) > summoner.shoot_radius
+	) {
 		//color = c_white;
-		color = merge_color(c_black, summoner.color, power(summoner.shoot_radius / point_distance(mine.x, mine.y, summoner.x, summoner.y), 2));
+		color = merge_color(
+			c_black,
+			summoner.color,
+			power(
+				summoner.shoot_radius
+					/ point_distance(mine.x, mine.y, summoner.x, summoner.y),
+				2
+			)
+		);
 	}
 }

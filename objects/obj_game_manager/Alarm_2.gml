@@ -1,6 +1,5 @@
 /// @description shrink
 // You can write your code in this editor
-shrink=true;
+shrink = true;
 
-
-opacity=1
+opacity = 1;

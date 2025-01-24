@@ -3,17 +3,17 @@
 
 trail_points = array_create(60, [x, y]);
 
-xspd=0;
-yspd=0;
+xspd = 0;
+yspd = 0;
 //maxspeed=10;
-decel=2;
-hmove=0;
-vmove=0;
-hmove_prev=1;
-vmove_prev=0;
-player_number=1;
-target=2
-current_summon=0;
+decel = 2;
+hmove = 0;
+vmove = 0;
+hmove_prev = 1;
+vmove_prev = 0;
+player_number = 1;
+target = 2;
+current_summon = 0;
 #macro max_summon 5
 summons = [];
 
@@ -25,19 +25,19 @@ was_shieldbroken = false;
 damage_mult = 1;
 
 #macro iframes 15
-hittable=true;
+hittable = true;
 #macro low_hp 3
 #macro max_hp 10
 hp = max_hp;
 
 #macro invuln_heat_recovery 0.4
 
-actionable=false;
+actionable = false;
 
-summon_mine_check=false;
-mine_shoot_check=false;
-melee_check=false;
-super_check=false;
+summon_mine_check = false;
+mine_shoot_check = false;
+melee_check = false;
+super_check = false;
 
 #macro meter_max 100
 #macro super_cost_normal 50
@@ -52,17 +52,17 @@ dash_down = false;
 #macro shoot_cost 20
 #macro melee_cost 20
 
-shield_check_pressed=false;
-shield_check=false;
+shield_check_pressed = false;
+shield_check = false;
 #macro fd_cost 20
-shield_active=false;
+shield_active = false;
 
 #macro melee_cooldown 10
 can_melee = true;
 
-dash_init=false;
-dashing=false;
-dash_release=false;
+dash_init = false;
+dashing = false;
+dash_release = false;
 #macro stamina_max 100
 stamina = stamina_max;
 stamina_limit = stamina_max;
@@ -99,9 +99,8 @@ move_speed = walk_speed;
 #macro stamina_recovery 1
 stamina_recover = true;
 
-
 meter = 0;
-color=c_white;
+color = c_white;
 color_up = c_green;
 color_down = c_fuchsia;
 color_left = c_aqua;
@@ -115,22 +114,21 @@ color_fast = c_red;
 #macro guard_meter_lockout 30
 //meter_gain = true;
 
-particles=noone;
+particles = noone;
 
-summon_particles=noone;
+summon_particles = noone;
 
-sound_played=[false,false];
+sound_played = [false, false];
 
-stamina_color=c_white;
+stamina_color = c_white;
 
-push_xspd=0;
-push_yspd=0;
+push_xspd = 0;
+push_yspd = 0;
 
-push_distance=50;
+push_distance = 50;
 
-shooting=false;
-shoot_radius=0;
-
+shooting = false;
+shoot_radius = 0;
 
 do_summon = false;
 do_shoot = false;
@@ -149,19 +147,17 @@ function undash(uses_stamina = false) {
 	if (uses_stamina) {
 		stamina_recover = false;
 	}
-	
+
 	dashing = min(0, dashing);
 	tapdashing = 0;
-	if(!dash_init) {
+	if (!dash_init) {
 		dash_down = false;
 		dash_release = false;
 		dash_lock = true;
 	}
-
-
 }
 
-summon_mine = function(){
+summon_mine = function() {
 	do_summon = true;
 	undash(true);
 	var _x = x;
@@ -173,10 +169,10 @@ summon_mine = function(){
 		_y += lengthdir_y(1, _dir);
 	}
 	var summon = instance_create_layer(_x, _y, "bullets", obj_mine);
-	summon.target=obj_game_manager.players[target-1]
-	summon.summoner=obj_game_manager.players[player_number-1]
-	summon.summoner_original=obj_game_manager.players[player_number-1]
-	summon.color=color
+	summon.target = obj_game_manager.players[target - 1];
+	summon.summoner = obj_game_manager.players[player_number - 1];
+	summon.summoner_original = obj_game_manager.players[player_number - 1];
+	summon.color = color;
 	summon.color_up = color_up;
 	summon.color_down = color_down;
 	summon.color_left = color_left;
@@ -185,69 +181,67 @@ summon_mine = function(){
 	array_push(summons, summon);
 	summon.particles = summon_particles;
 	meter += summon_metergain;
-	summon.tracker = instance_create_layer(x,y,"particles",obj_tracker)
-	summon.tracker.mine=summon;
-	summon.tracker.summoner=obj_game_manager.players[player_number-1];
-	audio_play_sound(sfx_summon,0,false);
+	summon.tracker = instance_create_layer(x, y, "particles", obj_tracker);
+	summon.tracker.mine = summon;
+	summon.tracker.summoner = obj_game_manager.players[player_number - 1];
+	audio_play_sound(sfx_summon, 0, false);
 	summon.grow();
-	
+
 	var _current_summons = array_length(summons);
-	
+
 	while (_current_summons > max_summon) {
 		instance_destroy(summons[0]);
 		_current_summons = array_length(summons);
 	}
-}
+};
 
-shoot_mines = function(){
+shoot_mines = function() {
 	do_shoot = true;
 	undash(true);
-	for(var i = 0; i < array_length(summons); i++){
+	for (var i = 0; i < array_length(summons); i++) {
 		try {
-			summons[i].shoot()
-		} catch(_exception) {
-			
-		}
+			summons[i].shoot();
+		} catch (_exception) {}
 	}
-	summons=[];
-	current_summon=0;
-	audio_play_sound(sfx_shoot,0,false);
-}
+	summons = [];
+	current_summon = 0;
+	audio_play_sound(sfx_shoot, 0, false);
+};
 
-melee = function(){
+melee = function() {
 	do_melee = true;
 	undash(true);
-	var bullet = instance_create_layer(x,y,"bullets", obj_melee);
-	can_melee=false;
-	bullet.summoner=obj_game_manager.players[player_number-1]
-	bullet.target=obj_game_manager.players[target-1]
-	bullet.summoner_original=obj_game_manager.players[player_number-1]
-	alarm[0]=melee_cooldown;
+	var bullet = instance_create_layer(x, y, "bullets", obj_melee);
+	can_melee = false;
+	bullet.summoner = obj_game_manager.players[player_number - 1];
+	bullet.target = obj_game_manager.players[target - 1];
+	bullet.summoner_original = obj_game_manager.players[player_number - 1];
+	alarm[0] = melee_cooldown;
 	//hittable=false;
-	audio_play_sound(sfx_melee,0,false)
-}
+	audio_play_sound(sfx_melee, 0, false);
+};
 
-ultimate = function(){
+ultimate = function() {
 	do_super = true;
 	undash();
-	for(var i = 0; i < 5; i++){
+	for (var i = 0; i < 5; i++) {
 		var summon = instance_create_layer(x, y, "bullets", obj_mine);
 		//var summon = instance_create_layer(x+random_range(-200,200),y+random_range(-200,200),"bullets",obj_mine)
-		summon.target=obj_game_manager.players[target-1]
-		summon.summoner=obj_game_manager.players[player_number-1]
-		summon.summoner_original=obj_game_manager.players[player_number-1]
-		
-		summon.color=color;
+		summon.target = obj_game_manager.players[target - 1];
+		summon.summoner = obj_game_manager.players[player_number - 1];
+		summon.summoner_original = obj_game_manager.players[player_number - 1];
+
+		summon.color = color;
 		summon.color_up = color_up;
 		summon.color_down = color_down;
 		summon.color_left = color_left;
 		summon.color_right = color_right;
 		summon.color_front = color_front;
-		summon.particles=summon_particles
-		summon.tracker = instance_create_layer(x,y,"particles",obj_tracker)
-		summon.tracker.mine=summon
-		summon.tracker.summoner=obj_game_manager.players[player_number-1];
-		
+		summon.particles = summon_particles;
+		summon.tracker = instance_create_layer(x, y, "particles", obj_tracker);
+		summon.tracker.mine = summon;
+		summon.tracker.summoner = obj_game_manager.players[player_number - 1];
+
 		//var _random_radius = 240;
 		var _random_radius = sqrt(random(1)) * 240;
 		var _random_angle = random(360);
@@ -255,45 +249,44 @@ ultimate = function(){
 		summon.shift_y = y + lengthdir_y(_random_radius, _random_angle);
 		summon.shift_ratio = random_range(0.1, 0.3);
 	}
-	audio_play_sound(sfx_special,0,false)
-	
-}
+	audio_play_sound(sfx_special, 0, false);
+};
 
-draw_circle_width= function(inner_radius, width, segment, percentage){
+draw_circle_width = function(inner_radius, width, segment, percentage) {
+	var radius = argument[0];
+	var thickness = argument[1];
+	var segments = argument[2];
+	var jadd = 360 / segments;
+	//draw_set_color(stamina_color);
+	draw_primitive_begin(pr_trianglestrip);
+	for (var j = 0; j <= 360 * percentage; j += jadd) {
+		draw_vertex(x - lengthdir_x(radius, j), y + lengthdir_y(radius, j));
 
-		var radius = argument[0];
-		var thickness = argument[1];
-		var segments = argument[2];
-		var jadd = 360/segments;
-		//draw_set_color(stamina_color);
-		draw_primitive_begin(pr_trianglestrip);
-		for (var j = 0; j <= 360*percentage; j+=jadd)
-		{
-		    draw_vertex(x-lengthdir_x(radius,j),y+lengthdir_y(radius,j));
+		draw_vertex(
+			x - lengthdir_x(radius + thickness, j),
+			y + lengthdir_y(radius + thickness, j)
+		);
+	}
+	draw_primitive_end();
+};
 
+draw_circle_width_shoot = function(inner_radius, width, segment) {
+	var radius = argument[0];
+	var thickness = argument[1];
+	var segments = argument[2];
+	var jadd = 360 / segments;
+	draw_set_color(color);
+	draw_primitive_begin(pr_trianglestrip);
+	for (var j = 0; j <= 360; j += jadd) {
+		draw_vertex(x - lengthdir_x(radius, j), y + lengthdir_y(radius, j));
 
-		  draw_vertex(x-lengthdir_x(radius+thickness,j),y+lengthdir_y(radius+thickness,j));
-		    }
-		draw_primitive_end();
-}
-
-draw_circle_width_shoot = function(inner_radius, width, segment){
-
-		var radius = argument[0];
-		var thickness = argument[1];
-		var segments = argument[2];
-		var jadd = 360/segments;
-		draw_set_color(color);
-		draw_primitive_begin(pr_trianglestrip);
-		for (var j = 0; j <= 360; j+=jadd)
-		{
-		    draw_vertex(x-lengthdir_x(radius,j),y+lengthdir_y(radius,j));
-
-
-		  draw_vertex(x-lengthdir_x(radius+thickness,j),y+lengthdir_y(radius+thickness,j));
-		    }
-		draw_primitive_end();
-}
+		draw_vertex(
+			x - lengthdir_x(radius + thickness, j),
+			y + lengthdir_y(radius + thickness, j)
+		);
+	}
+	draw_primitive_end();
+};
 
 // particles
 pt_hit_x = part_type_create();
@@ -310,7 +303,7 @@ part_type_blend(pt_hit_x, true);
 part_type_life(pt_hit_x, 10, 40);
 
 pt_shieldbreak = part_type_create();
-part_type_sprite(pt_shieldbreak, spr_triangle, false, true, false)
+part_type_sprite(pt_shieldbreak, spr_triangle, false, true, false);
 part_type_size(pt_shieldbreak, 0, 1.5, -0.01, 0);
 part_type_scale(pt_shieldbreak, 1, 0.25);
 part_type_speed(pt_shieldbreak, 7, 11, -0.6, 0);
@@ -321,4 +314,3 @@ part_type_colour3(pt_shieldbreak, $AFE1AF, $AFE1AF, $00FF00);
 part_type_alpha3(pt_shieldbreak, 1, 1, 0);
 part_type_blend(pt_shieldbreak, true);
 part_type_life(pt_shieldbreak, 20, 90);
-

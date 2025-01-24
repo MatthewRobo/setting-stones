@@ -1,7 +1,5 @@
 /// @description Insert description here
 // You can write your code in this editor
-try{
+try {
 	//summoner.hittable=true;
-}catch(_exception){
-	
-}
+} catch (_exception) {}

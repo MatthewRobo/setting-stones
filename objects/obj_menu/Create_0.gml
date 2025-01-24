@@ -1,8 +1,6 @@
 /// @description Insert description here
 // You can write your code in this editor
 
-
-
 enum menu_states {
 	MAIN_MENU,
 	CONTROLLER_ASSIGN,
@@ -18,11 +16,7 @@ enum main_options {
 	EXIT,
 }
 
-mainDisplay = [
-	"Play",
-	"Credits",
-	"Exit",
-]
+mainDisplay = ["Play", "Credits", "Exit"];
 
 enum controls_options {
 	UP,
@@ -55,10 +49,10 @@ verbs = [
 	"ultimate",
 	"fd",
 	"accept",
-	"cancel",
+	"cancel"
 	//"rebind",
 	//"pause",
-]
+];
 
 verbDisplay = [
 	"Up",
@@ -76,14 +70,14 @@ verbDisplay = [
 	//"Menu 3",
 	//"Start",
 	"Reset to Default",
-	"Ready",
-]
+	"Ready"
+];
 
 mainCursor = 0;
 controllerAssign = [-1, -1];
 controllerAssignReady = [false, false];
-bindCursor = [controls_options.SUMMON, controls_options.SUMMON]
-is_binding =  [false, false];
+bindCursor = [controls_options.SUMMON, controls_options.SUMMON];
+is_binding = [false, false];
 bindReady = [false, false];
 cursorVerb = [verbs[controls_options.SUMMON], verbs[controls_options.SUMMON]];
 
@@ -96,7 +90,6 @@ input_join_params_set(1, INPUT_MAX_PLAYERS);
 //Start the JOIN source mode, enabling automatic device assignment
 input_source_mode_set(INPUT_SOURCE_MODE.JOIN);
 
-
 input_ignore_key_add(vk_escape);
 input_ignore_key_add(vk_f1);
 input_ignore_key_add(vk_f2);
@@ -108,14 +101,16 @@ get_player_direction_inputs = function(playerIndex) {
 	var _directions = ["up", "left", "down", "right"];
 	for (var i = 0; i < array_length(_directions); i++) {
 		for (var j = 0; j < INPUT_MAX_ALTERNATE_BINDINGS; j++) {
-			_bindings += input_binding_get_name(input_binding_get(_directions[i], playerIndex, j));
+			_bindings += input_binding_get_name(
+				input_binding_get(_directions[i], playerIndex, j)
+			);
 		}
 	}
-	
-	return _bindings;
-}
 
-text_outline = function(){
+	return _bindings;
+};
+
+text_outline = function() {
 	//x,y: Coordinates to draw
 	//str: String to draw
 	//arugment3 = outwidth: Width of outline in pixels
@@ -124,27 +119,29 @@ text_outline = function(){
 	//argument6 = separation, for the draw_text_EXT command.
 	//argument7 = width for the draw_text_EXT command.
 
-	
 	//2,c_dkgray,4,20,500 <Personal favorite preset. (For fnt_3)
-	var dto_dcol=draw_get_color();
+	var dto_dcol = draw_get_color();
 
 	draw_set_color(argument4);
 
-	for(var dto_i=45; dto_i<405; dto_i+=360/argument5)
-	{
+	for (var dto_i = 45; dto_i < 405; dto_i += 360 / argument5) {
 		//draw_text_ext(argument0+lengthdir_x(argument3,dto_i),argument1+lengthdir_y(argument3,dto_i),argument2,argument6,argument7);
-		draw_text_ext(argument0+round(lengthdir_x(argument3,dto_i)),argument1+round(lengthdir_y(argument3,dto_i)),argument2,argument6,argument7);
+		draw_text_ext(
+			argument0 + round(lengthdir_x(argument3, dto_i)),
+			argument1 + round(lengthdir_y(argument3, dto_i)),
+			argument2,
+			argument6,
+			argument7
+		);
 	}
 
 	draw_set_color(dto_dcol);
 
-	draw_text_ext(argument0,argument1,argument2,argument6,argument7);	
-}
+	draw_text_ext(argument0, argument1, argument2, argument6, argument7);
+};
 
 clouds = [256];
-for (var i = 0; i < array_length(clouds); i++) {
-	
-}
+for (var i = 0; i < array_length(clouds); i++) {}
 
 //ParticleSystem1
 psys_clouds = part_system_create_layer("Particles", false);
@@ -152,7 +149,7 @@ part_system_draw_order(psys_clouds, false);
 
 //Emitter
 ptype_cloud = part_type_create();
-part_type_sprite(ptype_cloud, spr_pentagon, false, true, false)
+part_type_sprite(ptype_cloud, spr_pentagon, false, true, false);
 part_type_size(ptype_cloud, 0, 0, 0.08, 0);
 part_type_scale(ptype_cloud, 0.11, 0.11);
 part_type_speed(ptype_cloud, 2, 4, 0, 0);
@@ -164,7 +161,7 @@ part_type_alpha3(ptype_cloud, 1, 1, 1);
 part_type_blend(ptype_cloud, false);
 part_type_life(ptype_cloud, 90, 120);
 
-part_system_position(psys_clouds, room_width/2, room_height * 0.66);
+part_system_position(psys_clouds, room_width / 2, room_height * 0.66);
 
 function create_clouds() {
 	var _t = abs(1 - ((global.ANIMATION_TIMER * 0.025) % 1));
@@ -173,35 +170,34 @@ function create_clouds() {
 	var _ratio = 1;
 	var _grv = 1.4;
 
-	repeat(4) {
+	repeat (4) {
 		var _rand = random(1);
 		var _x = room_width * (0.5 - _rand);
-		var _y = - 200 * abs(power(lerp(-1, 1, _rand), 5));
+		var _y = -200 * abs(power(lerp(-1, 1, _rand), 5));
 		var _rand2 = lerp(-_ratio, _ratio, _rand);
-		
-		//var _dir = point_direction(0, 0, -_rand2, 1); 
+
+		//var _dir = point_direction(0, 0, -_rand2, 1);
 		var _dir = point_direction(0, -560, _x, _y);
 
 		//var _grv = point_distance(0, 0, _ratio/2, 1);
-		
+
 		var _dx = lerp(-50, 50, random(1));
 		var _dy = lerp(-20, 20, random(1));
-		
+
 		part_type_size(ptype_cloud, 0, 0.05, 0.12 * _grv, 0);
 		if (irandom(100) > 99) {
 			part_type_size(ptype_cloud, 0, 2, 0.12 * _grv, 0);
 		}
 		part_type_speed(ptype_cloud, 0, 0, _grv * 0.2, 0);
 		part_type_direction(ptype_cloud, _dir, _dir, 0, 0);
-		
+
 		//part_type_color1(_ptype1, merge_color(c_white, #9acbf6, sqrt(_t)));
 		part_particles_create(psys_clouds, _x + _dx, _y + _dy, ptype_cloud, 1);
 	}
 }
 
-repeat(60) {
+repeat (60) {
 	create_clouds();
-	global.ANIMATION_TIMER ++;
+	global.ANIMATION_TIMER++;
 	part_system_update(psys_clouds);
-	
 }

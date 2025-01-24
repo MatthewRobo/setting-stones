@@ -4,37 +4,34 @@ if (global.hitstop > -1) {
 	global.hitstop--;
 }
 
-opacity-=1/45
-if(winner==0){
-}
-if(winner>0 && winner_triggered){
-	winner_triggered=false;
-	alarm[1]=120;
+opacity -= 1 / 45;
+if (winner == 0) {}
+if (winner > 0 && winner_triggered) {
+	winner_triggered = false;
+	alarm[1] = 120;
 }
 
 if (shrink && winner == 0) {
 	radius -= shrink_radius;
 }
 
-
 //show_debug_message(alarm[2])
-if(end_game){
+if (end_game) {
 	var _rematch = true;
-	for (var i = 0; i < 2; i++) { 
+	for (var i = 0; i < 2; i++) {
 		if (!rematch[i]) {
-			//endCursor[i] += input_y("left", "right", "up", "down", i); 
-			
+			//endCursor[i] += input_y("left", "right", "up", "down", i);
+
 			if (input_check("down", i)) {
 				endCursor[i] = end_options.EXIT;
 			} else if (input_check("up", i)) {
 				endCursor[i] = end_options.REMATCH;
 			}
-			
-			_rematch = false;
 
+			_rematch = false;
 		}
 		//endCursor[i] = wrap(end_options.REMATCH, end_options.EXIT, endCursor[i]);
-		
+
 		if (input_check_pressed("accept", i)) {
 			switch (endCursor[i]) {
 				case end_options.REMATCH:
@@ -47,7 +44,7 @@ if(end_game){
 		}
 	}
 	if (_rematch) {
-		room_restart()
+		room_restart();
 	}
 }
 
