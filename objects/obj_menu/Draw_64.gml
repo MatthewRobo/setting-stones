@@ -117,7 +117,7 @@ switch (menuState) {
 					draw_set_color(_colorHover);
 					if (input_binding_scan_in_progress(i)) { 
 						draw_set_color(_colorActive);
-						_alpha = lengthdir_x(1,input_binding_scan_time_remaining(i));
+						_alpha = abs(lengthdir_x(1,input_binding_scan_time_remaining(i) * 0.4));
 					}
 				}
 				if (bindReady[i]) {
