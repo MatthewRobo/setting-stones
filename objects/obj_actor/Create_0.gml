@@ -67,6 +67,7 @@ dash_release = false;
 stamina = stamina_max;
 stamina_limit = stamina_max;
 anim_stamina_limit = 0;
+#macro homing false
 
 #macro heat_max 200
 heat = 0;

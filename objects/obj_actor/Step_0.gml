@@ -64,7 +64,7 @@ if (global.hitstop <= 0) {
 
 	if (point_distance(0, 0, hmove, vmove) > 0) {
 		target_dir = point_direction(0, 0, hmove, vmove);
-	} else if (dash_init) {
+	} else if (dash_init && homing) {
 		var _target = obj_game_manager.players[target - 1];
 		if (instance_exists(_target)) {
 			target_dir = point_direction(x, y, _target.x, _target.y);
