@@ -96,7 +96,7 @@ dir = 0;
 
 move_speed = walk_speed;
 
-
+#macro stamina_recovery 1
 stamina_recover = true;
 
 
@@ -113,7 +113,7 @@ color_fast = c_red;
 
 #macro super_meter_lockout 60
 #macro guard_meter_lockout 30
-meter_gain = true;
+//meter_gain = true;
 
 particles=noone;
 

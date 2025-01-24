@@ -79,8 +79,7 @@ if (was_hit) {
 }
 
 draw_set_alpha(0.7)
-if(shield_check && !hittable){
-	//draw_circle_color(x,y,100,color_guard, color_guard, false);
+if(shield_active){
 	draw_ring2(x, y, 0, 100, 24, 1, 0, c_white, 0.2, color_guard, 1);
 } 
 

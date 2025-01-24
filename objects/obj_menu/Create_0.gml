@@ -70,7 +70,7 @@ verbDisplay = [
 	"Melee",
 	"Dash",
 	"Super",
-	"Guard",
+	"Shield",
 	"Menu Accept",
 	"Menu Cancel",
 	//"Menu 3",

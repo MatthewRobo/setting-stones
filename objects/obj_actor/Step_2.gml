@@ -36,7 +36,7 @@ for (var i = 0; i < _mines; i++) {
 				point_in_triangle(x, y, _x2, _y2, _x3, _y3, _x4, _y4) || 
 				point_in_circle(x, y, _mine.x, _mine.y, _r)) {
 	
-				if (hittable) {
+				if (hittable && !shield_active) {
 					alarm[1] = iframes;
 					var damage_taken = 1 * damage_mult;
 					hp -= damage_taken;

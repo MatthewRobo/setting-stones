@@ -128,34 +128,24 @@ if(actionable){
 	
 	if(super_check && meter>=super_cost){
 		meter-=super_cost
-		meter_gain=false
-		alarm[3]=60
-		ultimate()
+		ultimate();
 	}
 
 	if(shield_check_pressed && meter>=fd_cost){
-		audio_play_sound(sfx_faultless,0,false,2)
-		meter-=fd_cost;
-		meter_gain=false;
-		hittable=false;
-		shield_active=true;
-		shield_check=true;
+		audio_play_sound(sfx_faultless, 0, false, 2);
+		meter -= fd_cost;
+		//meter_gain = false;
+		shield_active = true;
+		shield_check=  true;
 		heat -= 16; // held bar would give 16 for 20 meter/40 frames
 		
 	}
 
-	if(shield_check && meter>0 && shield_active){
-		hittable=false;
-		meter-=0.5;
-		meter_gain=false;
-		alarm[3]=30;
-		if(alarm[1]<1){
-			alarm[1]=1
-		}
+	if(shield_check && meter > 0 && shield_active){
+		//hittable=false;
+		meter -= 0.5;
 	}
-	if(shield_check){
-		alarm[3]=30;
-	}else{
+	if(!shield_check) {
 		shield_active=false;	
 	}
 	
@@ -168,15 +158,9 @@ if(actionable){
 }
 
 
-	if(stamina_recover){
-		stamina+=1;
-	
+	if (stamina_recover) {
+		stamina += stamina_recovery;
 	}
-	
-	//if (stamina_unlimit) {
-		//stamina_inv_limit -= 0.5;
-	//}
-	
 
 
 if (dashing <= -1 * nodash_heat_recovery_delay) {
@@ -185,7 +169,7 @@ if (dashing <= -1 * nodash_heat_recovery_delay) {
 	heat -= heat_recovery;
 }
 
-if (!hittable) {
+if (!hittable || shield_active) {
 	heat -= invuln_heat_recovery;
 	if (shield_active) {
 		var _angle = random(360);

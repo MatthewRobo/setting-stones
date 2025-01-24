@@ -10,8 +10,8 @@ if (global.hitstop <= 0) {
 		push_yspd=lengthdir_y(push_distance,_direction);
 	}
 
-	if(other.summoner!=id && other.active && instance_exists(other.summoner)){
-		hittable=false;
+	if(other.summoner!=id && hittable && other.active && instance_exists(other.summoner)){
+		hittable = false;
 		was_hit = true;
 
 		var damage_taken = 2 * damage_mult;
@@ -49,8 +49,7 @@ if (global.hitstop <= 0) {
 			audio_play_sound(sfx_hit,0,false,4)
 		}
 		
-		instance_destroy(other);
+		//instance_destroy(other);
 	}
-	
 }
-	
+
