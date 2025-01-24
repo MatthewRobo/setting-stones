@@ -37,7 +37,7 @@ actionable=false;
 summon_mine_check=false;
 mine_shoot_check=false;
 melee_check=false;
-ultimate_check=false;
+super_check=false;
 
 #macro meter_max 100
 #macro super_cost_normal 50
@@ -52,10 +52,10 @@ dash_down = false;
 #macro shoot_cost 20
 #macro melee_cost 20
 
-fd_check_pressed=false;
-fd_check=false;
+shield_check_pressed=false;
+shield_check=false;
 #macro fd_cost 20
-fd_triggered=false;
+shield_active=false;
 
 #macro melee_cooldown 10
 can_melee = true;
@@ -135,7 +135,7 @@ shoot_radius=0;
 do_summon = false;
 do_shoot = false;
 do_melee = false;
-do_ultimate = false;
+do_super = false;
 
 dash_lock = 0;
 dash_lock_duration = 60;
@@ -228,9 +228,9 @@ melee = function(){
 }
 
 ultimate = function(){
-	do_ultimate = true;
+	do_super = true;
 	undash();
-	for(i=0;i<5;i++){
+	for(var i = 0; i < 5; i++){
 		var summon = instance_create_layer(x, y, "bullets", obj_mine);
 		//var summon = instance_create_layer(x+random_range(-200,200),y+random_range(-200,200),"bullets",obj_mine)
 		summon.target=obj_game_manager.players[target-1]

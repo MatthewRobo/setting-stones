@@ -72,13 +72,13 @@ switch (menuState) {
 				menuState = menu_states.MAIN_MENU;
 			}
 		}
-		var _ready = true;
+		var _assignReady = true;
 		for (var i = 0; i < array_length(controllerAssignReady); i++) {
 			if (!controllerAssignReady[i]) {
-				_ready = false;
+				_assignReady = false;
 			}
 		}
-		if (_ready) {
+		if (_assignReady) {
 			var _newSources = [2];
 			for (var i = 0; i < array_length(controllerAssign); i++) {
 				var _newSource = input_source_get_array(controllerAssign[i])[0];
@@ -96,7 +96,7 @@ switch (menuState) {
 		}
 	break;
 	case menu_states.CONTROLLER_BINDING:
-		var _ready = true;
+		var _bindReady = true;
 		for (var i = 0; i < 2; i++ ) {
 			var _bs = {
 				player: i,
@@ -190,10 +190,10 @@ switch (menuState) {
 			}
 			
 			if (!bindReady[i]) {
-				_ready = false;
+				_bindReady = false;
 			}
 		}
-		if (_ready) {
+		if (_bindReady) {
 			room_goto(gameplay);
 		}
 	break;

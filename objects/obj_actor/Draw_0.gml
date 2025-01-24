@@ -79,7 +79,7 @@ if (was_hit) {
 }
 
 draw_set_alpha(0.7)
-if(fd_check && !hittable){
+if(shield_check && !hittable){
 	//draw_circle_color(x,y,100,color_guard, color_guard, false);
 	draw_ring2(x, y, 0, 100, 24, 1, 0, c_white, 0.2, color_guard, 1);
 } 
@@ -165,7 +165,7 @@ for(var i = 360; i > _lerp_stamina_limit_angle; i -= 6) {
 			_lineRadius = random(12);
 		}
 		
-		if (fd_triggered) {
+		if (shield_active) {
 			_color = merge_color(color_guard, _color, _d);
 		}
 		var _dx = lengthdir_x(_radius2, _angle);

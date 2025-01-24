@@ -6,8 +6,8 @@ if (global.hitstop >=  0) {
 	mine_shoot_check = max(mine_shoot_check,  input_check_pressed("shoot", player_number - 1));
 	melee_check = max(melee_check,  input_check_pressed("melee", player_number - 1));
 	dash_init = max(dash_init,  input_check_pressed("dash", player_number - 1));
-	ultimate_check = max(ultimate_check,  input_check_pressed("ultimate", player_number - 1));
-	fd_check_pressed = max(fd_check_pressed,  input_check_pressed("fd", player_number - 1));
+	super_check = max(super_check,  input_check_pressed("ultimate", player_number - 1));
+	shield_check_pressed = max(shield_check_pressed,  input_check_pressed("fd", player_number - 1));
 }
 
 if (global.hitstop <= 0) {
@@ -26,17 +26,17 @@ if (global.hitstop <= 0) {
 		dash_down = input_check("dash",player_number-1);
 		dash_release=input_check_released("dash",player_number-1);
 		
-		ultimate_check=input_check_pressed("ultimate",player_number-1);
-		fd_check=input_check("fd",player_number-1);
-		fd_check_pressed=input_check_pressed("fd",player_number-1);
+		super_check=input_check_pressed("ultimate",player_number-1);
+		shield_check=input_check("fd",player_number-1);
+		shield_check_pressed=input_check_pressed("fd",player_number-1);
 
 	} else {
 		summon_mine_check = max(summon_mine_check,  input_check_pressed("summon", player_number - 1));
 		mine_shoot_check = max(mine_shoot_check,  input_check_pressed("shoot", player_number - 1));
 		melee_check = max(melee_check,  input_check_pressed("melee", player_number - 1));
 		dash_init = max(dash_init,  input_check_pressed("dash", player_number - 1));
-		ultimate_check = max(ultimate_check,  input_check_pressed("ultimate", player_number - 1));
-		fd_check_pressed = max(fd_check_pressed,  input_check_pressed("fd", player_number - 1));
+		super_check = max(super_check,  input_check_pressed("ultimate", player_number - 1));
+		shield_check_pressed = max(shield_check_pressed,  input_check_pressed("fd", player_number - 1));
 	}
 
 	
@@ -60,7 +60,7 @@ var _next_dir = _current_dir - max(-1 * abs(_angle_diff), min(abs(_angle_diff ),
 do_summon = false;
 do_shoot = false;
 do_melee = false;
-do_ultimate = false;
+do_super = false;
 
 if(hp <= low_hp){
 	super_cost = super_cost_low_hp;
@@ -126,25 +126,25 @@ if(actionable){
 		sound_played[1]=false
 	}
 	
-	if(ultimate_check && meter>=super_cost){
+	if(super_check && meter>=super_cost){
 		meter-=super_cost
 		meter_gain=false
 		alarm[3]=60
 		ultimate()
 	}
 
-	if(fd_check_pressed && meter>=fd_cost){
+	if(shield_check_pressed && meter>=fd_cost){
 		audio_play_sound(sfx_faultless,0,false,2)
 		meter-=fd_cost;
 		meter_gain=false;
 		hittable=false;
-		fd_triggered=true;
-		fd_check=true;
+		shield_active=true;
+		shield_check=true;
 		heat -= 16; // held bar would give 16 for 20 meter/40 frames
 		
 	}
 
-	if(fd_check && meter>0 && fd_triggered){
+	if(shield_check && meter>0 && shield_active){
 		hittable=false;
 		meter-=0.5;
 		meter_gain=false;
@@ -153,17 +153,17 @@ if(actionable){
 			alarm[1]=1
 		}
 	}
-	if(fd_check){
+	if(shield_check){
 		alarm[3]=30;
 	}else{
-		fd_triggered=false;	
+		shield_active=false;	
 	}
 	
 	if (meter <= 0.5) {
-		if (fd_triggered) {
+		if (shield_active) {
 			meter = 0;
 		}
-		fd_triggered = false;
+		shield_active = false;
 	}
 }
 
@@ -187,7 +187,7 @@ if (dashing <= -1 * nodash_heat_recovery_delay) {
 
 if (!hittable) {
 	heat -= invuln_heat_recovery;
-	if (fd_triggered) {
+	if (shield_active) {
 		var _angle = random(360);
 		var _radius = 100;
 		
@@ -318,7 +318,7 @@ anim_stamina_limit = max(stamina_limit, lerp(anim_stamina_limit, stamina_limit, 
 			//var _x = x + lengthdir_x(_radius, _dir);
 			//var _y = y + lengthdir_y(_radius, _dir);
 			
-			part_particles_create(obj_particle_setup.particle_system, _x, _y, pt_shieldbreak, 1);
+			part_particles_create(obj_particle_setup.particle_system, x, y, pt_shieldbreak, 1);
 		}
 	}
 }

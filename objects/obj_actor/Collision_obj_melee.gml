@@ -15,9 +15,9 @@ if (global.hitstop <= 0) {
 		was_hit = true;
 
 		var damage_taken = 2 * damage_mult;
-		if (fd_triggered) {
+		if (shield_active) {
 			was_shieldbroken = true;
-			fd_triggered = false;
+			shield_active = false;
 			global.hitstop += 4 * damage_taken;
 			audio_play_sound(sfx_shieldbreak, 0, false, 5);
 		}
