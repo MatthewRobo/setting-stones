@@ -98,67 +98,91 @@ switch (menuState) {
 	case menu_states.CONTROLLER_BINDING:
 		var _ready = true;
 		for (var i = 0; i < 2; i++ ) {
+			var _bs = {
+				player: i,
+				rebind : function(_binding) {
+					input_binding_set_safe(obj_menu.cursorVerb[self.player], _binding, self.player);
+					obj_menu.bindCursor[self.player]++;
+					obj_menu.inputLock[self.player] = inputLockTime;
+					obj_menu.is_binding[self.player] = false;
+				},
+				abort : function(_result) {
+					//show_debug_message(_result);
+					obj_menu.is_binding[self.player] = false;
+				}
+			};
+
+
+			
 			cursorVerb[i] = "";
-			show_debug_message(cursorVerb);
+			//show_debug_message(cursorVerb);
 			if (bindCursor[i] < controls_options.RESET) {
 				cursorVerb[i] = verbs[bindCursor[i]];
 			}
+			
 			if (inputLock[i] <= 0) {
+				//show_debug_message(input_binding_scan_params_get(i));
+				if (bindCursor[i] >= controls_options.SUMMON && bindCursor[i] < controls_options.ACCEPT) {
+					input_binding_scan_params_set(
+					[
+						input_binding_get("left", i).__value,
+						input_binding_get("right", i).__value,
+						input_binding_get("up", i).__value,
+						input_binding_get("down", i).__value
+					], , , i);
+					
+					if(!is_binding[i]) {
+						is_binding[i] = true;
+						input_binding_scan_start(_bs.rebind, _bs.abort, i);
+					}
+				} else {
+					input_binding_scan_params_clear(i);
+					if (!is_binding[i]) {
+						if (input_check_pressed("cancel", i)) {
+							if (bindReady[i]) {
+								bindReady[i] = false;
+							} else { 
+								for (var j = 0; j < 2; j++ ) {
+									input_binding_scan_abort(j);
+									controllerAssignReady[j] = false;
+									bindReady[j] = false;
+									controllerAssign[j] = j;
+								}
+								input_source_mode_set(INPUT_SOURCE_MODE.JOIN);
+								menuState = menu_states.CONTROLLER_ASSIGN;
+							}
+						} else if (input_check_pressed("accept", i)) {
+							switch bindCursor[i] {
+								case controls_options.DONE:
+									bindReady[i] = true;
+									break;
+								case controls_options.RESET:
+									input_profile_reset_bindings("keyboard_and_mouse", i);
+									input_profile_reset_bindings("gamepad", i);
+									break;
+								default:
+									input_binding_scan_start(_bs.rebind, _bs.abort, i);
+							}
+						}
+					}
+				}
 				if (input_check_pressed(["up", "down"], i)) {
+					input_binding_scan_abort(i);
+
 					var _val = input_check_pressed("down", i) - input_check_pressed("up", i);
 					bindCursor[i] += _val
 					bindCursor[i] = wrap(0, controls_options.DONE, bindCursor[i]);
-				} else if (input_check_pressed("accept", i)) {
-					if (bindCursor[i] < controls_options.RESET) {
-						if (i == 0) {
-							input_binding_scan_start(function(_binding) {
-								var _player = 0;
-								input_binding_set_safe(obj_menu.cursorVerb[_player], _binding, _player);
-								obj_menu.bindCursor[_player]++;
-								inputLock[_player] = inputLockTime;
-							}, function(_result) {
-								show_debug_message(_result);
-							}, i);
-						} else if (i == 1) {
-							input_binding_scan_start(function(_binding) {
-								var _player = 1;
-								input_binding_set_safe(obj_menu.cursorVerb[_player], _binding, _player);
-								obj_menu.bindCursor[_player]++;
-								inputLock[_player] = inputLockTime;
-							}, function(_result) {
-								show_debug_message(_result);
-							}, i);
-						}
-					} else {
-						switch (bindCursor[i]) {
-							case controls_options.DONE:
-								bindReady[i] = true;
-							break;
-							case controls_options.RESET:
-								input_profile_reset_bindings("keyboard_and_mouse", i);
-								input_profile_reset_bindings("gamepad", i);
-							break;
-						}
-					}
-				} else if (input_check_pressed("cancel", i)) {
-					if (bindReady[i]) {
-						bindReady[i] = false;
-					} else {
-						input_source_mode_set(INPUT_SOURCE_MODE.JOIN);
-						menuState = menu_states.CONTROLLER_ASSIGN;
-						controllerAssign = [-1, -1];
-						controllerAssignReady = [false, false];
-					}
+					inputLock[i] = inputLockTime;
+					bindReady[i] = false;
 				}
 			}
 
 			for (var j = 0; j < array_length(verbDisplay); j++) {
-				
 				var _icon = "N/A";
 				if (j < controls_options.RESET) {
 					_icon = input_verb_get_icon(verbs[j], i);
 				}
-				show_debug_message([i,  bindCursor[i] == j, verbDisplay[j], _icon]);
+				//show_debug_message([i,  bindCursor[i] == j, verbDisplay[j], _icon]);
 			}
 			
 			if (bindCursor[i] != controls_options.DONE) {
@@ -182,6 +206,6 @@ for (var i = 0; i < 2; i++) {
 }
 
 
-show_debug_message(["menuState", menuState]);
-show_debug_message(["controllerAssign", controllerAssign]);
-show_debug_message(["controllerAssignReady", controllerAssignReady]);
+//show_debug_message(["menuState", menuState]);
+//show_debug_message(["controllerAssign", controllerAssign]);
+//show_debug_message(["controllerAssignReady", controllerAssignReady]);

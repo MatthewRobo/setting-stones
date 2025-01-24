@@ -83,11 +83,12 @@ mainCursor = 0;
 controllerAssign = [-1, -1];
 controllerAssignReady = [false, false];
 bindCursor = [controls_options.SUMMON, controls_options.SUMMON]
+is_binding =  [false, false];
 bindReady = [false, false];
 cursorVerb = [verbs[controls_options.SUMMON], verbs[controls_options.SUMMON]];
 
 inputLock = [false, false];
-inputLockTime = 5;
+#macro inputLockTime 5
 
 // the amount of players is the number of controllers, we'll resolve this later
 input_join_params_set(1, INPUT_MAX_PLAYERS);
