@@ -14,22 +14,7 @@ if (global.hitstop <= 0) {
 	was_hit = false;
 	was_shieldbroken = false;
 	
-//if moving, apply acceleration. otherwise decelerate
-hmove=input_check("right",player_number-1)-input_check("left",player_number-1)
-vmove=input_check("down",player_number-1)-input_check("up",player_number-1)
 
-if (point_distance(0,0, hmove, vmove) > 0) {
-	target_dir = point_direction(0, 0, hmove, vmove);
-} else {
-	var _target = obj_game_manager.players[target-1];
-	if (instance_exists(_target)) {
-		target_dir = point_direction(x, y, _target.x, _target.y);
-	}
-}
-
-var _current_dir = point_direction(0, 0, xspd, yspd);
-var _angle_diff = angle_difference(_current_dir, target_dir);
-var _next_dir = _current_dir - max(-1 * abs(_angle_diff), min(abs(_angle_diff ), turn_speed * sign(_angle_diff)));
 
 //var _next_speed = maxspeed;
 
@@ -54,6 +39,24 @@ var _next_dir = _current_dir - max(-1 * abs(_angle_diff), min(abs(_angle_diff ),
 		fd_check_pressed = max(fd_check_pressed,  input_check_pressed("fd", player_number - 1));
 	}
 
+	
+	//if moving, apply acceleration. otherwise decelerate
+hmove=input_check("right",player_number-1)-input_check("left",player_number-1)
+vmove=input_check("down",player_number-1)-input_check("up",player_number-1)
+
+if (point_distance(0,0, hmove, vmove) > 0) {
+	target_dir = point_direction(0, 0, hmove, vmove);
+} else if (dash_init) {
+	var _target = obj_game_manager.players[target-1];
+	if (instance_exists(_target)) {
+		target_dir = point_direction(x, y, _target.x, _target.y);
+	}
+}
+
+var _current_dir = point_direction(0, 0, xspd, yspd);
+var _angle_diff = angle_difference(_current_dir, target_dir);
+var _next_dir = _current_dir - max(-1 * abs(_angle_diff), min(abs(_angle_diff ), turn_speed * sign(_angle_diff)));
+	
 do_summon = false;
 do_shoot = false;
 do_melee = false;
