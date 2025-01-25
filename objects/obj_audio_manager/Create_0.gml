@@ -1,8 +1,8 @@
 /// @description Insert description here
 // You can write your code in this editor
+
 persistent = true;
 
-randomize();
 
 //audio_group_load(audiogroup_bgm);
 audio_group_load(audiogroup_sfx);
@@ -15,7 +15,6 @@ function shuffle_bgm() {
 		bgm_dolphika,
 		bgm_end_roll,
 		bgm_main,
-		bgm_movin_out,
 		bgm_our_love,
 		bgm_programmed_gaia,
 		bgm_qixpin,
@@ -23,7 +22,8 @@ function shuffle_bgm() {
 		bgm_volcanos,
 		bgm_you_win_some_you_nuke_some,
 		bgm_meh_tuhl_hedz_von_dutch,
-		bgm_tellin_myself
+		bgm_tellin_myself,
+		bgm_grenade,
 	);
 }
 
