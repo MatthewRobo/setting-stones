@@ -10,9 +10,9 @@ var _hmid = _width / 2;
 var _vmid = _height / 2;
 
 var _colorBody = #aaaaaa;
-var _colorHeader = c_aqua;
+var _colorHeader = #00c1dc;
 var _colorHover = c_white;
-var _colorActive = c_red;
+var _colorActive = #ff27ff;
 
 draw_set_color(_colorBody);
 
