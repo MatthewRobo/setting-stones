@@ -98,12 +98,22 @@ if (global.hitstop <= 0) {
 		shoot_radius += 20;
 	}
 
-	if (summon_mine_check && stamina > 0) {
-		current_summon += 1;
-		summon_mine();
-		stamina -= summon_cost;
-		alarm[2] = 15;
-		stamina_recover = false;
+	if (stamina <= 0 && (mine_shoot_check || summon_mine_check || melee_check)) {
+		stamina_warning = stamina_warning_duration;
+		audio_play_sound(sfx_nostamina, 0, false);
+	}
+	
+	if (summon_mine_check) {
+		if (stamina > 0) {
+			current_summon += 1;
+			summon_mine();
+			stamina -= summon_cost;
+			alarm[2] = 15;
+			stamina_recover = false;
+		} else {
+			stamina_warning = stamina_warning_duration;
+		}
+
 	}
 
 	if (actionable) {
@@ -354,3 +364,11 @@ if (audio_is_playing(dash_sfx)) {
 	);
 	audio_sound_gain(dash_sfx, _dashVolume, 0);
 }
+
+if (stamina > 0) {
+	stamina_warning = 0;
+} else if (stamina_warning > 0) {
+	stamina_warning--;
+}
+
+lerp_heat = lerp(lerp_heat, heat, 0.1);

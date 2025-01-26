@@ -1,6 +1,6 @@
 {
   "$GMSound":"",
-  "%Name":"sfx_matchstart",
+  "%Name":"sfx_nostamina",
   "audioGroupId":{
     "name":"audiogroup_sfx",
     "path":"audiogroups/audiogroup_sfx",
@@ -9,8 +9,8 @@
   "bitRate":128,
   "compression":0,
   "conversionMode":0,
-  "duration":6.62068,
-  "name":"sfx_matchstart",
+  "duration":0.62068,
+  "name":"sfx_nostamina",
   "parent":{
     "name":"Sounds",
     "path":"folders/Sounds.yy",
@@ -19,7 +19,7 @@
   "resourceType":"GMSound",
   "resourceVersion":"2.0",
   "sampleRate":44100,
-  "soundFile":"sfx_matchstart.wav",
+  "soundFile":"sfx_nostamina.wav",
   "type":0,
   "volume":1.0,
 }

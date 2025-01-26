@@ -145,7 +145,7 @@ if (shield_active) {
 
 draw_set_alpha(0.3);
 
-draw_set_color(stamina_color);
+draw_set_color(merge_color(stamina_color, c_pink, clamp(stamina_warning / stamina_warning_duration, 0, 1)));
 
 var _angle_plus = 0;
 //var _angle_plus = 3/360;
@@ -196,22 +196,26 @@ _lineRadius = 5;
 
 var _summon_angle = (summon_cost / 100) * 360;
 var _shoot_angle = (shoot_cost / 100) * 360;
+if (stamina_limit >= summon_cost) {
+	draw_set_color(merge_color(c_white, c_pink, clamp(stamina_warning / stamina_warning_duration, 0, 1)));
+	draw_line_width(
+		x - lengthdir_x(106 - _lineRadius, _summon_angle),
+		y + lengthdir_y(106 - _lineRadius, _summon_angle),
+		x - lengthdir_x(106 + _lineRadius, _summon_angle),
+		y + lengthdir_y(106 + _lineRadius, _summon_angle),
+		3
+	);
+	if (stamina_limit >= shoot_cost) {
+		draw_line_width(
+			x - lengthdir_x(106 - _lineRadius, _shoot_angle),
+			y + lengthdir_y(106 - _lineRadius, _shoot_angle),
+			x - lengthdir_x(106 + _lineRadius, _shoot_angle),
+			y + lengthdir_y(106 + _lineRadius, _shoot_angle),
+			3
+		);
+	}
+}
 
-draw_set_color(c_white);
-draw_line_width(
-	x - lengthdir_x(106 - _lineRadius, _summon_angle),
-	y + lengthdir_y(106 - _lineRadius, _summon_angle),
-	x - lengthdir_x(106 + _lineRadius, _summon_angle),
-	y + lengthdir_y(106 + _lineRadius, _summon_angle),
-	3
-);
-draw_line_width(
-	x - lengthdir_x(106 - _lineRadius, _shoot_angle),
-	y + lengthdir_y(106 - _lineRadius, _shoot_angle),
-	x - lengthdir_x(106 + _lineRadius, _shoot_angle),
-	y + lengthdir_y(106 + _lineRadius, _shoot_angle),
-	3
-);
 
 for (var i = 360; i > _lerp_stamina_limit_angle; i -= 6) {
 	if (i < _stamina_limit_angle + 360) {
@@ -220,6 +224,10 @@ for (var i = 360; i > _lerp_stamina_limit_angle; i -= 6) {
 		var _angle = i;
 		var _radius2 = 0;
 		_color = merge_color(c_orange, c_yellow, clamp(i / 360, 0, 1));
+		var _gradient = clamp((min(heat, lerp_heat) - 100) / 10, 0, 1);
+		//if (heat > stamina_max) {
+			_color = merge_color(_color, c_black, _gradient);
+		//}
 		//_color = merge_color(_color2, c_yellow, clamp((i - 90) / 180, 0, 1));
 		if (i < 0) {
 			_color = merge_color(c_red, c_black, _d);
@@ -236,6 +244,11 @@ for (var i = 360; i > _lerp_stamina_limit_angle; i -= 6) {
 		if (shield_active) {
 			_color = merge_color(color_guard, _color, _d);
 		}
+		
+		if (stamina_warning > 0) {
+			_color = merge_color(_color, c_pink, stamina_warning / stamina_warning_duration);
+		}
+		
 		var _dx = lengthdir_x(_radius2, _angle);
 		var _dy = lengthdir_y(_radius2, _angle);
 		draw_set_color(_color);

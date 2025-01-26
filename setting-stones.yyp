@@ -477,6 +477,7 @@
     {"id":{"name":"sfx_menuclick","path":"sounds/sfx_menuclick/sfx_menuclick.yy",},},
     {"id":{"name":"sfx_menuconfirm","path":"sounds/sfx_menuconfirm/sfx_menuconfirm.yy",},},
     {"id":{"name":"sfx_noise","path":"sounds/sfx_noise/sfx_noise.yy",},},
+    {"id":{"name":"sfx_nostamina","path":"sounds/sfx_nostamina/sfx_nostamina.yy",},},
     {"id":{"name":"sfx_power_up","path":"sounds/sfx_power_up/sfx_power_up.yy",},},
     {"id":{"name":"sfx_reflect","path":"sounds/sfx_reflect/sfx_reflect.yy",},},
     {"id":{"name":"sfx_shieldbreak","path":"sounds/sfx_shieldbreak/sfx_shieldbreak.yy",},},

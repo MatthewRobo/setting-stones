@@ -12,8 +12,8 @@
   "duration":8.27585,
   "name":"sfx_matchgo",
   "parent":{
-    "name":"Objects",
-    "path":"folders/Objects.yy",
+    "name":"Sounds",
+    "path":"folders/Sounds.yy",
   },
   "preload":false,
   "resourceType":"GMSound",

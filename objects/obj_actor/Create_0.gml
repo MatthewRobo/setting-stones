@@ -85,6 +85,7 @@ tapdashing = 0;
 
 heat_prev = heat;
 anim_stamina_unlimit = 0;
+lerp_heat = heat;
 
 dir = 0;
 
@@ -99,6 +100,9 @@ move_speed = walk_speed;
 
 #macro stamina_recovery 1
 stamina_recover = true;
+
+stamina_warning = 0;
+#macro stamina_warning_duration 15
 
 meter = 0;
 color = c_white;
