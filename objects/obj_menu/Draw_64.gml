@@ -18,21 +18,33 @@ draw_set_color(_colorBody);
 
 switch (menuState) {
 	case menu_states.MAIN_MENU:
-		draw_set_font(Font1);
-		draw_set_halign(fa_left);
+		draw_set_color(c_black);
+		draw_set_alpha(0.5);
+		draw_rectangle(_hmid * (1 - 0.5 * lerpMenuWidth), 0, _hmid * (1 + 0.5 * lerpMenuWidth), _height, false);
+		draw_set_color(c_white);
+		draw_set_alpha(1);
+		draw_set_font(fnt_inter);
+		draw_set_halign(fa_center);
 		draw_set_valign(fa_top);
+		var _yCursor = indexToCoord(lerpMainCursor, _height, menu_states.MAIN_MENU);
+		draw_set_color(_colorActive);
+		draw_rectangle(_hmid * (1 - 0.5 * lerpMenuWidth), _yCursor, _hmid * (1 + 0.5 * lerpMenuWidth), _yCursor + 58 + global.DEBUG_VALUE, false);
 		for (var i = 0; i < array_length(mainDisplay); i++) {
-			draw_set_color(mainCursor == i ? _colorHover : _colorBody);
-			text_outline(
-				50,
-				_height - 50 - (75 * array_length(mainDisplay)) + 75 * i,
-				mainDisplay[i],
-				3,
-				c_black,
-				8,
-				100,
-				100000
-			);
+			//draw_set_color(mainCursor == i ? _colorHover : _colorBody);
+			var _y = indexToCoord(i, _height, menu_states.MAIN_MENU);
+
+			draw_set_color(_colorHover);
+			draw_text_ext(_hmid, _y, mainDisplay[i], 0, 9999);
+			//text_outline(
+				//50,
+				//_height - 50 - (75 * array_length(mainDisplay)) + 75 * i,
+				//mainDisplay[i],
+				//3,
+				//c_black,
+				//8,
+				//0,
+				//100000
+			//);
 		}
 
 		draw_sprite_ext(

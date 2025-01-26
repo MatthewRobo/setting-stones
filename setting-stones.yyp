@@ -80,6 +80,7 @@
   },
   "name":"setting-stones",
   "resources":[
+    {"id":{"name":"fnt_inter","path":"fonts/fnt_inter/fnt_inter.yy",},},
     {"id":{"name":"Font1_small","path":"fonts/Font1_small/Font1_small.yy",},},
     {"id":{"name":"Font1","path":"fonts/Font1/Font1.yy",},},
     {"id":{"name":"Font2_small","path":"fonts/Font2_small/Font2_small.yy",},},
@@ -474,6 +475,9 @@
     {"id":{"name":"sfx_shoot","path":"sounds/sfx_shoot/sfx_shoot.yy",},},
     {"id":{"name":"sfx_special","path":"sounds/sfx_special/sfx_special.yy",},},
     {"id":{"name":"sfx_summon","path":"sounds/sfx_summon/sfx_summon.yy",},},
+    {"id":{"name":"snd_gameboot","path":"sounds/snd_gameboot/snd_gameboot.yy",},},
+    {"id":{"name":"snd_menuclick","path":"sounds/snd_menuclick/snd_menuclick.yy",},},
+    {"id":{"name":"snd_menuconfirm","path":"sounds/snd_menuconfirm/snd_menuconfirm.yy",},},
     {"id":{"name":"spr_background_1","path":"sprites/spr_background_1/spr_background_1.yy",},},
     {"id":{"name":"spr_background","path":"sprites/spr_background/spr_background.yy",},},
     {"id":{"name":"spr_bg_gameplay","path":"sprites/spr_bg_gameplay/spr_bg_gameplay.yy",},},

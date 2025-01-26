@@ -29,3 +29,5 @@ function shuffle_bgm() {
 
 global.BGM = shuffle_bgm();
 global.BGM_MUTE = false;
+
+audio_play_sound(snd_gameboot, 0, false);

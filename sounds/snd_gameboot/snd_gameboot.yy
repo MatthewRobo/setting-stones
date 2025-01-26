@@ -1,0 +1,25 @@
+{
+  "$GMSound":"",
+  "%Name":"snd_gameboot",
+  "audioGroupId":{
+    "name":"audiogroup_default",
+    "path":"audiogroups/audiogroup_default",
+  },
+  "bitDepth":1,
+  "bitRate":128,
+  "compression":0,
+  "conversionMode":0,
+  "duration":6.62068,
+  "name":"snd_gameboot",
+  "parent":{
+    "name":"setting-stones",
+    "path":"setting-stones.yyp",
+  },
+  "preload":false,
+  "resourceType":"GMSound",
+  "resourceVersion":"2.0",
+  "sampleRate":44100,
+  "soundFile":"snd_gameboot.wav",
+  "type":0,
+  "volume":1.0,
+}

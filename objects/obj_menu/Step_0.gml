@@ -10,19 +10,24 @@ if (keyboard_check_pressed(vk_f2)) {
 	input_player_reset(1);
 }
 
+lerpMainCursor = lerp(lerpMainCursor, mainCursor, menu_lerp_factor);
+lerpMenuWidth = lerp(lerpMenuWidth, menuWidth, 0.2);
+
 switch (menuState) {
 	case menu_states.MAIN_MENU:
 		for (var i = 0; i < INPUT_MAX_PLAYERS; i++) {
 			if (input_check_pressed(["up", "down"], i)) {
+				audio_play_sound(snd_menuclick, 0, false);
 				var _val = input_check_pressed("down", i) - input_check_pressed("up", i);
 				mainCursor += _val;
 			}
 			if (input_check_pressed("accept", i)) {
+				audio_play_sound(snd_menuconfirm, 0, false);
 				switch (mainCursor) {
-					case main_options.CREDITS:
+					case main_options.CREDITS: 
 						menuState = menu_states.CREDITS;
 						break;
-					case main_options.PLAY:
+					case main_options.PLAY: 
 						menuState = menu_states.CONTROLLER_ASSIGN;
 						controllerAssign = [-1, -1];
 						controllerAssignReady = [false, false];
