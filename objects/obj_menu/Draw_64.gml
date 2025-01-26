@@ -12,7 +12,7 @@ var _vmid = _height / 2;
 var _colorBody = #aaaaaa;
 var _colorHeader = #00c1dc;
 var _colorHover = c_white;
-var _colorActive = #ff27ff;
+var _colorActive = c_pink;
 
 draw_set_color(_colorBody);
 

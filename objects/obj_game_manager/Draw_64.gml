@@ -10,7 +10,7 @@ var _vmid = _height / 2;
 var _colorBody = c_grey;
 var _colorHeader = c_aqua;
 var _colorHover = c_white;
-var _colorActive = c_red;
+var _colorActive = c_pink;
 
 draw_set_halign(fa_center);
 
@@ -18,10 +18,10 @@ draw_set_alpha(opacity);
 draw_set_color(c_white);
 draw_set_font(Font2);
 draw_set_valign(fa_middle);
-if (seconds < 4) {
-	text_outline(750, 750, ready_text[seconds], 1, c_black, 8, 30, 100000);
-}
-
+//if (seconds < 4) {
+	//text_outline(750, 750, ready_text[seconds], 1, c_black, 8, 30, 100000);
+//}
+//
 if (shrink && winner == 0) {
 	text_outline(750, 750, "HURRY UP!", 1, c_black, 8, 30, 100000);
 }

@@ -1,5 +1,24 @@
 /// @description Insert description here
 // You can write your code in this editor
+if (countdown > 0) {
+	if (countdown == 60 || countdown == 120 || countdown == 180) {
+		audio_play_sound(sfx_countdown, 0, false);
+	}
+	countdown--;
+
+} else {
+	countup++;
+	if (countdown == 0) {
+		for (var i = 0; i < array_length(players); i++) {
+			players[i].actionable = true;
+		}
+		audio_play_sound(sfx_matchgo, 0, false);
+		audio_play_sound(sfx_go, 0, false);
+
+		countdown--;
+	}
+}
+
 if (global.hitstop > -1) {
 	global.hitstop--;
 }

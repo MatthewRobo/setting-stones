@@ -25,6 +25,8 @@ if (instance_exists(obj_player_1) && instance_exists(obj_player_2)) {
 		players[1].x,
 		players[1].y
 	);
+	midpoint = [mean(players[0].x, players[1].x), mean(players[0].y, players[1].y)];
+	player_distance = point_distance(players[0].x, players[0].y, players[1].x, players[1].y);
 
 	if (
 		rectangle_in_rectangle(

@@ -16,3 +16,33 @@ draw_ring2(
 	_color,
 	0
 );
+
+
+
+if (obj_game_manager.countdown > 0) {
+	
+	draw_set_alpha(0.5);
+	draw_set_color(c_black);
+	var _length = 2000;
+	var _radius = power(obj_game_manager.countdown, 2) / 100;
+	var _direction = player_angle + 90;
+	
+	var _dx = lengthdir_x(_length, _direction);
+	var _dy = lengthdir_y(_length, _direction);
+	draw_line_width(midpoint[0] - _dx, midpoint[1] - _dy, midpoint[0] + _dx, midpoint[1] + _dy, _radius);
+	draw_set_color(c_white);
+	draw_set_alpha(1);
+	draw_set_halign(fa_center);
+	draw_set_valign(fa_middle);
+	
+	draw_set_font(fnt_inter);
+	//text_outline(midpoint[0], midpoint[1], "SET YOUR STONES", 2, c_black, 4, 20, 500);
+	draw_text(midpoint[0], midpoint[1], "SET YOUR STONES");
+} else if (obj_game_manager.countup < 60) {
+	draw_set_alpha(1 - obj_game_manager.countup/60);
+	draw_set_font(fnt_inter_large);
+	draw_set_color(c_pink);
+	draw_set_halign(fa_center);
+	draw_set_valign(fa_middle);
+	draw_text(midpoint[0], midpoint[1], "SEND 'EM");
+}

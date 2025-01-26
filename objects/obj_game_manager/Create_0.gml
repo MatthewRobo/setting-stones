@@ -21,6 +21,9 @@ display_radius = radius;
 
 opacity = 1;
 
+countdown = 60 * 3;
+countup = 0;
+
 #macro start_distance 500
 players = [
 	instance_create_layer(
@@ -51,7 +54,7 @@ endCursor = [0, 0];
 rematch = [false, false];
 
 alarm[2] = 20 * 60;
-audio_play_sound(sfx_countdown, 0, false);
+audio_play_sound(sfx_matchstart, 0, false);
 
 text_outline = function() {
 	//x,y: Coordinates to draw

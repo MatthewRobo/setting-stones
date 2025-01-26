@@ -62,3 +62,5 @@ players = [obj_player_1, obj_player_2];
 supercosts = [super_cost_normal, super_cost_normal];
 hittables = [false, false];
 player_angle = 0;
+midpoint = [room_width / 2, room_height / 2];
+player_distance = obj_game_manager.radius_initial * 2;
