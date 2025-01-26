@@ -17,12 +17,12 @@ switch (menuState) {
 	case menu_states.MAIN_MENU:
 		for (var i = 0; i < INPUT_MAX_PLAYERS; i++) {
 			if (input_check_pressed(["up", "down"], i)) {
-				audio_play_sound(snd_menuclick, 0, false);
+				audio_play_sound(sfx_menuclick, 0, false);
 				var _val = input_check_pressed("down", i) - input_check_pressed("up", i);
 				mainCursor += _val;
 			}
 			if (input_check_pressed("accept", i)) {
-				audio_play_sound(snd_menuconfirm, 0, false);
+				audio_play_sound(sfx_menuconfirm, 0, false);
 				switch (mainCursor) {
 					case main_options.CREDITS: 
 						menuState = menu_states.CREDITS;
@@ -32,7 +32,14 @@ switch (menuState) {
 						controllerAssign = [-1, -1];
 						controllerAssignReady = [false, false];
 						break;
+					case main_options.EXIT:
+						mainDisplay[main_options.EXIT] += "?";
+						break;
 				}
+			}
+			if (input_check_pressed("cancel", i)) {
+				mainCursor = main_options.EXIT;
+				audio_play_sound(sfx_menuback, 0, false);
 			}
 		}
 		mainCursor = wrap(0, array_length(mainDisplay) - 1, mainCursor);
@@ -41,12 +48,15 @@ switch (menuState) {
 		for (var i = 0; i < INPUT_MAX_PLAYERS; i++) {
 			if (input_check_pressed(["accept", "cancel"], i)) {
 				menuState = menu_states.MAIN_MENU;
+				audio_play_sound(sfx_menuback, 0, false);
+				lerpMenuWidth = 0;
 			}
 		}
 		break;
 	case menu_states.CONTROLLER_ASSIGN:
 		for (var i = 0; i < INPUT_MAX_PLAYERS; i++) {
 			if (input_check_pressed("right", i)) {
+				audio_play_sound(sfx_menuclick, 0, false);
 				if (controllerAssign[0] == i) {
 					controllerAssign[0] = -1;
 					controllerAssignReady[0] = false;
@@ -57,6 +67,7 @@ switch (menuState) {
 			}
 
 			if (input_check_pressed("left", i)) {
+				audio_play_sound(sfx_menuclick, 0, false);
 				if (controllerAssign[1] == i) {
 					controllerAssign[1] = -1;
 					controllerAssignReady[1] = false;
@@ -70,11 +81,27 @@ switch (menuState) {
 				for (var j = 0; j < array_length(controllerAssign); j++) {
 					if (controllerAssign[j] == i) {
 						controllerAssignReady[j] = true;
+						audio_play_sound(sfx_menuconfirm, 0, false);
 					}
 				}
 			}
 			if (input_check_pressed("cancel", i)) {
-				menuState = menu_states.MAIN_MENU;
+				audio_play_sound(sfx_menuback, 0, false);
+				var _isAssigned = true;
+				for (var j = 0; j < array_length(controllerAssign); j++) {
+					if (controllerAssign[j] == i) {
+						_isAssigned = false;
+						if (controllerAssignReady[j]) {
+							controllerAssignReady[j] = false;
+						} else {
+							controllerAssign[j] = -1;
+						}
+					}
+				}
+				if (_isAssigned) { 
+					menuState = menu_states.MAIN_MENU;
+					lerpMenuWidth = 0;
+				}
 			}
 		}
 		var _assignReady = true;

@@ -1,6 +1,6 @@
 {
   "$GMSound":"",
-  "%Name":"snd_menuconfirm",
+  "%Name":"sfx_gameboot",
   "audioGroupId":{
     "name":"audiogroup_default",
     "path":"audiogroups/audiogroup_default",
@@ -9,17 +9,17 @@
   "bitRate":128,
   "compression":0,
   "conversionMode":0,
-  "duration":3.31034,
-  "name":"snd_menuconfirm",
+  "duration":6.62068,
+  "name":"sfx_gameboot",
   "parent":{
-    "name":"setting-stones",
-    "path":"setting-stones.yyp",
+    "name":"Sounds",
+    "path":"folders/Sounds.yy",
   },
   "preload":false,
   "resourceType":"GMSound",
   "resourceVersion":"2.0",
   "sampleRate":44100,
-  "soundFile":"snd_menuconfirm.wav",
+  "soundFile":"sfx_gameboot.wav",
   "type":0,
   "volume":1.0,
 }
