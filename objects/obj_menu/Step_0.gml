@@ -34,6 +34,10 @@ switch (menuState) {
 						break;
 					case main_options.EXIT:
 						mainDisplay[main_options.EXIT] += "?";
+						if (string_length(mainDisplay[main_options.EXIT]) > 55) {
+							game_end();
+						}
+						
 						break;
 				}
 			}
