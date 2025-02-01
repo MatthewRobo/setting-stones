@@ -182,5 +182,3 @@ part_type_colour3(particle_smoke, $000000, $000000, $000000);
 part_type_alpha3(particle_smoke, 1, 0.502, 0);
 part_type_blend(particle_smoke, false);
 part_type_life(particle_smoke, 80, 80);
-
-

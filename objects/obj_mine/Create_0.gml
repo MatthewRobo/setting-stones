@@ -38,6 +38,8 @@ var _distMult = random_range(0.6, 0.8);
 lightDir = 20;
 lifetime = 0;
 
+#macro max_distance_from_center 5000
+
 grow = function() {
 	var _list = ds_list_create();
 	var _num = instance_position_list(x, y, obj_mine, _list, false);
