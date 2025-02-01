@@ -76,7 +76,7 @@
   "isEcma":false,
   "LibraryEmitters":[],
   "MetaData":{
-    "IDEVersion":"2024.1300.0.720",
+    "IDEVersion":"2024.1300.0.732",
   },
   "name":"setting-stones",
   "resources":[
@@ -106,6 +106,7 @@
     {"id":{"name":"obj_tracker","path":"objects/obj_tracker/obj_tracker.yy",},},
     {"id":{"name":"ParticleSystem1","path":"particles/ParticleSystem1/ParticleSystem1.yy",},},
     {"id":{"name":"ps_background","path":"particles/ps_background/ps_background.yy",},},
+    {"id":{"name":"ps_heat","path":"particles/ps_heat/ps_heat.yy",},},
     {"id":{"name":"ps_hitsparks","path":"particles/ps_hitsparks/ps_hitsparks.yy",},},
     {"id":{"name":"controller","path":"rooms/controller/controller.yy",},},
     {"id":{"name":"gameplay","path":"rooms/gameplay/gameplay.yy",},},

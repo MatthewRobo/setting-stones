@@ -293,6 +293,15 @@ draw_line_width(
 	5
 );
 
+var _sprColor = c_white;
+if (damage_mult >= 3) {
+	var _flash = global.ANIMATION_TIMER / 2 % 2;
+	_sprColor = _flash ? c_pink : c_black;
+} else if (damage_mult >= 2) {
+	var _flash = global.ANIMATION_TIMER / 3 % 2;
+	_sprColor = _flash ? c_red : c_white;
+}
+
 draw_sprite_ext(
 	sprite_index,
 	0,
@@ -301,6 +310,6 @@ draw_sprite_ext(
 	image_xscale,
 	image_yscale,
 	image_angle,
-	image_blend,
+	_sprColor,
 	alarm[1] > 0 && alarm[1] % 2 ? 0.1 : 1
 );
