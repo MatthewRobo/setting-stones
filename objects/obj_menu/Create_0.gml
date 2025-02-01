@@ -183,4 +183,3 @@ repeat (60) {
 	global.ANIMATION_TIMER++;
 	part_system_update(psys_clouds);
 }
-

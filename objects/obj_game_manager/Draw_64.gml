@@ -19,7 +19,7 @@ draw_set_color(c_white);
 draw_set_font(Font2);
 draw_set_valign(fa_middle);
 //if (seconds < 4) {
-	//text_outline(750, 750, ready_text[seconds], 1, c_black, 8, 30, 100000);
+//text_outline(750, 750, ready_text[seconds], 1, c_black, 8, 30, 100000);
 //}
 //
 if (shrink && winner == 0) {

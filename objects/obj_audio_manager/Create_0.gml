@@ -3,7 +3,6 @@
 
 persistent = true;
 
-
 //audio_group_load(audiogroup_bgm);
 audio_group_load(audiogroup_sfx);
 audio_group_load(audiogroup_bgm);
@@ -24,6 +23,7 @@ function shuffle_bgm() {
 		bgm_meh_tuhl_hedz_von_dutch,
 		bgm_tellin_myself,
 		bgm_grenade,
+
 	);
 }
 

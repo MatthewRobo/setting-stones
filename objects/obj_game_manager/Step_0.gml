@@ -5,7 +5,6 @@ if (countdown > 0) {
 		audio_play_sound(sfx_countdown, 0, false);
 	}
 	countdown--;
-
 } else {
 	countup++;
 	if (countdown == 0) {
