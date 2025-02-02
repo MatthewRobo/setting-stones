@@ -11,10 +11,11 @@ if (keyboard_check_pressed(vk_f2)) {
 }
 
 lerpMainCursor = lerp(lerpMainCursor, mainCursor, menu_lerp_factor);
-lerpMenuWidth = lerp(lerpMenuWidth, menuWidth, 0.2);
 
 switch (menuState) {
 	case menu_states.MAIN_MENU:
+		menuWidth = menu_widths[menu_states.MAIN_MENU];
+		lerpMenuWidth = lerp(lerpMenuWidth, menuWidth, 0.2);
 		for (var i = 0; i < INPUT_MAX_PLAYERS; i++) {
 			if (input_check_pressed(["up", "down"], i)) {
 				audio_play_sound(sfx_menuclick, 0, false);
@@ -49,15 +50,20 @@ switch (menuState) {
 		mainCursor = wrap(0, array_length(mainDisplay) - 1, mainCursor);
 		break;
 	case menu_states.CREDITS:
+		menuWidth = menu_widths[menu_states.CREDITS];
+		lerpMenuWidth = lerp(lerpMenuWidth, menuWidth, 0.2);
+
 		for (var i = 0; i < INPUT_MAX_PLAYERS; i++) {
 			if (input_check_pressed(["accept", "cancel"], i)) {
 				menuState = menu_states.MAIN_MENU;
 				audio_play_sound(sfx_menuback, 0, false);
-				lerpMenuWidth = 0;
 			}
 		}
 		break;
 	case menu_states.CONTROLLER_ASSIGN:
+		menuWidth = menu_widths[menu_states.CONTROLLER_ASSIGN];
+		lerpMenuWidth = lerp(lerpMenuWidth, menuWidth, 0.2);
+
 		for (var i = 0; i < INPUT_MAX_PLAYERS; i++) {
 			if (input_check_pressed("right", i)) {
 				audio_play_sound(sfx_menuclick, 0, false);
@@ -112,7 +118,6 @@ switch (menuState) {
 				}
 				if (_isAssigned) {
 					menuState = menu_states.MAIN_MENU;
-					lerpMenuWidth = 0;
 				}
 			}
 		}
@@ -140,6 +145,9 @@ switch (menuState) {
 		}
 		break;
 	case menu_states.CONTROLLER_BINDING:
+		menuWidth = menu_widths[menu_states.CONTROLLER_BINDING];
+		lerpMenuWidth = lerp(lerpMenuWidth, menuWidth, 0.2);
+
 		var _bindReady = true;
 		for (var i = 0; i < 2; i++) {
 			var _bs = {

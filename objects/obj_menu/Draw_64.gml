@@ -14,30 +14,32 @@ var _colorHeader = #00c1dc;
 var _colorHover = c_white;
 var _colorActive = c_pink;
 
+draw_set_color(c_black);
+draw_set_alpha(0.5);
+draw_rectangle(
+	_hmid * (1 - lerpMenuWidth),
+	0,
+	_hmid * (1 + lerpMenuWidth),
+	_height,
+	false
+);
+
 draw_set_color(_colorBody);
+
+draw_set_alpha(1);
 
 switch (menuState) {
 	case menu_states.MAIN_MENU:
-		draw_set_color(c_black);
-		draw_set_alpha(0.5);
-		draw_rectangle(
-			_hmid * (1 - 0.5 * lerpMenuWidth),
-			0,
-			_hmid * (1 + 0.5 * lerpMenuWidth),
-			_height,
-			false
-		);
 		draw_set_color(c_white);
-		draw_set_alpha(1);
 		draw_set_font(fnt_inter);
 		draw_set_halign(fa_center);
 		draw_set_valign(fa_top);
 		var _yCursor = indexToCoord(lerpMainCursor, _height, menu_states.MAIN_MENU);
 		draw_set_color(_colorActive);
 		draw_rectangle(
-			_hmid * (1 - 0.5 * lerpMenuWidth),
+			_hmid * (1 - lerpMenuWidth),
 			_yCursor,
-			_hmid * (1 + 0.5 * lerpMenuWidth),
+			_hmid * (1 + lerpMenuWidth),
 			_yCursor + 58 + global.DEBUG_VALUE,
 			false
 		);
@@ -47,16 +49,6 @@ switch (menuState) {
 
 			draw_set_color(_colorHover);
 			draw_text_ext(_hmid, _y, mainDisplay[i], 0, 9999);
-			//text_outline(
-			//50,
-			//_height - 50 - (75 * array_length(mainDisplay)) + 75 * i,
-			//mainDisplay[i],
-			//3,
-			//c_black,
-			//8,
-			//0,
-			//100000
-			//);
 		}
 
 		draw_sprite_ext(
@@ -72,48 +64,37 @@ switch (menuState) {
 		);
 		break;
 	case menu_states.CREDITS:
-		draw_set_font(Font2);
+		draw_set_font(fnt_inter_large);
 		draw_set_halign(fa_center);
-		draw_set_valign(fa_middle);
-		draw_set_color(_colorHover);
-		text_outline(750, 150, "Credits", 8, c_black, 8, 30, 100000);
-		draw_set_font(Font2_small);
-		text_outline(750, 350, "Programming", 3, c_black, 8, 30, 100000);
-		draw_set_font(Font1);
-		text_outline(
-			750,
-			475,
-			"Nick \"AqoursBaelz\" Pham\n\nMatthew \"M-AS\" Nguyen",
-			3,
-			c_black,
-			8,
-			30,
-			100000
-		);
-		draw_set_font(Font2_small);
-		text_outline(750, 600, "Music", 3, c_black, 8, 30, 100000);
-		draw_set_font(Font1);
-		text_outline(750, 700, "v1ris", 3, c_black, 8, 30, 100000);
-		draw_set_font(Font2_small);
-		text_outline(750, 850, "Special Thanks", 3, c_black, 8, 30, 100000);
-		draw_set_font(Font1);
 		draw_set_valign(fa_top);
-		text_outline(
-			750,
+		draw_set_color(_colorHover);
+
+		draw_set_font(fnt_inter_large);
+		draw_text_ext(_hmid, 350, "Programming", 70, -1);
+		draw_text_ext(_hmid, 650, "Music", 70, -1);
+		draw_text_ext(_hmid, 850, "Special Thanks", 70, -1);
+
+		draw_set_font(fnt_inter);
+		draw_text_ext(
+			_hmid,
+			475,
+			"Nick \"AqoursBaelz\" Pham\nMatthew \"M-AS\" Nguyen",
+			70,
+			-1
+		);
+		draw_text_ext(_hmid, 750, "v1ris", 35, -1);
+		draw_text_ext(
+			_hmid,
 			950,
 			"Marcos Felipe Wang\nKamron Farrokh\nThe SoCal Fighting Game Community",
-			3,
-			c_black,
-			8,
-			100,
-			100000
+			70,
+			-1
 		);
 		break;
 	case menu_states.CONTROLLER_ASSIGN:
 		draw_set_halign(fa_center);
 		draw_set_valign(fa_middle);
-
-		draw_set_font(Font1);
+		draw_set_font(fnt_inter);
 		draw_set_color(_colorHeader);
 		text_outline(_hmid, _height * 0.1, "Controllers", 3, c_black, 8, 30, 100000);
 		for (var i = 0; i < array_length(controllerAssign); i++) {
@@ -181,7 +162,7 @@ switch (menuState) {
 		break;
 
 	case menu_states.CONTROLLER_BINDING:
-		draw_set_font(Font1);
+		draw_set_font(fnt_inter);
 		draw_set_valign(fa_top);
 		var _lineHeight =
 			string_height("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijlkmnopqrstuvwxyz.;,<")

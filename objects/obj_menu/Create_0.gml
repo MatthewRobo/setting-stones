@@ -73,6 +73,8 @@ verbDisplay = [
 	"Ready"
 ];
 
+menu_widths = [0.5, 0.95, 0.975, 0.65];
+
 function indexToCoord(_index, _height, _menu) {
 	switch (_menu) {
 		case menu_states.MAIN_MENU:
@@ -82,7 +84,7 @@ function indexToCoord(_index, _height, _menu) {
 
 mainCursor = 0;
 lerpMainCursor = mainCursor;
-menuWidth = 1;
+menuWidth = 0.5;
 lerpMenuWidth = 0;
 #macro menu_lerp_factor 0.4
 
