@@ -201,7 +201,7 @@ if (global.hitstop <= 0) {
 			var _dx = lengthdir_x(_radius, _angle);
 			var _dy = lengthdir_y(_radius, _angle);
 
-			var _particle = obj_particle_setup.particle_guard;
+			var _particle = obj_particle_setup.pt_shield;
 			part_type_direction(_particle, _angle + 180, _angle + 180, 0, 0);
 
 			part_particles_create(guard_particles, _dx, _dy, _particle, 1);
@@ -222,7 +222,7 @@ if (global.hitstop <= 0) {
 				obj_particle_setup.particle_system,
 				x,
 				y,
-				obj_particle_setup.particle_smoke,
+				obj_particle_setup.pt_smoke,
 				damage_mult
 			);
 		} else {
@@ -230,7 +230,7 @@ if (global.hitstop <= 0) {
 				obj_particle_setup.particle_system,
 				x,
 				y,
-				obj_particle_setup.particle_steam,
+				obj_particle_setup.pt_steam,
 				damage_mult
 			);
 		}
@@ -249,7 +249,7 @@ if (global.hitstop <= 0) {
 		tapdashing = tapdash_duration;
 		audio_play_sound(sfx_dash, 0, false);
 		part_type_direction(
-			obj_particle_setup.particle_dashcancel,
+			obj_particle_setup.pt_dash,
 			target_dir + 180,
 			target_dir + 180,
 			0,
@@ -259,7 +259,7 @@ if (global.hitstop <= 0) {
 			obj_particle_setup.particle_system,
 			x,
 			y,
-			obj_particle_setup.particle_dashcancel,
+			obj_particle_setup.pt_dash,
 			1
 		);
 		if (!audio_is_playing(dash_sfx)) {

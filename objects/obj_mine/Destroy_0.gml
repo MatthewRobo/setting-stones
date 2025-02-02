@@ -14,7 +14,7 @@ var _init = angles[0] + rotation + 360 / 10;
 
 for (var i = 0; i < 360; i += 360 / 5) {
 	//pt_shard
-	var _shard = obj_particle_setup.ptype_shard;
+	var _shard = obj_particle_setup.pt_shard;
 	var _scale = radius / 50 / 4;
 	part_type_scale(_shard, _scale, _scale);
 	var _dir = _init + i;

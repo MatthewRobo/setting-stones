@@ -30,7 +30,7 @@ if (global.hitstop <= 0) {
 			obj_particle_setup.particle_system,
 			x,
 			y,
-			obj_particle_setup.particle_hitspark,
+			obj_particle_setup.pt_hitspark,
 			200 * damage_taken
 		);
 		global.hitstop += 4 * damage_taken;

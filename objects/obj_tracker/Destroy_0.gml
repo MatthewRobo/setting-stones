@@ -18,7 +18,7 @@ if (instance_exists(summoner)) {
 		clouds = floor(point_distance(_xOrigin, _yOrigin, _xTarget, _yTarget) / 20);
 	}
 
-	part_type_colour2(obj_particle_setup.ptype_trackerdust, color_point, color_base);
+	part_type_colour2(obj_particle_setup.pt_trackerdust, color_point, color_base);
 	var _scale = 1;
 	if (instance_exists(mine)) {
 		_scale = mine.radius / 100;
@@ -31,15 +31,15 @@ if (instance_exists(summoner)) {
 	for (var i = 0; i < clouds; i++) {
 		var _lifetime = lerp(0, lifetime, i / clouds);
 		var _size = _scale * (_lifetime / lifetime) + 1;
-		part_type_life(obj_particle_setup.ptype_trackerdust, _lifetime, _lifetime);
-		part_type_size(obj_particle_setup.ptype_trackerdust, _size, _size, 0, 0);
+		part_type_life(obj_particle_setup.pt_trackerdust, _lifetime, _lifetime);
+		part_type_size(obj_particle_setup.pt_trackerdust, _size, _size, 0, 0);
 		var _length =
 			point_distance(_xOrigin, _yOrigin, _xTarget, _yTarget) / (clouds - 1);
 		part_particles_create(
 			obj_particle_setup.particle_system,
 			_x,
 			_y,
-			obj_particle_setup.ptype_trackerdust,
+			obj_particle_setup.pt_trackerdust,
 			1
 		);
 		_x += lengthdir_x(_length, _dir);

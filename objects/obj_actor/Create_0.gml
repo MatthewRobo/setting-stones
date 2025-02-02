@@ -183,6 +183,9 @@ summon_mine = function() {
 	summon.color_left = color_left;
 	summon.color_right = color_right;
 	summon.color_front = color_front;
+	
+
+	
 	array_push(summons, summon);
 	summon.particles = summon_particles;
 	meter += summon_metergain;
@@ -191,6 +194,10 @@ summon_mine = function() {
 	summon.tracker.summoner = obj_game_manager.players[player_number - 1];
 	audio_play_sound(sfx_summon, 0, false);
 	summon.grow();
+	
+	part_type_color1(obj_particle_setup.pt_setstone, color);
+	part_type_size(obj_particle_setup.pt_setstone, summon.radius / 50, -1, 0.6, 0);
+	part_particles_create(obj_particle_setup.particle_system, summon.x, summon.y, obj_particle_setup.pt_setstone, 1);
 
 	var _current_summons = array_length(summons);
 

@@ -8,7 +8,7 @@ part_particles_create(
 	obj_particle_setup.particle_system,
 	x,
 	y,
-	obj_particle_setup.particle_hitspark,
+	obj_particle_setup.pt_hitspark,
 	1000
 );
 

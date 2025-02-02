@@ -75,7 +75,7 @@ if (global.hitstop <= 0) {
 			var _scale = 7 / 60 * radius;
 			var _shrink = -0.1 * _scale;
 			part_type_size(
-				obj_particle_setup.particle_sendstone,
+				obj_particle_setup.pt_sendstone,
 				_scale,
 				_scale,
 				_shrink,
@@ -86,7 +86,7 @@ if (global.hitstop <= 0) {
 				obj_particle_setup.particle_system,
 				x,
 				y,
-				obj_particle_setup.particle_sendstone,
+				obj_particle_setup.pt_sendstone,
 				color,
 				1
 			);
