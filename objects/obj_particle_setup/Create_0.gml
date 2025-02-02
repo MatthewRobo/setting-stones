@@ -86,12 +86,12 @@ part_type_alpha2(particle_p2_summon, random_range(0.3, 0.5), 0);
 
 particle_dashcancel = part_type_create();
 part_type_shape(particle_dashcancel, pt_shape_ring);
-part_type_size(particle_dashcancel, 1, 1, 0.6, 0);
-part_type_scale(particle_dashcancel, 1, 1);
+part_type_size(particle_dashcancel, 1, 1, 0.5, 0);
+part_type_scale(particle_dashcancel, 0.5, 1);
 //part_type_speed(particle_dashcancel, 5, 10, -0.2, 0);
 //part_type_direction(particle_dashcancel, 0, 360, 0, 0);
 //part_type_gravity(particle_dashcancel, 0, 270);
-//part_type_orientation(particle_dashcancel, 0, 0, 0, 0, true);
+part_type_orientation(particle_dashcancel, 0, 0, 0, 0, true);
 part_type_colour1(particle_dashcancel, c_white);
 part_type_alpha2(particle_dashcancel, 1, 0);
 part_type_blend(particle_dashcancel, false);
@@ -164,8 +164,8 @@ part_type_speed(particle_steam, 1, 2, -0.02, 0);
 part_type_direction(particle_steam, 0, 360, 0, 0);
 part_type_gravity(particle_steam, 0, 270);
 part_type_orientation(particle_steam, 0, 360, 0, 0, false);
-part_type_colour3(particle_steam, $FFFFFF, $FFFFFF, $FFFFFF);
-part_type_alpha3(particle_steam, 1, 0.502, 0);
+part_type_colour3(particle_steam, c_white, c_pink, c_white);
+part_type_alpha2(particle_steam, 1, 0);
 part_type_blend(particle_steam, false);
 part_type_life(particle_steam, 80, 80);
 
@@ -178,8 +178,8 @@ part_type_speed(particle_smoke, 3, 5, -0.02, 0);
 part_type_direction(particle_smoke, 0, 360, 0, 0);
 part_type_gravity(particle_smoke, 0, 270);
 part_type_orientation(particle_smoke, 0, 360, 0, 0, false);
-part_type_colour3(particle_smoke, $000000, $000000, $000000);
-part_type_alpha3(particle_smoke, 1, 0.502, 0);
+part_type_colour3(particle_smoke, c_black, c_pink, c_black);
+part_type_alpha2(particle_smoke, 1, 0);
 part_type_blend(particle_smoke, false);
 part_type_life(particle_smoke, 80, 80);
 
@@ -192,21 +192,21 @@ part_type_speed(ptype_trackerdust, 0, 0, 0, 0);
 part_type_direction(ptype_trackerdust, 0, 360, 0, 0);
 part_type_gravity(ptype_trackerdust, 0, 270);
 part_type_orientation(ptype_trackerdust, 0, 0, 0, 0, true);
-part_type_colour1(ptype_trackerdust, $FFFFFF);
+part_type_colour1(ptype_trackerdust, c_lime);
 part_type_alpha3(ptype_trackerdust, 0, 1, 0);
 part_type_blend(ptype_trackerdust, false);
 part_type_life(ptype_trackerdust, 10, 40);
 
 //pt_shard
 ptype_shard = part_type_create();
-part_type_sprite(ptype_shard, spr_shard_b, false, false, false)
+part_type_sprite(ptype_shard, spr_shard_b, false, false, false);
 part_type_size(ptype_shard, 0.8, 1.2, -0.002, 0);
 part_type_scale(ptype_shard, 0.5, 0.5);
 part_type_speed(ptype_shard, 1, 3, -0.1, 0);
 part_type_direction(ptype_shard, 0, 360, 0, 0);
 part_type_gravity(ptype_shard, 0, 270);
 part_type_orientation(ptype_shard, 0, 0, 0, 0, true);
-part_type_colour3(ptype_shard, $FFFFFF, $FFFFFF, $FFFFFF);
+part_type_colour1(ptype_shard, c_lime);
 part_type_alpha2(ptype_shard, 1, 0);
 part_type_blend(ptype_shard, false);
 part_type_life(ptype_shard, 20, 40);

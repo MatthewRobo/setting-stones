@@ -248,19 +248,26 @@ if (global.hitstop <= 0) {
 		dash_lock = false;
 		tapdashing = tapdash_duration;
 		audio_play_sound(sfx_dash, 0, false);
+		part_type_direction(
+			obj_particle_setup.particle_dashcancel,
+			target_dir + 180,
+			target_dir + 180,
+			0,
+			0
+		);
+		part_particles_create(
+			obj_particle_setup.particle_system,
+			x,
+			y,
+			obj_particle_setup.particle_dashcancel,
+			1
+		);
 		if (!audio_is_playing(dash_sfx)) {
 			dash_sfx = audio_play_sound(sfx_noise, 0, true);
 		}
 		//stamina -= 5;
 		if (move_speed < walk_speed) {
 			heat += dashcancel_heat;
-			part_particles_create(
-				obj_particle_setup.particle_system,
-				x,
-				y,
-				obj_particle_setup.particle_dashcancel,
-				1
-			);
 		} else {
 			heat += tapdash_heat;
 		}

@@ -39,6 +39,10 @@ players = [
 		obj_player_2
 	)
 ];
+
+players_x = [players[0].x, players[1].x];
+players_y = [players[0].y, players[1].y];
+
 colors = [obj_player_1.color, obj_player_2.color];
 
 seconds = 0;

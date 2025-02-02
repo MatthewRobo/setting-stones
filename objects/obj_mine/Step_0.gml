@@ -54,10 +54,15 @@ if (global.hitstop <= 0) {
 			&& abs(distance_to_object(summoner) - summoner.shoot_radius) < 100
 		) {
 			shift_ratio = 0;
-			try {
+			if (instance_exists(obj_game_manager.players[summoner.target - 1])) {
 				direction = point_direction(x, y, target.x, target.y);
-			} catch (_exception) {
-				direction = point_direction(x, y, x + 1, y);
+			} else {
+				direction = point_direction(
+					x,
+					y,
+					obj_game_manager.players_x[summoner.target - 1],
+					obj_game_manager.players_y[summoner.target - 1]
+				);
 			}
 			image_angle = direction;
 			xaccel = lengthdir_x(accel, direction);
@@ -94,11 +99,13 @@ if (global.hitstop <= 0) {
 		y = lerp(y, shift_y, shift_ratio);
 	}
 	if (point_distance(x, y, room_width / 2, room_height / 2) > max_distance_from_center) {
-		for (var i = 0; i < array_length(summoner_original.summons); i++) {
-			if (summoner_original.summons[i] == id) {
-				array_delete(summoner_original.summons, i, 1);
-				summoner_original.current_summon -= 1;
-				break;
+		if (instance_exists(summoner_original)) {
+			for (var i = 0; i < array_length(summoner_original.summons); i++) {
+				if (summoner_original.summons[i] == id) {
+					array_delete(summoner_original.summons, i, 1);
+					summoner_original.current_summon -= 1;
+					break;
+				}
 			}
 		}
 		if (instance_exists(tracker)) {

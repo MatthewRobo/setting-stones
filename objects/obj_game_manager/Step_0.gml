@@ -68,3 +68,10 @@ if (end_game) {
 
 radius = clamp(radius, radius_minimum, radius_initial);
 display_radius = min(radius, lerp(display_radius, radius, 0.2));
+
+for (var i = 0; i < array_length(players); i++) {
+	if (instance_exists(players[i])) {
+		players_x[i] = players[i].x;
+		players_y[i] = players[i].y;
+	}
+}
