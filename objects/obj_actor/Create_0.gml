@@ -16,6 +16,7 @@ target = 2;
 current_summon = 0;
 #macro max_summon 5
 summons = [];
+summons_reverse = [];
 
 dash_sfx = -1;
 

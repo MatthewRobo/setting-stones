@@ -1,7 +1,7 @@
 if (instance_exists(summoner) && instance_exists(mine)) {
 	color_base = summoner.color_slow;
-	for (var i = 0; i < max_summon && i < array_length(summoner.summons); i++) {
-		if (mine == summoner.summons[i]) {
+	for (var i = 0; i < min(max_summon, array_length(summoner.summons)); i++) {
+		if (mine == summoner.summons_reverse[i]) {
 			color = merge_color(color_base, c_black, i / max_summon);
 			color_point = color;
 			is_super = false;

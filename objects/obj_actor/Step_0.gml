@@ -102,7 +102,7 @@ if (global.hitstop <= 0) {
 		stamina_warning = stamina_warning_duration;
 		audio_play_sound(sfx_nostamina, 0, false);
 	}
-
+	
 	if (summon_mine_check) {
 		if (stamina > 0) {
 			current_summon += 1;
@@ -113,6 +113,7 @@ if (global.hitstop <= 0) {
 		} else {
 			stamina_warning = stamina_warning_duration;
 		}
+
 	}
 
 	if (actionable) {
@@ -234,6 +235,8 @@ if (global.hitstop <= 0) {
 				damage_mult
 			);
 		}
+
+
 	}
 	meter = clamp(meter, 0, meter_max);
 
@@ -363,3 +366,4 @@ if (stamina > 0) {
 }
 
 lerp_heat = lerp(lerp_heat, heat, 0.1);
+summons_reverse = array_reverse(summons);
