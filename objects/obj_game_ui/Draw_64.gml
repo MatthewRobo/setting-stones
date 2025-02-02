@@ -148,9 +148,10 @@ for (var i = 0; i < array_length(players); i++) {
 		switch (j) {
 			case 0:
 				_outline = 12;
+				_color = c_white;
 				break;
 			case 1:
-				_outline = 8;
+				_outline = 9;
 				_color = c_black;
 				break;
 			case 2:
@@ -197,7 +198,7 @@ for (var i = 0; i < array_length(players); i++) {
 		}
 
 		if (j == 3) {
-			_outline = 4;
+			_outline = 6;
 			//for (var k = -1; k <= 1; k += 1) {
 			//draw_line_width(_x, _y, _x + _sign * lengthdir_x(_radius + _outline, k * 45), _y + lengthdir_y(_radius + _outline, k * 45), k == 0 ? 4 : 8);
 			//}
@@ -233,7 +234,7 @@ for (var i = 0; i < array_length(players); i++) {
 		}
 	}
 
-	for (var j = 0; j < 4; j++) {
+	for (var j = 0; j < 5; j++) {
 		var _color = _colors[i];
 
 		var _x = _hMid * (1 + _sign * _meterXOffset);
@@ -249,16 +250,21 @@ for (var i = 0; i < array_length(players); i++) {
 		switch (j) {
 			case 0:
 				_outline = 8;
+				_y += 7;
 				break;
 			case 1:
-				_color = c_black;
-				_outline = 4;
+				_color = c_white;
+				_outline = 8;
 				break;
 			case 2:
+				_color = c_black;
+				_outline = 5;
+				break;
+			case 3:
 				_color = c_white;
 				_loopLength = _spent ? lerp_meters[i] / _div : meters[i] / _div;
 				break;
-			case 3:
+			case 4:
 				if (meters[i] >= supercosts[i]) {
 					_color = #ffcc00;
 				} else if (meters[i] >= fd_cost) {
@@ -284,10 +290,10 @@ for (var i = 0; i < array_length(players); i++) {
 				//_overflow = abs((-global.ANIMATION_TIMER / 60 + k / 10) % 1);
 			}
 
-			if (j >= 2) {
+			if (j >= 3) {
 				_len = k >= floor(_loopLength) ? _loopLength % 1 : 1;
 				_color = merge_color(c_white, _color, _len);
-				if (j >= 3) {
+				if (j >= 4) {
 					draw_set_color(merge_color(_color, c_white, _overflow));
 				}
 			}
@@ -337,12 +343,12 @@ for (var i = 0; i < array_length(players); i++) {
 		var _outline = 0;
 		switch (j) {
 			case 0:
-				draw_set_color(_colors[i]);
+				draw_set_color(c_white);
 				_outline = 8;
 				break;
 			case 1:
 				draw_set_color(c_black);
-				_outline = 4;
+				_outline = 5;
 				break;
 			case 2:
 				draw_set_color(c_red);
