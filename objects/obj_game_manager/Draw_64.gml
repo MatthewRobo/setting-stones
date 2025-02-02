@@ -16,7 +16,7 @@ draw_set_halign(fa_center);
 
 draw_set_alpha(opacity);
 draw_set_color(c_white);
-draw_set_font(Font2);
+draw_set_font(fnt_inter_xlarge);
 draw_set_valign(fa_middle);
 //if (seconds < 4) {
 //text_outline(750, 750, ready_text[seconds], 1, c_black, 8, 30, 100000);
@@ -54,7 +54,7 @@ if (end_game) {
 	draw_set_halign(fa_center);
 	draw_set_valign(fa_middle);
 
-	draw_set_font(Font1);
+	draw_set_font(fnt_inter);
 	draw_set_color(_colorHeader);
 	draw_set_alpha(1);
 

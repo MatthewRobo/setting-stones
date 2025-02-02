@@ -43,7 +43,7 @@ if (obj_game_manager.countdown > 0) {
 	draw_text(midpoint[0], midpoint[1], "SET YOUR STONES");
 } else if (obj_game_manager.countup < 60) {
 	draw_set_alpha(1 - obj_game_manager.countup / 60);
-	draw_set_font(fnt_inter_large);
+	draw_set_font(fnt_inter_header);
 	draw_set_color(c_pink);
 	draw_set_halign(fa_center);
 	draw_set_valign(fa_middle);

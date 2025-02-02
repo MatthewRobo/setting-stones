@@ -1,6 +1,6 @@
 {
   "$GMFont":"",
-  "%Name":"fnt_inter_large",
+  "%Name":"fnt_inter_xlarge",
   "AntiAlias":1,
   "applyKerning":0,
   "ascender":72,
@@ -117,7 +117,7 @@
   "last":0,
   "lineHeight":91,
   "maintainGms1Font":false,
-  "name":"fnt_inter_large",
+  "name":"fnt_inter_xlarge",
   "parent":{
     "name":"Fonts",
     "path":"folders/Fonts.yy",
