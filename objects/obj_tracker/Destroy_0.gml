@@ -3,11 +3,13 @@ if (instance_exists(summoner)) {
 		clouds = floor(point_distance(x, y, summoner.x, summoner.y) / 20);
 	}
 
+	var _xTarget = use_start ? x_start : summoner.x;
+	var _yTarget = use_start ? y_start : summoner.y;
 	var _x = x;
 	var _y = y;
 	for (var i = 0; i < clouds; i++) {
-		var _length = point_distance(x, y, summoner.x, summoner.y) / (clouds - 1);
-		var _dir = point_direction(x, y, summoner.x, summoner.y);
+		var _length = point_distance(x, y, _xTarget, _yTarget) / (clouds - 1);
+		var _dir = point_direction(x, y, _xTarget, _yTarget);
 		part_particles_create(
 			obj_particle_setup.particle_system,
 			_x,

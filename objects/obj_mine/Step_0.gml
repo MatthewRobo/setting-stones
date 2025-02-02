@@ -107,3 +107,9 @@ if (global.hitstop <= 0) {
 		instance_destroy();
 	}
 }
+
+if (point_distance(0, 0, xspd, yspd) > 1) {
+	if (instance_exists(tracker)) {
+		tracker.use_start = true;
+	}
+}

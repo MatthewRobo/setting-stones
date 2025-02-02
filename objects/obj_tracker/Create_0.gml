@@ -12,3 +12,5 @@ x_start = x;
 y_start = y;
 
 is_super = true;
+
+use_start = false;
