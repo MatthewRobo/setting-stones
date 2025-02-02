@@ -24,10 +24,10 @@ switch (menuState) {
 			if (input_check_pressed("accept", i)) {
 				audio_play_sound(sfx_menuconfirm, 0, false);
 				switch (mainCursor) {
-					case main_options.CREDITS:
+					case main_options.CREDITS: 
 						menuState = menu_states.CREDITS;
 						break;
-					case main_options.PLAY:
+					case main_options.PLAY: 
 						menuState = menu_states.CONTROLLER_ASSIGN;
 						controllerAssign = [-1, -1];
 						controllerAssignReady = [false, false];
@@ -37,7 +37,7 @@ switch (menuState) {
 						if (string_length(mainDisplay[main_options.EXIT]) > 55) {
 							game_end();
 						}
-
+						
 						break;
 				}
 			}
@@ -88,6 +88,12 @@ switch (menuState) {
 						audio_play_sound(sfx_menuconfirm, 0, false);
 					}
 				}
+				
+				if (controllerAssign[0] == -1) {
+					controllerAssign[0] = i;
+				} else if (controllerAssign[1] == -1 && controllerAssign[0] != i) {
+					controllerAssign[1] = i;
+				}
 			}
 			if (input_check_pressed("cancel", i)) {
 				audio_play_sound(sfx_menuback, 0, false);
@@ -102,7 +108,7 @@ switch (menuState) {
 						}
 					}
 				}
-				if (_isAssigned) {
+				if (_isAssigned) { 
 					menuState = menu_states.MAIN_MENU;
 					lerpMenuWidth = 0;
 				}
