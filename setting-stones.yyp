@@ -106,6 +106,7 @@
     {"id":{"name":"obj_projectile","path":"objects/obj_projectile/obj_projectile.yy",},},
     {"id":{"name":"obj_tracker","path":"objects/obj_tracker/obj_tracker.yy",},},
     {"id":{"name":"ParticleSystem1","path":"particles/ParticleSystem1/ParticleSystem1.yy",},},
+    {"id":{"name":"ParticleSystem5","path":"particles/ParticleSystem5/ParticleSystem5.yy",},},
     {"id":{"name":"ps_background","path":"particles/ps_background/ps_background.yy",},},
     {"id":{"name":"ps_heat","path":"particles/ps_heat/ps_heat.yy",},},
     {"id":{"name":"ps_hitsparks","path":"particles/ps_hitsparks/ps_hitsparks.yy",},},

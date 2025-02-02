@@ -4,7 +4,7 @@
 draw_set_alpha(0.5);
 draw_set_color(color);
 
-try {
+if (instance_exists(mine) && instance_exists(summoner)) {
 	//draw_line_width(x,y,summoner.x,summoner.y,5)
 	var _normal = point_direction(x, y, summoner.x, summoner.y) + 90;
 	var _edge = clamp(
@@ -27,6 +27,4 @@ try {
 		0.5
 	);
 	draw_primitive_end();
-} catch (_exception) {}
-//draw_set_color(c_white)
-draw_set_alpha(1);
+}

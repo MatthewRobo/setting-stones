@@ -182,3 +182,18 @@ part_type_colour3(particle_smoke, $000000, $000000, $000000);
 part_type_alpha3(particle_smoke, 1, 0.502, 0);
 part_type_blend(particle_smoke, false);
 part_type_life(particle_smoke, 80, 80);
+
+ptype_trackerdust = part_type_create();
+part_type_shape(ptype_trackerdust, pt_shape_flare);
+//part_type_sprite(ptype_trackerdust, spr_triangle, false, false, false);
+part_type_size(ptype_trackerdust, 1, 2, 0, 0);
+part_type_scale(ptype_trackerdust, 1, 1);
+part_type_speed(ptype_trackerdust, 0, 0, 0, 0);
+part_type_direction(ptype_trackerdust, 0, 360, 0, 0);
+part_type_gravity(ptype_trackerdust, 0, 270);
+part_type_orientation(ptype_trackerdust, 0, 0, 0, 0, true);
+part_type_colour1(ptype_trackerdust, $FFFFFF);
+part_type_alpha3(ptype_trackerdust, 0, 1, 0);
+part_type_blend(ptype_trackerdust, false);
+part_type_life(ptype_trackerdust, 10, 40);
+
