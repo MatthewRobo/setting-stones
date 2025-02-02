@@ -299,7 +299,8 @@ for (var i = 0; i < array_length(players); i++) {
 			}
 
 			if (k >= supercosts[i] / _div) {
-				_len *= 80;
+				var _lenExtra = 20 * clamp(k - (lerp_supercosts[i] / _div) + 1, 0, 1);
+				_len *= 60 + _lenExtra;
 			} else if (k >= fd_cost / _div) {
 				_len *= 60;
 			} else {

@@ -45,6 +45,7 @@ lerp_hps = [0, 0];
 
 meters = [0, 0];
 lerp_meters = [0, 0];
+lerp_supercosts = [super_cost_normal, super_cost_normal];
 
 heats = [0, 0];
 lerp_heats = [0, 0];
