@@ -103,18 +103,6 @@ if (global.hitstop <= 0) {
 		audio_play_sound(sfx_nostamina, 0, false);
 	}
 
-	if (summon_mine_check) {
-		if (stamina > 0) {
-			current_summon += 1;
-			summon_mine();
-			stamina -= summon_cost;
-			alarm[2] = 15;
-			stamina_recover = false;
-		} else {
-			stamina_warning = stamina_warning_duration;
-		}
-	}
-
 	if (actionable) {
 		if (mine_shoot_check && stamina > 0) {
 			shoot_mines();
@@ -179,6 +167,18 @@ if (global.hitstop <= 0) {
 				meter = 0;
 			}
 			shield_active = false;
+		}
+	}
+	
+	if (summon_mine_check) {
+		if (stamina > 0) {
+			current_summon += 1;
+			summon_mine();
+			stamina -= summon_cost;
+			alarm[2] = 15;
+			stamina_recover = false;
+		} else {
+			stamina_warning = stamina_warning_duration;
 		}
 	}
 
