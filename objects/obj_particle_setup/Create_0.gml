@@ -197,3 +197,16 @@ part_type_alpha3(ptype_trackerdust, 0, 1, 0);
 part_type_blend(ptype_trackerdust, false);
 part_type_life(ptype_trackerdust, 10, 40);
 
+//pt_shard
+ptype_shard = part_type_create();
+part_type_sprite(ptype_shard, spr_shard_b, false, false, false)
+part_type_size(ptype_shard, 0.8, 1.2, -0.002, 0);
+part_type_scale(ptype_shard, 0.5, 0.5);
+part_type_speed(ptype_shard, 1, 3, -0.1, 0);
+part_type_direction(ptype_shard, 0, 360, 0, 0);
+part_type_gravity(ptype_shard, 0, 270);
+part_type_orientation(ptype_shard, 0, 0, 0, 0, true);
+part_type_colour3(ptype_shard, $FFFFFF, $FFFFFF, $FFFFFF);
+part_type_alpha2(ptype_shard, 1, 0);
+part_type_blend(ptype_shard, false);
+part_type_life(ptype_shard, 20, 40);
