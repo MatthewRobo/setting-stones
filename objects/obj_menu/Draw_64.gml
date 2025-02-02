@@ -143,8 +143,15 @@ switch (menuState) {
 		}
 		for (var i = 0; i < INPUT_MAX_PLAYERS; i++) {
 			var _xOffset = 0;
-			if (array_length(input_source_get_array(i)) > 0) {
+			var _inputs = input_source_get_array(i);
+			var _text = string(_inputs);
+			if (array_length(_inputs) > 0) {
 				draw_set_color(_colorHover);
+				if (controllerAssign[0] != i && controllerAssign[1] != i) {
+					repeat (global.ANIMATION_TIMER / 15 % 4) {
+						_text = "<" + _text + ">";
+					}
+				}
 			} else {
 				draw_set_color(_colorBody);
 			}
@@ -162,7 +169,7 @@ switch (menuState) {
 			text_outline(
 				_width * (0.5 + 0.25 * _xOffset),
 				_height * (0.2 + 0.1 * i),
-				input_source_get_array(i),
+				_text,
 				3,
 				c_black,
 				8,
