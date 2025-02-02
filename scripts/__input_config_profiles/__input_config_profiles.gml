@@ -21,7 +21,7 @@
 //Toggles whether INPUT_KEYBOARD and INPUT_MOUSE should be considered a single source at all times
 //For most PC games you'll want to tie the keyboard and mouse together but occasionally having them
 //separated out is useful
-#macro INPUT_ASSIGN_KEYBOARD_AND_MOUSE_TOGETHER  true
+#macro INPUT_ASSIGN_KEYBOARD_AND_MOUSE_TOGETHER  false
 
 //Whether to allow default profiles (see below) to contain different verbs. Normally every profile
 //should contain a reference to every verb, but for complex games this is inconvenient

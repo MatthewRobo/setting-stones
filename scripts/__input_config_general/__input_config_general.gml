@@ -1,6 +1,6 @@
 //PC platforms: Windows, MacOS, Linux, Steam Deck, HTML5 or OperaGX
 #macro INPUT_PC_KEYBOARD          true
-#macro INPUT_PC_MOUSE             true
+#macro INPUT_PC_MOUSE             false
 #macro INPUT_PC_GAMEPAD           true
 #macro INPUT_WINDOWS_VIBRATION    true   //Partially supported (XInput and Steam)
 
