@@ -9,7 +9,7 @@ color_down = c_fuchsia;
 color_left = c_aqua;
 color_right = c_red;
 color_front = c_purple;
-
+depth_start = depth;
 particles = part_type_create();
 active = false;
 
@@ -78,6 +78,8 @@ grow = function() {
 		}
 	}
 	ds_list_destroy(_list);
+	
+	depth = depth_start + floor(radius / 50);
 };
 
 shoot = function() {

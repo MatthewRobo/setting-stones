@@ -199,7 +199,6 @@ summon_mine = function() {
 	if (_isNew) {
 		array_push(summons, summon);
 	}
-	summon.particles = summon_particles;
 	meter += summon_metergain;
 	summon.tracker = instance_create_layer(x, y, "particles", obj_tracker);
 	summon.tracker.mine = summon;
@@ -207,6 +206,7 @@ summon_mine = function() {
 	audio_play_sound(sfx_summon, 0, false);
 	summon.grow();
 
+	summon.particles = summon_particles;
 	part_type_color1(obj_particle_setup.pt_setstone, color);
 	part_type_size(obj_particle_setup.pt_setstone, summon.radius / 50, -1, 0.6, 0);
 	part_particles_create(
@@ -278,6 +278,16 @@ ultimate = function() {
 		summon.shift_x = x + lengthdir_x(_random_radius, _random_angle);
 		summon.shift_y = y + lengthdir_y(_random_radius, _random_angle);
 		summon.shift_ratio = random_range(0.1, 0.3);
+		
+		part_type_color1(obj_particle_setup.pt_setstone, color);
+		part_type_size(obj_particle_setup.pt_setstone, summon.radius / 50, -1, 0.6, 0);
+		part_particles_create(
+			obj_particle_setup.particle_system,
+			summon.shift_x,
+			summon.shift_y,
+			obj_particle_setup.pt_setstone,
+			1
+		);
 	}
 	audio_play_sound(sfx_special, 0, false);
 };
