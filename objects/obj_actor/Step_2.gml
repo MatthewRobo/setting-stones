@@ -69,11 +69,12 @@ if (global.hitstop <= 0) {
 						} else {
 							audio_play_sound(sfx_hit, 0, false, 4);
 						}
-						if (!shield_active) {
-							instance_destroy(_mine);
-						}
+
 
 						hittable = false;
+					}
+					if (!shield_active || _mine.spd > 1) {
+						instance_destroy(_mine);
 					}
 				}
 			}
