@@ -33,6 +33,12 @@ for (var i = array_length(trail_points) - 1; i > 2; i--) {
 	var _noise = random(max(heat - 50, 0) / 100);
 	var _w0 = (power(_d0 / tapdash_speed, 2) + _noise) * _wScalar;
 	var _w1 = (power(_d1 / tapdash_speed, 2) + _noise) * _wScalar;
+	
+	_w0 *= i / array_length(trail_points);
+	_w1 *= (i - 1) / array_length(trail_points);
+	
+	_a1 = 1;
+	_a0 = 1;
 	//draw_vertex(_p0[0] + lengthdir_x(_w0, _n0), _p0[1] + lengthdir_y(_w0, _n0));
 	//draw_vertex(_p0[0] - lengthdir_x(_w0, _n0), _p0[1] - lengthdir_y(_w0, _n0));
 	//draw_vertex(_p1[0] + lengthdir_x(_w1, _n1), _p1[1] + lengthdir_y(_w1, _n1));
