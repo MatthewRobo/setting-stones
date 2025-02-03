@@ -11,3 +11,5 @@ if (x < -100 || x > room_width + 100) {
 if (y < -100 || y > room_height + 100) {
 	instance_destroy();
 }
+
+spd = point_distance(0, 0, xspd, yspd);

@@ -37,14 +37,30 @@ for (var i = array_length(trail_points) - 1; i > 2; i--) {
 	//draw_vertex(_p0[0] - lengthdir_x(_w0, _n0), _p0[1] - lengthdir_y(_w0, _n0));
 	//draw_vertex(_p1[0] + lengthdir_x(_w1, _n1), _p1[1] + lengthdir_y(_w1, _n1));
 	//draw_vertex(_p1[0] - lengthdir_x(_w1, _n1), _p1[1] - lengthdir_y(_w1, _n1));
+	
+	var _colorSlow = color_slow;
+	var _colorFast = color_fast;
+	
+	
+	if (shield_active) {
+		_colorSlow = color_guard;
+		_colorFast = c_white;
+	} else if (damage_mult >= 3) {
+		_colorSlow = c_black;
+		_colorFast = c_pink;
+	} else if (damage_mult >= 2) {
+		_colorSlow = c_pink;
+		_colorFast = c_white;
+	}
+	
 	var _c0 = merge_color(
-		color_slow,
-		color_fast,
+		_colorSlow,
+		_colorFast,
 		power(clamp((_d0 - walk_speed) / (tapdash_speed - walk_speed), 0, 1), 2)
 	);
 	var _c1 = merge_color(
-		color_slow,
-		color_fast,
+		_colorSlow,
+		_colorFast,
 		power(clamp((_d1 - walk_speed) / (tapdash_speed - walk_speed), 0, 1), 2)
 	);
 

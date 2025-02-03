@@ -184,9 +184,22 @@ summon_mine = function() {
 	summon.color_right = color_right;
 	summon.color_front = color_front;
 	
-
+	var _isNew = true;
+	var _list = ds_list_create();
+	var _num = instance_position_list(x, y, obj_mine, _list, false);
+	if (_num > 1) {
+		for (var i = 0; i < _num; ++i) {
+			if (_list[| i] != summon.id && !array_contains(summons, _list[| i])) {
+				_isNew = false;
+			}
+		}
+	}
+	ds_list_destroy(_list);
 	
-	array_push(summons, summon);
+	
+	if (_isNew) {
+		array_push(summons, summon);
+	}
 	summon.particles = summon_particles;
 	meter += summon_metergain;
 	summon.tracker = instance_create_layer(x, y, "particles", obj_tracker);

@@ -115,7 +115,10 @@ if (global.hitstop <= 0) {
 	}
 }
 
-if (point_distance(0, 0, xspd, yspd) > 1) {
+
+spd = point_distance(0, 0, xspd, yspd);
+
+if (spd > 1) {
 	if (instance_exists(tracker)) {
 		tracker.use_start = true;
 	}

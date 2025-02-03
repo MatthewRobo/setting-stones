@@ -59,7 +59,6 @@ if (global.hitstop <= 0) {
 						heat -= 33;
 						was_hit = true;
 
-						hittable = false;
 
 						obj_game_manager.shrink = false;
 						obj_game_manager.radius += 200;
@@ -70,10 +69,15 @@ if (global.hitstop <= 0) {
 						} else {
 							audio_play_sound(sfx_hit, 0, false, 4);
 						}
+						if (!shield_active) {
+							instance_destroy(_mine);
+						}
+
+						hittable = false;
 					}
-					instance_destroy(_mine);
 				}
 			}
 		}
 	}
 }
+

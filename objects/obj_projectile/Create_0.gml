@@ -11,6 +11,7 @@ hp = 1;
 damaged = 0;
 active = true;
 summoner_original = summoner;
+spd = 0;
 
 shoot = function() {
 	direction = point_direction(x, y, x + xdir, y + ydir);
