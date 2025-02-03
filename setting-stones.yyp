@@ -103,6 +103,7 @@
     {"id":{"name":"obj_particle_setup","path":"objects/obj_particle_setup/obj_particle_setup.yy",},},
     {"id":{"name":"obj_player_1","path":"objects/obj_player_1/obj_player_1.yy",},},
     {"id":{"name":"obj_player_2","path":"objects/obj_player_2/obj_player_2.yy",},},
+    {"id":{"name":"obj_player_trail","path":"objects/obj_player_trail/obj_player_trail.yy",},},
     {"id":{"name":"obj_projectile","path":"objects/obj_projectile/obj_projectile.yy",},},
     {"id":{"name":"obj_tracker","path":"objects/obj_tracker/obj_tracker.yy",},},
     {"id":{"name":"ParticleSystem1","path":"particles/ParticleSystem1/ParticleSystem1.yy",},},

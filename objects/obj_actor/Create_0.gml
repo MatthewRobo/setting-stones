@@ -339,3 +339,6 @@ part_type_colour3(pt_shieldbreak, $AFE1AF, $AFE1AF, $00FF00);
 part_type_alpha3(pt_shieldbreak, 1, 1, 0);
 part_type_blend(pt_shieldbreak, true);
 part_type_life(pt_shieldbreak, 20, 90);
+
+trail = instance_create_layer(x, y, "player_trail", obj_player_trail);
+trail.summoner = id;
