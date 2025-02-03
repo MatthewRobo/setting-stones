@@ -6,4 +6,3 @@ if (instance_exists(summoner)) {
 	damage_mult = summoner.damage_mult;
 	heat = summoner.heat;
 }
-

@@ -169,7 +169,7 @@ if (global.hitstop <= 0) {
 			shield_active = false;
 		}
 	}
-	
+
 	if (summon_mine_check) {
 		if (stamina > 0) {
 			current_summon += 1;

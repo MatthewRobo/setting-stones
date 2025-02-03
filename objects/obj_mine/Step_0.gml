@@ -74,13 +74,7 @@ if (global.hitstop <= 0) {
 			audio_sound_pitch(s_fire, random_range(0.8, 1.2));
 			var _scale = 7 / 60 * radius;
 			var _shrink = -0.1 * _scale;
-			part_type_size(
-				obj_particle_setup.pt_sendstone,
-				_scale,
-				_scale,
-				_shrink,
-				0
-			);
+			part_type_size(obj_particle_setup.pt_sendstone, _scale, _scale, _shrink, 0);
 
 			part_particles_create_color(
 				obj_particle_setup.particle_system,
@@ -114,7 +108,6 @@ if (global.hitstop <= 0) {
 		instance_destroy();
 	}
 }
-
 
 spd = point_distance(0, 0, xspd, yspd);
 

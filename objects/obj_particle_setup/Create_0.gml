@@ -207,8 +207,6 @@ part_type_alpha2(pt_shard, 1, 0);
 part_type_blend(pt_shard, false);
 part_type_life(pt_shard, 20, 40);
 
-
-
 //pt_rockspawn
 pt_setstone = part_type_create();
 part_type_shape(pt_setstone, pt_shape_ring);
@@ -222,52 +220,3 @@ part_type_colour1(pt_setstone, $00FF00);
 part_type_alpha2(pt_setstone, 1, 0);
 part_type_blend(pt_setstone, false);
 part_type_life(pt_setstone, 10, 10);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
