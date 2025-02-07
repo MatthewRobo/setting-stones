@@ -97,6 +97,10 @@ switch (menuState) {
 			if (input_check_pressed("accept", i)) {
 				if (controllerAssign[i] != -1) {
 					controllerAssignReady[controllerAssign[i]] = true;
+				} else if (!array_contains(controllerAssign, 0)) {
+					controllerAssign[i] = 0;
+				} else if (!array_contains(controllerAssign, 1)) {
+					controllerAssign[i] = 1;
 				}
 				audio_play_sound(sfx_menuconfirm, 0, false);
 			}
