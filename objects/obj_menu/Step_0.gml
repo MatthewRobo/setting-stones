@@ -30,7 +30,6 @@ switch (menuState) {
 						break;
 					case main_options.PLAY:
 						menuState = menu_states.CONTROLLER_ASSIGN;
-						controllerAssign = [-1, -1];
 						controllerAssignReady = [false, false];
 						break;
 					case main_options.EXIT:
@@ -38,7 +37,6 @@ switch (menuState) {
 						if (string_length(mainDisplay[main_options.EXIT]) > 55) {
 							game_end();
 						}
-
 						break;
 				}
 			}
@@ -65,63 +63,52 @@ switch (menuState) {
 		lerpMenuWidth = lerp(lerpMenuWidth, menuWidth, 0.2);
 
 		for (var i = 0; i < INPUT_MAX_PLAYERS; i++) {
-			if (input_check_pressed("right", i)) {
-				audio_play_sound(sfx_menuclick, 0, false);
-				if (controllerAssign[0] == i) {
-					controllerAssign[0] = -1;
-					controllerAssignReady[0] = false;
-				} else if (controllerAssign[1] != i) {
-					controllerAssignReady[1] = false;
-					controllerAssign[1] = i;
-				}
-			}
-
 			if (input_check_pressed("left", i)) {
 				audio_play_sound(sfx_menuclick, 0, false);
-				if (controllerAssign[1] == i) {
-					controllerAssign[1] = -1;
-					controllerAssignReady[1] = false;
-				} else if (controllerAssign[0] != i) {
-					controllerAssignReady[0] = false;
-					controllerAssign[0] = i;
+				switch (controllerAssign[i]) {
+					case -1:
+						controllerAssign[i] = 0;
+						unset_players(i, controllerAssign[i]);
+						break;
+					case 1:
+						controllerAssignReady[controllerAssign[i]] = false;
+						controllerAssign[i] = -1;
+						break;
 				}
 			}
+			
+
+			if (input_check_pressed("right", i)) {
+				audio_play_sound(sfx_menuclick, 0, false);
+				switch (controllerAssign[i]) {
+					case -1:
+						controllerAssign[i] = 1;
+						unset_players(i, controllerAssign[i]);
+						break;
+					case 0:
+						controllerAssignReady[controllerAssign[i]] = false;
+						controllerAssign[i] = -1;
+						break;
+				}
+			}
+			show_debug_message(controllerAssign);
+			show_debug_message(controllerAssignReady);
 
 			if (input_check_pressed("accept", i)) {
-				var _isAssigned = false;
-				for (var j = 0; j < array_length(controllerAssign); j++) {
-					if (controllerAssign[j] == i) {
-						controllerAssignReady[j] = true;
-						audio_play_sound(sfx_menuconfirm, 0, false);
-						_isAssigned = true;
-					}
+				if (controllerAssign[i] != -1) {
+					controllerAssignReady[controllerAssign[i]] = true;
 				}
-				if (!_isAssigned) {
-					if (controllerAssign[0] == -1) {
-						controllerAssign[0] = i;
-						audio_play_sound(sfx_menuclick, 0, false);
-					} else if (controllerAssign[1] == -1 && controllerAssign[0] != i) {
-						controllerAssign[1] = i;
-						audio_play_sound(sfx_menuclick, 0, false);
-					}
-				}
-
+				audio_play_sound(sfx_menuconfirm, 0, false);
 			}
 			if (input_check_pressed("cancel", i)) {
 				audio_play_sound(sfx_menuback, 0, false);
-				var _isAssigned = true;
-				for (var j = 0; j < array_length(controllerAssign); j++) {
-					if (controllerAssign[j] == i) {
-						_isAssigned = false;
-						if (controllerAssignReady[j]) {
-							controllerAssignReady[j] = false;
-						} else {
-							controllerAssign[j] = -1;
-						}
-					}
-				}
-				if (_isAssigned) {
+				if (controllerAssign[i] == -1) {
 					menuState = menu_states.MAIN_MENU;
+				} else if (!controllerAssignReady[controllerAssign[i]]) {
+					controllerAssignReady[controllerAssign[i]] = false;
+					controllerAssign[i] = -1;
+				} else {
+					controllerAssignReady[controllerAssign[i]] = false;
 				}
 			}
 		}
@@ -132,28 +119,36 @@ switch (menuState) {
 			}
 		}
 		if (_assignReady) {
-			var _newSources = [2];
-			for (var i = 0; i < array_length(controllerAssign); i++) {
-				var _newSource = input_source_get_array(controllerAssign[i])[0];
-				_newSources[i] = _newSource;
-				//input_player_swap(i, controllerAssign[i]);
-				inputLock[i] = inputLockTime;
+			input_source_mode_set(INPUT_SOURCE_MODE.FIXED);
+			var _newSources = [-1, -1];
+			for (var i = 0; i < INPUT_MAX_PLAYERS; i++) {
+				if (controllerAssign[i] != -1) {
+					_newSources[controllerAssign[i]] = input_source_get_array(i)[0];
+				}
 			}
 
 			for (var i = 0; i < array_length(_newSources); i++) {
-				input_source_set(_newSources[i], i);
+				if (_newSources[i] != -1) {
+					input_source_set(_newSources[i], i);
+				}
 			}
-			input_source_mode_set(INPUT_SOURCE_MODE.FIXED);
-			bindCursor = [controls_options.DONE, controls_options.DONE];
+
+			for (var i = 0; i < array_length(inputLock); i++) {
+				inputLock[i] = inputLockTime;
+				bindCursor[i] = controls_options.DONE;
+			}
 			menuState = menu_states.CONTROLLER_BINDING;
 		}
 		break;
 	case menu_states.CONTROLLER_BINDING:
+		
 		menuWidth = menu_widths[menu_states.CONTROLLER_BINDING];
 		lerpMenuWidth = lerp(lerpMenuWidth, menuWidth, 0.2);
 
 		var _bindReady = true;
 		for (var i = 0; i < 2; i++) {
+			show_debug_message(i);
+			show_debug_message(input_source_get_array(i));
 			var _bs = {
 				player: i,
 				rebind: function(_binding) {

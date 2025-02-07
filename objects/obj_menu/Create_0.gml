@@ -88,7 +88,7 @@ menuWidth = 0.5;
 lerpMenuWidth = 0;
 #macro menu_lerp_factor 0.4
 
-controllerAssign = [-1, -1];
+controllerAssign = array_create(INPUT_MAX_PLAYERS, -1);
 controllerAssignReady = [false, false];
 bindCursor = [controls_options.SUMMON, controls_options.SUMMON];
 is_binding = [false, false];
@@ -146,6 +146,16 @@ part_type_blend(ptype_cloud, false);
 part_type_life(ptype_cloud, 90, 120);
 
 part_system_position(psys_clouds, room_width / 2, room_height * 0.66);
+
+function unset_players(playerToKeep, position) {
+	for (var i = 0; i < INPUT_MAX_PLAYERS; i++) {
+		if (i != playerToKeep && controllerAssign[i] == position) {
+			controllerAssign[i] = -1;
+		}
+	}
+	
+	controllerAssignReady[position] = false;
+}
 
 function create_clouds() {
 	var _t = abs(1 - ((global.ANIMATION_TIMER * 0.025) % 1));

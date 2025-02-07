@@ -97,7 +97,7 @@ switch (menuState) {
 		draw_set_font(fnt_inter);
 		draw_set_color(_colorHeader);
 		text_outline(_hmid, _height * 0.1, "Controllers", 3, c_black, 8, 30, 100000);
-		for (var i = 0; i < array_length(controllerAssign); i++) {
+		for (var i = 0; i < array_length(controllerAssignReady); i++) {
 			var _xOffset = 0;
 			var _text = "";
 			switch (i) {
@@ -128,7 +128,7 @@ switch (menuState) {
 			var _text = string(_inputs);
 			if (array_length(_inputs) > 0) {
 				draw_set_color(_colorHover);
-				if (controllerAssign[0] != i && controllerAssign[1] != i) {
+				if (controllerAssign[i] == -1) {
 					repeat (global.ANIMATION_TIMER / 15 % 4) {
 						_text = "<" + _text + ">";
 					}
@@ -136,16 +136,19 @@ switch (menuState) {
 			} else {
 				draw_set_color(_colorBody);
 			}
-			if (controllerAssign[0] == i) {
-				if (controllerAssignReady[0]) {
+			
+			switch (controllerAssign[i]) {
+				case 0: 
+					_xOffset = -1;
+					break;
+				case 1:
+					_xOffset = 1;
+					break;
+			}
+			if (controllerAssign[i] != -1) {
+				if (controllerAssignReady[controllerAssign[i]]) {
 					draw_set_color(_colorActive);
 				}
-				_xOffset = -1;
-			} else if (controllerAssign[1] == i) {
-				if (controllerAssignReady[1]) {
-					draw_set_color(_colorActive);
-				}
-				_xOffset = 1;
 			}
 			text_outline(
 				_width * (0.5 + 0.25 * _xOffset),
