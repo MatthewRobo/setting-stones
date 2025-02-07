@@ -88,20 +88,24 @@ switch (menuState) {
 			}
 
 			if (input_check_pressed("accept", i)) {
+				var _isAssigned = false;
 				for (var j = 0; j < array_length(controllerAssign); j++) {
 					if (controllerAssign[j] == i) {
 						controllerAssignReady[j] = true;
 						audio_play_sound(sfx_menuconfirm, 0, false);
+						_isAssigned = true;
+					}
+				}
+				if (!_isAssigned) {
+					if (controllerAssign[0] == -1) {
+						controllerAssign[0] = i;
+						audio_play_sound(sfx_menuclick, 0, false);
+					} else if (controllerAssign[1] == -1 && controllerAssign[0] != i) {
+						controllerAssign[1] = i;
+						audio_play_sound(sfx_menuclick, 0, false);
 					}
 				}
 
-				if (controllerAssign[0] == -1) {
-					controllerAssign[0] = i;
-					audio_play_sound(sfx_menuclick, 0, false);
-				} else if (controllerAssign[1] == -1 && controllerAssign[0] != i) {
-					controllerAssign[1] = i;
-					audio_play_sound(sfx_menuclick, 0, false);
-				}
 			}
 			if (input_check_pressed("cancel", i)) {
 				audio_play_sound(sfx_menuback, 0, false);
