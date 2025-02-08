@@ -23,7 +23,8 @@ function shuffle_bgm() {
 		bgm_meh_tuhl_hedz_von_dutch,
 		bgm_tellin_myself,
 		bgm_grenade,
-
+		bgm_cranberry_city,
+		bgm_cranberry_city_hardcore,
 	);
 }
 
