@@ -197,11 +197,11 @@ draw_line_width(
 
 var _sprColor = c_white;
 if (damage_mult >= 3) {
-	var _flash = global.ANIMATION_TIMER / 2 % 2;
-	_sprColor = _flash ? c_pink : c_black;
+	var _flash = abs(sin(global.ANIMATION_TIMER * 0.35));
+	_sprColor = merge_color(c_pink, c_black, _flash);
 } else if (damage_mult >= 2) {
-	var _flash = global.ANIMATION_TIMER / 3 % 2;
-	_sprColor = _flash ? c_red : c_white;
+	var _flash = abs(sin(global.ANIMATION_TIMER * 0.3));
+	_sprColor = merge_color(c_red, c_white, _flash);
 }
 
 draw_sprite_ext(
