@@ -25,6 +25,9 @@ function shuffle_bgm() {
 		bgm_grenade,
 		bgm_cranberry_city,
 		bgm_cranberry_city_hardcore,
+		bgm_hype,
+		bgm_carry_me_away,
+		bgm_completeness_under_incompleteness,
 	);
 }
 

@@ -1,0 +1,25 @@
+{
+  "$GMSound":"",
+  "%Name":"bgm_carry_me_away",
+  "audioGroupId":{
+    "name":"audiogroup_bgm",
+    "path":"audiogroups/audiogroup_bgm",
+  },
+  "bitDepth":1,
+  "bitRate":128,
+  "compression":1,
+  "conversionMode":0,
+  "duration":241.62666,
+  "name":"bgm_carry_me_away",
+  "parent":{
+    "name":"Sounds",
+    "path":"folders/Sounds.yy",
+  },
+  "preload":false,
+  "resourceType":"GMSound",
+  "resourceVersion":"2.0",
+  "sampleRate":44100,
+  "soundFile":"bgm_carry_me_away.ogg",
+  "type":1,
+  "volume":1.0,
+}
