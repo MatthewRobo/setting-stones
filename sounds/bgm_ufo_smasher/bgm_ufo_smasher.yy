@@ -9,7 +9,7 @@
   "bitRate":128,
   "compression":1,
   "conversionMode":0,
-  "duration":168.6001,
+  "duration":168.58994,
   "name":"bgm_ufo_smasher",
   "parent":{
     "name":"Sounds",

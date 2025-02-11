@@ -9,7 +9,7 @@
   "bitRate":128,
   "compression":1,
   "conversionMode":0,
-  "duration":153.32137,
+  "duration":153.3112,
   "name":"bgm_end_roll",
   "parent":{
     "name":"Sounds",

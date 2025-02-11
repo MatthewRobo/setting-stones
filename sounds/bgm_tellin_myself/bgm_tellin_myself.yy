@@ -7,7 +7,7 @@
   },
   "bitDepth":1,
   "bitRate":128,
-  "compression":2,
+  "compression":1,
   "conversionMode":0,
   "duration":268.74,
   "name":"bgm_tellin_myself",

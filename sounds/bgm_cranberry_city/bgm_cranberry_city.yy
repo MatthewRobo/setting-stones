@@ -7,7 +7,7 @@
   },
   "bitDepth":1,
   "bitRate":128,
-  "compression":2,
+  "compression":1,
   "conversionMode":0,
   "duration":314.14667,
   "name":"bgm_cranberry_city",
