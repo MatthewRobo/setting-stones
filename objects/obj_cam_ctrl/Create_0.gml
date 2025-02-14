@@ -34,3 +34,5 @@ player2coords = [0, 0];
 
 cam_center = (cam_x + cam_wid) / 2;
 cam_middle = (cam_y + cam_hei) / 2;
+
+round_start = true;

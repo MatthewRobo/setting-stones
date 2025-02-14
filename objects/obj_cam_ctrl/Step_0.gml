@@ -3,8 +3,10 @@
 
 var player1 = targets[0];
 var player2 = targets[1];
-
-if (follow_target) {
+var _xdist = abs(player1coords[0] - player2coords[0]);
+    var _ydist = abs(player1coords[1] - player2coords[1]);
+	
+if (follow_target && !round_start) {
 	if (instance_exists(player1)) {
 		player1coords = [player1.x, player1.y];
 	}
@@ -18,8 +20,7 @@ if (follow_target) {
 			cam_wid_min
 		);
 	var cam_hei_calc = cam_wid_calc;
-	var _xdist = abs(player1coords[0] - player2coords[0]);
-    var _ydist = abs(player1coords[1] - player2coords[1]);
+	
 	if (cam_wid_min > abs(player1coords[0] - player2coords[0]) + min_offset_x * 2) {
         follow_offset_x = (cam_wid_min - abs(player1coords[0] - player2coords[0])) / 2;
     } else {
@@ -84,12 +85,39 @@ if (follow_target) {
 //cam_wid=1500
 //cam_hei=1500
 
+if(round_start){
+	if (instance_exists(player1)) {
+		player1coords = [player1.x, player1.y];
+	}
+	if (instance_exists(player2)) {
+		player2coords = [player2.x, player2.y];
+	} 
+	
+	cam_wid = max(
+			abs(player1coords[0] - player2coords[0]) + follow_offset_x * 2,
+			
+			cam_wid_min
+		)
+	cam_hei = max(
+			abs(player1coords[1] - player2coords[1]) + follow_offset_y * 2,
+			cam_hei_min
+		)
+	
+	cam_hei=max(cam_hei,cam_wid);
+	cam_wid=max(cam_hei,cam_wid);
+	cam_x=min(player1coords[0], player2coords[0]) - follow_offset_x
+	cam_y=min(player1coords[1], player2coords[1]) - (cam_hei-_ydist)/2
+	round_start=false;
+	show_debug_message("cam")
+	show_debug_message(cam_x);
+	show_debug_message(cam_y);
+}
 camera_set_view_size(global.cam, cam_wid, cam_hei);
 camera_set_view_pos(global.cam, cam_x + shake_x, cam_y + shake_y);
 
-show_debug_message(cam_wid);
-show_debug_message(cam_x);
-show_debug_message(cam_y);
+//show_debug_message(cam_wid);
+//show_debug_message(cam_x);
+//show_debug_message(cam_y);
 
 cam_center = (cam_x + cam_wid) / 2;
 cam_middle = (cam_y + cam_hei) / 2;
