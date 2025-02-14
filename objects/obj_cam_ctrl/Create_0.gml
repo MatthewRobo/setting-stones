@@ -24,6 +24,8 @@ cam_x = 0;
 cam_y = 0;
 follow_offset_x = 200;
 follow_offset_y = 200;
+min_offset_x = 150;
+min_offset_y = 150;
 cam_lerp_t = 0.2;
 cam_lerp_zoom_t = 0.2;
 
