@@ -12,48 +12,71 @@ if (follow_target) {
 		player2coords = [player2.x, player2.y];
 	} 
 
+	var cam_wid_calc = max(
+			abs(player1coords[0] - player2coords[0]) + follow_offset_x * 2,
+			abs(player1coords[1] - player2coords[1]) + follow_offset_y * 2,
+			cam_wid_min
+		);
+	var cam_hei_calc = cam_wid_calc;
+	var _xdist = abs(player1coords[0] - player2coords[0]);
+    var _ydist = abs(player1coords[1] - player2coords[1]);
+	if (cam_wid_min > abs(player1coords[0] - player2coords[0]) + min_offset_x * 2) {
+        follow_offset_x = (cam_wid_min - abs(player1coords[0] - player2coords[0])) / 2;
+    } else {
+        //follow_offset_x = (cam_wid_calc - abs(player1coords[0] - player2coords[0])) / 2;
+    }
+    if (cam_hei_min > abs(player1coords[1] - player2coords[1]) + min_offset_y * 2) {
+        follow_offset_y = (cam_hei_min - abs(player1coords[1] - player2coords[1])) / 2;
+    } else {
+        //follow_offset_y = (cam_hei_calc - abs(player1coords[1] - player2coords[1])) / 2;
+    }
 
 
-	follow_offset_x = max(min_offset_x, (cam_wid_min - abs(player1coords[0] - player2coords[0])) / 2);
-	follow_offset_y = max(min_offset_y, (cam_hei_min - abs(player1coords[1] - player2coords[1])) / 2);
-	
-	//if (cam_wid_min > abs(player1coords[0] - player2coords[0]) + min_offset_x * 2) {
-	//	follow_offset_x = (cam_wid_min - abs(player1coords[0] - player2coords[0])) / 2;
-	//} else {
-	//	follow_offset_x = min_offset_x;
-	//}
-	//if (cam_hei_min > abs(player1coords[1] - player2coords[1]) + min_offset_y * 2) {
-	//	follow_offset_y = (cam_hei_min - abs(player1coords[1] - player2coords[1])) / 2;
-	//} else {
-	//	follow_offset_y = min_offset_y;
-	//}
-
-	cam_x = lerp(
-		cam_x,
-		min(player1coords[0], player2coords[0]) - follow_offset_x,
-		cam_lerp_t
-	);
-	cam_y = lerp(
-		cam_y,
-		min(player1coords[1], player2coords[1]) - follow_offset_y,
-		cam_lerp_t
-	);
+	if(abs(player1coords[0] - player2coords[0]) + follow_offset_x * 2 < cam_wid_min){
+		cam_x = lerp(
+			cam_x,
+			min(player1coords[0], player2coords[0]) - follow_offset_x,
+			cam_lerp_t
+		);
+	}else{
+		cam_x=lerp(cam_x, min(player1coords[0], player2coords[0]) - (cam_wid-_xdist)/2, cam_lerp_t)
+	}
+	if(abs(player1coords[1] - player2coords[1]) + follow_offset_y * 2 < cam_hei_min){
+		cam_y = lerp(
+			cam_y,
+			min(player1coords[1], player2coords[1]) - follow_offset_y,
+			cam_lerp_t
+		);
+	}else{
+		
+		cam_y=lerp(cam_y, min(player1coords[1], player2coords[1]) - (cam_hei-_ydist)/2, cam_lerp_t)
+	}
 	//cam_x = lerp(cam_x, min(player1coords[0],player2coords[0]) + follow_offset_x, cam_lerp_t);
 	//cam_y = lerp(cam_y, min(player1coords[1],player2coords[1]) + follow_offset_y, cam_lerp_t);
 	//constrain camera to room bounds
-	cam_x = clamp(cam_x, cam_wid, room_width - cam_wid);
-	cam_y = clamp(cam_y, cam_hei, room_height - cam_hei);
+	cam_x = clamp(cam_x, 0, room_width - cam_wid);
+	cam_y = clamp(cam_y, 0, room_height - cam_hei);
 
 	cam_wid = lerp(
 		cam_wid,
 		max(
 			abs(player1coords[0] - player2coords[0]) + follow_offset_x * 2,
-			abs(player1coords[1] - player2coords[1]) + follow_offset_y * 2,
+			
 			cam_wid_min
 		),
 		cam_lerp_zoom_t
 	);
-	cam_hei = cam_wid;
+	cam_hei = lerp(
+		cam_hei,
+		max(
+			abs(player1coords[1] - player2coords[1]) + follow_offset_y * 2,
+			cam_hei_min
+		),
+		cam_lerp_zoom_t
+	);
+	
+	cam_hei=max(cam_hei,cam_wid);
+	cam_wid=max(cam_hei,cam_wid);
 }
 
 //cam_x=0

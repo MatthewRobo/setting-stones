@@ -10,6 +10,10 @@ if (keyboard_check_pressed(vk_f2)) {
 	input_player_reset(1);
 }
 
+if (keyboard_check_pressed(vk_escape)) {
+	room_goto(gameplay)
+}
+
 lerpMainCursor = lerp(lerpMainCursor, mainCursor, menu_lerp_factor);
 
 switch (menuState) {
