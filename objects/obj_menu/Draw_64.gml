@@ -64,12 +64,12 @@ switch (menuState) {
 		);
 		break;
 	case menu_states.CREDITS:
-		draw_set_font(fnt_inter_large);
+		draw_set_font(fnt_inter_header);
 		draw_set_halign(fa_center);
 		draw_set_valign(fa_top);
 		draw_set_color(_colorHover);
 
-		draw_set_font(fnt_inter_large);
+		draw_set_font(fnt_inter_header);
 		draw_text_ext(_hmid, 350, "Programming", 70, -1);
 		draw_text_ext(_hmid, 650, "Music", 70, -1);
 		draw_text_ext(_hmid, 850, "Special Thanks", 70, -1);
