@@ -1,6 +1,6 @@
 {
   "$GMFont":"",
-  "%Name":"fnt_inter_header",
+  "%Name":"fnt_inter_large",
   "AntiAlias":1,
   "applyKerning":0,
   "ascender":72,
@@ -117,7 +117,7 @@
   "last":0,
   "lineHeight":91,
   "maintainGms1Font":false,
-  "name":"fnt_inter_header",
+  "name":"fnt_inter_large",
   "parent":{
     "name":"Fonts",
     "path":"folders/Fonts.yy",
@@ -134,7 +134,10 @@
   "sdfSpread":8,
   "size":56.0,
   "styleName":"Regular",
-  "textureGroupId":null,
+  "textureGroupId":{
+    "name":"Default",
+    "path":"texturegroups/Default",
+  },
   "TTFName":"",
   "usesSDF":false,
 }
