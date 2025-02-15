@@ -120,7 +120,7 @@ if (instance_exists(obj_game_manager)) {
 draw_set_color(c_black);
 var _meterXOffset = 0.1;
 var _hpXOffset = 0.1;
-var _heatXOffset = 0.91;
+var _heatXOffset = 0.9;
 
 //draw_line_width(0, 0, 100, 100, 15);
 
@@ -239,7 +239,7 @@ for (var i = 0; i < array_length(players); i++) {
 
 		var _x = _hMid * (1 + _sign * _meterXOffset);
 		var _y = _guiHeight * 0.065;
-		var _span = 30 - 0.150;
+		var _span = 39.3;
 		var _wid = _span - 4;
 
 		var _div = 5;
@@ -334,7 +334,7 @@ for (var i = 0; i < array_length(players); i++) {
 
 		var _x = _hMid * (1 + _sign * _hpXOffset);
 		var _y = _guiHeight * 0.055;
-		var _wid = 52;
+		var _wid = 70.8;
 		var _span = _wid + 8;
 		var _div = 1;
 		var _loopLength = max_hp / _div;

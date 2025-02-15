@@ -58,12 +58,14 @@ if (follow_target) {
 //cam_y=0
 //cam_wid=1500
 //cam_hei=1500
+var _cam_wid = cam_hei * 4 / 3;
 
 cam_center = (cam_x + cam_wid) / 2;
 cam_middle = (cam_y + cam_hei) / 2;
 
-camera_set_view_size(global.cam, cam_wid, cam_hei);
-cam_x = player_center - cam_wid / 2;
+
+camera_set_view_size(global.cam, _cam_wid, cam_hei);
+cam_x = player_center - _cam_wid / 2;
 cam_y = player_middle - cam_hei / 2;
 camera_set_view_pos(global.cam, cam_x + shake_x, cam_y + shake_y);
 
