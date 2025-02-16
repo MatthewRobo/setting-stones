@@ -1,0 +1,25 @@
+{
+  "$GMSound":"",
+  "%Name":"bgm_ether_strike",
+  "audioGroupId":{
+    "name":"audiogroup_bgm",
+    "path":"audiogroups/audiogroup_bgm",
+  },
+  "bitDepth":1,
+  "bitRate":128,
+  "compression":1,
+  "conversionMode":0,
+  "duration":276.50665,
+  "name":"bgm_ether_strike",
+  "parent":{
+    "name":"Sounds",
+    "path":"folders/Sounds.yy",
+  },
+  "preload":false,
+  "resourceType":"GMSound",
+  "resourceVersion":"2.0",
+  "sampleRate":44100,
+  "soundFile":"bgm_ether_strike.ogg",
+  "type":1,
+  "volume":1.0,
+}

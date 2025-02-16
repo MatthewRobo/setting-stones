@@ -457,6 +457,7 @@
     {"id":{"name":"bgm_death_of_the_endless_duvet","path":"sounds/bgm_death_of_the_endless_duvet/bgm_death_of_the_endless_duvet.yy",},},
     {"id":{"name":"bgm_dolphika","path":"sounds/bgm_dolphika/bgm_dolphika.yy",},},
     {"id":{"name":"bgm_end_roll","path":"sounds/bgm_end_roll/bgm_end_roll.yy",},},
+    {"id":{"name":"bgm_ether_strike","path":"sounds/bgm_ether_strike/bgm_ether_strike.yy",},},
     {"id":{"name":"bgm_grenade","path":"sounds/bgm_grenade/bgm_grenade.yy",},},
     {"id":{"name":"bgm_hype","path":"sounds/bgm_hype/bgm_hype.yy",},},
     {"id":{"name":"bgm_main","path":"sounds/bgm_main/bgm_main.yy",},},
