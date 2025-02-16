@@ -104,26 +104,6 @@ if (global.hitstop <= 0) {
 	}
 
 	if (actionable) {
-		if (mine_shoot_check && stamina > 0) {
-			shoot_mines();
-			shooting = true;
-			stamina -= shoot_cost;
-			alarm[2] = 60;
-
-			shoot_radius = 0;
-			stamina_recover = false;
-			meter += 5;
-		}
-
-		if (melee_check && can_melee && stamina > 0) {
-			melee();
-			stamina -= melee_cost;
-			alarm[0] = melee_cooldown;
-			alarm[2] = 30;
-			stamina_recover = false;
-			meter += 5;
-		}
-
 		if (meter >= fd_cost && !sound_played[0]) {
 			audio_play_sound(sfx_power_up, 0, false, 1);
 			sound_played[0] = true;
@@ -144,6 +124,26 @@ if (global.hitstop <= 0) {
 			meter -= super_cost;
 			ultimate();
 		}
+
+        if (melee_check && can_melee && stamina > 0) {
+            melee();
+            stamina -= melee_cost;
+            alarm[0] = melee_cooldown;
+            alarm[2] = 30;
+            stamina_recover = false;
+            meter += 5;
+        }
+        
+        if (mine_shoot_check && stamina > 0) {
+            shoot_mines();
+            shooting = true;
+            stamina -= shoot_cost;
+            alarm[2] = 60;
+
+            shoot_radius = 0;
+            stamina_recover = false;
+            meter += 5;
+        }
 
 		if (shield_check_pressed && meter >= fd_cost) {
 			audio_play_sound(sfx_faultless, 0, false, 2);
