@@ -8,6 +8,10 @@ var _guiWidth = display_get_gui_width();
 var _colors = [c_aqua, c_orange];
 //p1 hp bar
 
+draw_set_halign(fa_center);
+draw_set_valign(fa_middle);
+draw_set_font(fnt_inter_header);
+
 if (instance_exists(obj_game_manager)) {
 	var _gm = obj_game_manager;
 	var _radMax = 64;
@@ -371,16 +375,21 @@ for (var i = 0; i < array_length(players); i++) {
 				_loopLength = _spent ? hps[i] / _div : lerp_hps[i] / _div;
 				break;
 		}
+		var _heatString = "";
+
 		for (var k = 0; k < _loopLength; k++) {
 			var _len = 1;
 			var _rumble = 0;
-
 			if (j >= 2) {
 				_len = k >= floor(_loopLength) ? _loopLength % 1 : 1;
 
 				if (instance_exists(players[i])) {
 					_rumble = power(players[i].damage_mult - 1, 2) * 5;
 					draw_set_alpha(1 - random((players[i].damage_mult - 1)));
+					switch(players[i].damage_mult) {
+						case 2: _heatString = "OVERHEAT!"; break;
+						case 3: _heatString = "FATAL HEAT!!"; break;
+					}
 				}
 			}
 			//if (k >= supercosts[i] / _div) {
@@ -427,6 +436,23 @@ for (var i = 0; i < array_length(players); i++) {
 				_y2 + _outline + random_range(-_rumble, _rumble)
 			);
 			draw_primitive_end();
+		}
+
+		if (_sign == -1) {
+			var _reverse = "";
+			for(var ci = string_length(_heatString); ci > 0; ci--) {
+				_reverse += string_char_at(_heatString, ci);
+			}
+			_heatString = _reverse;
+		}
+		
+		draw_set_alpha(1);
+		for (var k = 0; k < string_length(_heatString); k++) {
+			var _rumble = players[i].damage_mult * 5;
+			draw_set_alpha(1 - random((players[i].damage_mult - 1)));
+			draw_set_color(merge_color(c_red, c_white, random(1)));
+			var _x1 = _hMid * (1 + _sign * (0.2)) + _sign * (58 * k);
+			draw_text(_x1 + random_range(-_rumble, _rumble), _guiHeight * 0.06 + random_range(-_rumble, _rumble), string_char_at(_heatString, k + 1));
 		}
 	}
 
