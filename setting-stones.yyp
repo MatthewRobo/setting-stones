@@ -499,6 +499,7 @@
     {"id":{"name":"spr_background","path":"sprites/spr_background/spr_background.yy",},},
     {"id":{"name":"spr_bg_gameplay","path":"sprites/spr_bg_gameplay/spr_bg_gameplay.yy",},},
     {"id":{"name":"spr_bg_gradient","path":"sprites/spr_bg_gradient/spr_bg_gradient.yy",},},
+    {"id":{"name":"spr_crown_1","path":"sprites/spr_crown_1/spr_crown_1.yy",},},
     {"id":{"name":"spr_crown","path":"sprites/spr_crown/spr_crown.yy",},},
     {"id":{"name":"spr_horizon","path":"sprites/spr_horizon/spr_horizon.yy",},},
     {"id":{"name":"spr_logo","path":"sprites/spr_logo/spr_logo.yy",},},
