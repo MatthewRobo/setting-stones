@@ -40,3 +40,8 @@ cam_center = (cam_x + cam_wid) / 2;
 cam_middle = (cam_y + cam_hei) / 2;
 
 round_start = true;
+
+cam_left = cam_x;
+cam_top = cam_y;
+cam_right = cam_x + cam_wid;
+cam_bottom = cam_y + cam_hei;

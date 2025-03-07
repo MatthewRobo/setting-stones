@@ -81,3 +81,8 @@ layer_y("Background_1", cam_middle * 0.5 - 1635 / 2);
 
 layer_x("Background", cam_center * 0.99 - 2453 / 2);
 layer_y("Background", cam_middle * 0.99 - 1635 / 2);
+
+cam_left = cam_x;
+cam_top = cam_y;
+cam_right = cam_x + _cam_wid;
+cam_bottom = cam_y + cam_hei;
