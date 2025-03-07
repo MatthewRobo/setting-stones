@@ -27,11 +27,11 @@ if (instance_exists(obj_game_manager)) {
 	var _pxs = [_hMid, _hMid];
 	var _pys = [_vMid, _vMid];
 
-	for (var i = 0; i < array_length(players); i++) {
+	for (var player = 0; player < array_length(players); player++) {
 		var playersExist = true;
-		if (instance_exists(players[i])) {
-			_pxs[i] = _xAlign + players[i].x * _mapScale;
-			_pys[i] = _yAlign + players[i].y * _mapScale;
+		if (instance_exists(players[player])) {
+			_pxs[player] = _xAlign + players[player].x * _mapScale;
+			_pys[player] = _yAlign + players[player].y * _mapScale;
 		}
 	}
 
@@ -42,18 +42,18 @@ if (instance_exists(obj_game_manager)) {
 
 	draw_set_color(c_aqua);
 	draw_primitive_begin(pr_trianglestrip);
-	for (var i = player_angle - 180 - 45; i < player_angle - 180 + 45; i++) {
+	for (var player = player_angle - 180 - 45; player < player_angle - 180 + 45; player++) {
 		draw_vertex(_pxs[0], _pys[0]);
-		draw_vertex(_hMid + lengthdir_x(_radMax, i), _vMid + lengthdir_y(_radMax, i));
+		draw_vertex(_hMid + lengthdir_x(_radMax, player), _vMid + lengthdir_y(_radMax, player));
 	}
 	//draw_vertex(_hMid, _vMid);
 	draw_primitive_end();
 
 	draw_set_color(c_orange);
 	draw_primitive_begin(pr_trianglestrip);
-	for (var i = player_angle - 45; i < player_angle + 45; i++) {
+	for (var player = player_angle - 45; player < player_angle + 45; player++) {
 		draw_vertex(_pxs[1], _pys[1]);
-		draw_vertex(_hMid + lengthdir_x(_radMax, i), _vMid + lengthdir_y(_radMax, i));
+		draw_vertex(_hMid + lengthdir_x(_radMax, player), _vMid + lengthdir_y(_radMax, player));
 	}
 	//draw_vertex(_hMid, _vMid);
 	draw_primitive_end();
@@ -102,8 +102,8 @@ if (instance_exists(obj_game_manager)) {
 
 	if (global.MAP_ROCKS) {
 		draw_set_color(c_gray);
-		for (var i = 0; i < instance_number(obj_projectile); ++i) {
-			var _rock = instance_find(obj_projectile, i);
+		for (var player = 0; player < instance_number(obj_projectile); ++player) {
+			var _rock = instance_find(obj_projectile, player);
 			var _player = instance_nearest(_rock.x, _rock.y, obj_actor);
 			draw_set_alpha(
 				sin(
@@ -129,9 +129,9 @@ var _scoreXOffset = 0.06;
 
 //draw_line_width(0, 0, 100, 100, 15);
 
-for (var i = 0; i < array_length(players); i++) {
-	if (!surface_exists(hud_surfaces[i])) {
-		hud_surfaces[i] = surface_create(
+for (var player = 0; player < array_length(players); player++) {
+	if (!surface_exists(hud_surfaces[player])) {
+		hud_surfaces[player] = surface_create(
 			display_get_gui_width(),
 			display_get_gui_height()
 		);
@@ -139,16 +139,16 @@ for (var i = 0; i < array_length(players); i++) {
 
 	draw_set_alpha(1);
 	var _alpha = 1;
-	var _sign = i == 0 ? -1 : 1;
+	var _sign = player == 0 ? -1 : 1;
 
-	surface_set_target(hud_surfaces[i]);
+	surface_set_target(hud_surfaces[player]);
 	draw_clear_alpha(c_black, 0);
 
 	for (var j = 0; j < 4; j++) {
 		var _x = _hMid * (1 + _sign * _heatXOffset);
 		var _y = _guiHeight * 0.06;
 		var _outline = 0;
-		var _color = _colors[i];
+		var _color = _colors[player];
 		var _radius = 50;
 		switch (j) {
 			case 0:
@@ -208,12 +208,12 @@ for (var i = 0; i < array_length(players); i++) {
 			//draw_line_width(_x, _y, _x + _sign * lengthdir_x(_radius + _outline, k * 45), _y + lengthdir_y(_radius + _outline, k * 45), k == 0 ? 4 : 8);
 			//}
 
-			var _direction = lerp_heats[i] / 200 * 90 - 45;
+			var _direction = lerp_heats[player] / 200 * 90 - 45;
 			var _length = 52;
 			var _x0 = _x + _sign * lengthdir_x(_length, _direction);
 			var _y0 = _y + lengthdir_y(_length, _direction);
 
-			var _lengthStamina = _length * (1 - lerp_staminas[i] / stamina_max);
+			var _lengthStamina = _length * (1 - lerp_staminas[player] / stamina_max);
 			var _x1 = _x + _sign * lengthdir_x(_lengthStamina, _direction);
 			var _y1 = _y + lengthdir_y(_lengthStamina, _direction);
 
@@ -240,7 +240,7 @@ for (var i = 0; i < array_length(players); i++) {
 	}
 
 	for (var j = 0; j < 5; j++) {
-		var _color = _colors[i];
+		var _color = _colors[player];
 
 		var _x = _hMid * (1 + _sign * _meterXOffset);
 		var _y = _guiHeight * 0.065;
@@ -250,7 +250,7 @@ for (var i = 0; i < array_length(players); i++) {
 		var _div = 5;
 		var _loopLength = meter_max / _div;
 		var _angle = 315;
-		var _spent = lerp_meters[i] >= meters[i];
+		var _spent = lerp_meters[player] >= meters[player];
 		var _outline = 0;
 		switch (j) {
 			case 0:
@@ -267,17 +267,17 @@ for (var i = 0; i < array_length(players); i++) {
 				break;
 			case 3:
 				_color = c_white;
-				_loopLength = _spent ? lerp_meters[i] / _div : meters[i] / _div;
+				_loopLength = _spent ? lerp_meters[player] / _div : meters[player] / _div;
 				break;
 			case 4:
-				if (meters[i] >= supercosts[i]) {
+				if (meters[player] >= supercosts[player]) {
 					_color = #ffcc00;
-				} else if (meters[i] >= fd_cost) {
+				} else if (meters[player] >= fd_cost) {
 					_color = #1dd01e;
 				} else {
 					_color = #5553d3;
 				}
-				_loopLength = _spent ? meters[i] / _div : lerp_meters[i] / _div;
+				_loopLength = _spent ? meters[player] / _div : lerp_meters[player] / _div;
 				break;
 		}
 		for (var k = 0; k < _loopLength; k++) {
@@ -286,7 +286,7 @@ for (var i = 0; i < array_length(players); i++) {
 			draw_set_color(_color);
 			var _overflow = 0;
 
-			if (meters[i] >= meter_max) {
+			if (meters[player] >= meter_max) {
 				_overflow = clamp(
 					0.5 + 0.5 * sin(k * 0.5 + global.ANIMATION_TIMER * -0.1),
 					0,
@@ -303,8 +303,8 @@ for (var i = 0; i < array_length(players); i++) {
 				}
 			}
 
-			if (k >= supercosts[i] / _div) {
-				var _lenExtra = 20 * clamp(k - (lerp_supercosts[i] / _div) + 1, 0, 1);
+			if (k >= supercosts[player] / _div) {
+				var _lenExtra = 20 * clamp(k - (lerp_supercosts[player] / _div) + 1, 0, 1);
 				_len *= 60 + _lenExtra;
 			} else if (k >= fd_cost / _div) {
 				_len *= 60;
@@ -335,7 +335,7 @@ for (var i = 0; i < array_length(players); i++) {
 	}
 
 	for (var j = 0; j < 4; j++) {
-		var _color = _colors[i];
+		var _color = _colors[player];
 
 		var _x = _hMid * (1 + _sign * _hpXOffset);
 		var _y = _guiHeight * 0.055;
@@ -345,7 +345,7 @@ for (var i = 0; i < array_length(players); i++) {
 		var _loopLength = max_hp / _div;
 		var _thickness = 8;
 		var _slant = _thickness;
-		var _spent = lerp_hps[i] >= hps[i];
+		var _spent = lerp_hps[player] >= hps[player];
 		var _outline = 0;
 		switch (j) {
 			case 0:
@@ -358,22 +358,22 @@ for (var i = 0; i < array_length(players); i++) {
 				break;
 			case 2:
 				draw_set_color(c_red);
-				_loopLength = _spent ? lerp_hps[i] / _div : hps[i] / _div;
+				_loopLength = _spent ? lerp_hps[player] / _div : hps[player] / _div;
 				break;
 			case 3:
 				var _hpColor = c_white;
-				if (instance_exists(players[i])) {
+				if (instance_exists(players[player])) {
 					_hpColor = merge_color(
 						c_white,
 						c_fuchsia,
-						clamp((players[i].heat - 50) / 50, 0, 1)
+						clamp((players[player].heat - 50) / 50, 0, 1)
 					);
 				}
-				if (!hittables[i]) {
+				if (!hittables[player]) {
 					_hpColor = merge_color(_hpColor, c_black, 0.5);
 				}
 				draw_set_color(_hpColor);
-				_loopLength = _spent ? hps[i] / _div : lerp_hps[i] / _div;
+				_loopLength = _spent ? hps[player] / _div : lerp_hps[player] / _div;
 				break;
 		}
 		var _heatString = "";
@@ -384,10 +384,10 @@ for (var i = 0; i < array_length(players); i++) {
 			if (j >= 2) {
 				_len = k >= floor(_loopLength) ? _loopLength % 1 : 1;
 
-				if (instance_exists(players[i])) {
-					_rumble = power(players[i].damage_mult - 1, 2) * 5;
-					draw_set_alpha(1 - random((players[i].damage_mult - 1)));
-					switch(players[i].damage_mult) {
+				if (instance_exists(players[player])) {
+					_rumble = power(players[player].damage_mult - 1, 2) * 5;
+					draw_set_alpha(1 - random((players[player].damage_mult - 1)));
+					switch(players[player].damage_mult) {
 						case 2: _heatString = "OVERHEAT!"; break;
 						case 3: _heatString = "FATAL HEAT!!"; break;
 					}
@@ -449,8 +449,8 @@ for (var i = 0; i < array_length(players); i++) {
 		
 		draw_set_alpha(1);
 		for (var k = 0; k < string_length(_heatString); k++) {
-			var _rumble = players[i].damage_mult * 5;
-			draw_set_alpha(1 - random((players[i].damage_mult - 1)));
+			var _rumble = players[player].damage_mult * 5;
+			draw_set_alpha(1 - random((players[player].damage_mult - 1)));
 			draw_set_color(merge_color(c_red, c_white, random(1)));
 			var _x1 = _hMid * (1 + _sign * (0.2)) + _sign * (58 * k);
 			draw_text(_x1 + random_range(-_rumble, _rumble), _guiHeight * 0.06 + random_range(-_rumble, _rumble), string_char_at(_heatString, k + 1));
@@ -467,8 +467,8 @@ for (var i = 0; i < array_length(players); i++) {
 			//_y = 0;
 			
 
-			var _scoreString = $"[ {global.SCORES[i]}/{_totalGames} ]";
-			var _streakString = global.STREAK[i] > 0 ? $"{global.STREAK[i]} STREAK" : "";
+			var _scoreString = $"[ {global.SCORES[player]}/{_totalGames} ]";
+			var _streakString = global.STREAK[player] > 0 ? $"{global.STREAK[player]} STREAK" : "";
 
 			//if (global.STREAK[i] > 0) {
 				if (_sign == -1) {
@@ -483,8 +483,8 @@ for (var i = 0; i < array_length(players); i++) {
 	}
 
 	surface_reset_target();
-	draw_set_alpha(alpha[i]);
-	draw_surface(hud_surfaces[i], 0, 0);
+	draw_set_alpha(alpha[player]);
+	draw_surface(hud_surfaces[player], 0, 0);
 
 	//_x = _hMid * (1 + _sign * _heatXOffset);
 	//_y = _guiHeight * 0.06;
