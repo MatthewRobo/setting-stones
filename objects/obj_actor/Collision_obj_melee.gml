@@ -14,11 +14,13 @@ if (global.hitstop <= 0) {
 		&& hittable
 		&& other.active
 		&& instance_exists(other.summoner)
+		&& other != last_received_melee
 	) {
 		hittable = false;
 		was_hit = true;
 
 		var damage_taken = 2 * damage_mult;
+		last_received_melee = other;
 		if (shield_active) {
 			was_shieldbroken = true;
 			shield_active = false;

@@ -30,6 +30,8 @@ hittable = true;
 #macro low_hp 3
 #macro max_hp 10
 hp = max_hp;
+last_received_melee = noone;
+
 
 #macro invuln_heat_recovery 0.4
 
