@@ -78,9 +78,10 @@ cam_middle = (cam_y + cam_hei) / 2;
 
 layer_x("Background_1", cam_center * 0.5 - 2453 / 2);
 layer_y("Background_1", cam_middle * 0.5 - 1635 / 2);
-
-layer_x("Background", cam_center * 0.99 - 2453 / 2);
-layer_y("Background", cam_middle * 0.99 - 1635 / 2);
+var _bgHmid = sprite_get_width(layer_background_get_sprite(layer_background_get_id("Background"))) / 2;
+var _bgVmid = sprite_get_height(layer_background_get_sprite(layer_background_get_id("Background"))) / 2;
+layer_x("Background", cam_center - _bgHmid);
+layer_y("Background", cam_middle - _bgVmid);
 
 cam_left = cam_x;
 cam_top = cam_y;
