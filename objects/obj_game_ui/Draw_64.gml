@@ -125,6 +125,7 @@ draw_set_color(c_black);
 var _meterXOffset = 0.1;
 var _hpXOffset = 0.1;
 var _heatXOffset = 0.9;
+var _scoreXOffset = 0.06;
 
 //draw_line_width(0, 0, 100, 100, 15);
 
@@ -454,6 +455,31 @@ for (var i = 0; i < array_length(players); i++) {
 			var _x1 = _hMid * (1 + _sign * (0.2)) + _sign * (58 * k);
 			draw_text(_x1 + random_range(-_rumble, _rumble), _guiHeight * 0.06 + random_range(-_rumble, _rumble), string_char_at(_heatString, k + 1));
 		}
+		
+		draw_set_font(fnt_inter_small);
+
+		draw_set_color(c_white);
+		draw_set_valign(fa_bottom);
+		_y = _guiHeight * 0.03;
+
+		var _totalGames = global.SCORES[0] + global.SCORES[1];
+			_x = _hMid * (1 + _sign * _scoreXOffset);
+			//_y = 0;
+			
+
+			var _scoreString = $"[ {global.SCORES[i]}/{_totalGames} ]";
+			var _streakString = global.STREAK[i] > 0 ? $"{global.STREAK[i]} STREAK" : "";
+
+			//if (global.STREAK[i] > 0) {
+				if (_sign == -1) {
+					draw_set_halign(fa_right);
+					_scoreString = $"{_streakString} {_scoreString}";
+				} else {
+					draw_set_halign(fa_left);
+					_scoreString = $"{_scoreString} {_streakString}";
+				}
+			//}
+			text_outline(_x, _y, _scoreString, 3, c_black, 8, 30, 100000);
 	}
 
 	surface_reset_target();

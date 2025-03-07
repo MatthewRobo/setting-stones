@@ -82,6 +82,9 @@ function indexToCoord(_index, _height, _menu) {
 	}
 }
 
+global.SCORES = [0, 0];
+global.STREAK = [0, 0];
+
 mainCursor = 0;
 lerpMainCursor = mainCursor;
 menuWidth = 0.5;

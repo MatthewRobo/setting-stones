@@ -15,3 +15,7 @@ part_particles_create(
 global.hitstop = max(20, global.hitstop);
 game_set_speed(15, gamespeed_fps);
 obj_game_manager.alarm[3] = 15;
+var _notMe = player_number == 1 ? 1 : 0;
+global.STREAK[player_number - 1] = 0;
+global.SCORES[_notMe] ++;
+global.STREAK[_notMe] ++;
