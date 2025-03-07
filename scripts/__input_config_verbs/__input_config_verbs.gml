@@ -26,10 +26,10 @@ function __input_config_verbs()
 			
 			summon: input_binding_key(ord("Z")),
 			shoot:  input_binding_key(ord("X")),
-			melee:  input_binding_key(ord("A")),
+			melee:  input_binding_key(vk_space),
 			dash:   input_binding_key(vk_shift),
 			ultimate: input_binding_key(ord("C")),
-			fd:     input_binding_key(ord("S")),
+			fd:     input_binding_key(vk_lcontrol),
 			
 			pause: input_binding_key(vk_escape),
 		},
