@@ -357,5 +357,50 @@ part_type_alpha3(pt_shieldbreak, 1, 1, 0);
 part_type_blend(pt_shieldbreak, true);
 part_type_life(pt_shieldbreak, 20, 90);
 
+pt_hit_slash = part_type_create();
+part_type_shape(pt_hit_slash, pt_shape_spark);
+part_type_size(pt_hit_slash, 1, 1, 0, 0);
+part_type_scale(pt_hit_slash, 1, 1);
+part_type_speed(pt_hit_slash, 25, 25, 0, 0);
+part_type_direction(pt_hit_slash, 0, 0, 0, 0);
+part_type_gravity(pt_hit_slash, 0, 270);
+part_type_orientation(pt_hit_slash, 0, 360, 0, 0, true);
+part_type_colour3(pt_hit_slash, $FFFFFF, $FFFF00, $FF0000);
+part_type_alpha3(pt_hit_slash, 0, 1, 0);
+part_type_blend(pt_hit_slash, false);
+part_type_life(pt_hit_slash, 30, 30);
+
 trail = instance_create_layer(x, y, "player_trail", obj_player_trail);
 trail.summoner = id;
+
+function create_slash(dir) {
+	for (var percent = 0; percent <= 1; percent += 1 / max(500, 80 * global.hitstop)) {
+
+		part_type_colour3(pt_hit_slash, c_white, color, color);
+		var _pSize = lerp(0.5, 0.1, percent);
+		var _pSpd = lerp(0, 16, percent);
+		part_type_size(pt_hit_slash, _pSize, _pSize, 0, false);
+		part_type_speed(pt_hit_slash, _pSpd, _pSpd, 0, false);
+		part_type_direction(pt_hit_slash, dir, dir, 0, 0);
+		part_type_alpha2(pt_hit_slash, 1, 0);
+		part_type_blend(pt_hit_slash, true);
+		part_type_life(pt_hit_slash, 10 * max(1, global.hitstop), max(1, 10 * global.hitstop));
+		part_particles_create(
+			obj_particle_setup.particle_system,
+			x,
+			y,
+			pt_hit_slash,
+			1
+		);
+		
+		part_type_direction(pt_hit_slash, dir + 180, dir + 180, 0, 0);
+		part_particles_create(
+			obj_particle_setup.particle_system,
+			x,
+			y,
+			pt_hit_slash,
+			1
+		);
+
+	}
+}

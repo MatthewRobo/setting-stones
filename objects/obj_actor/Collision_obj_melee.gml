@@ -16,6 +16,18 @@ if (global.hitstop <= 0) {
 		&& instance_exists(other.summoner)
 		&& other != last_received_melee
 	) {
+		var _dir = 0;
+		if (point_distance(other.xprevious, other.yprevious, other.x, other.y) > 1) {
+			_dir = point_direction(
+				other.xprevious,
+				other.yprevious,
+				other.x,
+				other.y
+			);
+		} else {
+			_dir = point_direction(x, y, other.x, other.y);
+		}
+		
 		hittable = false;
 		was_hit = true;
 
@@ -48,16 +60,14 @@ if (global.hitstop <= 0) {
 		}
 
 		if (hp <= 0) {
-			for (var i = 0; i < array_length(summons); i++) {
-				instance_destroy(summons[i]);
-			}
-			obj_game_manager.winner_triggered = true;
-			obj_game_manager.winner += 2 - player_number + 1;
-			audio_play_sound(sfx_dead, 0, false, 1);
+			global.hitstop *= 4;
 			instance_destroy();
 		} else {
 			audio_play_sound(sfx_hit, 0, false, 4);
 		}
+		
+		create_slash(_dir);
+		create_slash(_dir + 90);
 
 		//instance_destroy(other);
 	}

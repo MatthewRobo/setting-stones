@@ -18,9 +18,8 @@ if (countdown > 0) {
 	}
 }
 
-if (global.hitstop > -1) {
-	global.hitstop--;
-}
+global.hitstop--;
+global.hitstop = clamp(global.hitstop, -1, 60);
 
 opacity -= 1 / 45;
 if (winner == 0) {}

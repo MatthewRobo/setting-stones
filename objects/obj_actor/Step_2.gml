@@ -13,12 +13,17 @@ if (global.hitstop <= 0) {
 
 		if (instance_exists(_mine)) {
 			if (_mine.summoner != id && _mine.active && instance_exists(_mine.summoner)) {
-				var _dir = point_direction(
-					_mine.xprevious,
-					_mine.yprevious,
-					_mine.x,
-					_mine.y
-				);
+				var _dir = _mine.direction;
+				if (point_distance(_mine.xprevious, _mine.yprevious, _mine.x, _mine.y) > 1) {
+					_dir = point_direction(
+						_mine.xprevious,
+						_mine.yprevious,
+						_mine.x,
+						_mine.y
+					);
+				} else {
+					_dir = point_direction(x, y, _mine.x, _mine.y);
+				}
 				var _r = _mine.radius;
 
 				var _dx = lengthdir_x(_r, _dir + 90);
@@ -53,27 +58,34 @@ if (global.hitstop <= 0) {
 							200 * damage_taken
 						);
 
+
 						global.hitstop += 4 * damage_taken;
 						_mine.summoner.meter += 10;
 						meter += 5;
 						heat -= 33;
 						was_hit = true;
+						
 
 						obj_game_manager.shrink = false;
 						obj_game_manager.radius += 200;
 						obj_game_manager.alarm[2] = 15 * 60;
 
 						if (hp <= 0) {
+							global.hitstop *= 4;
 							instance_destroy();
 						} else {
 							audio_play_sound(sfx_hit, 0, false, 4);
 						}
-
+						
+						create_slash(_dir + 90);
+						
 						hittable = false;
 					}
 					if (!shield_active || _mine.spd > 1) {
 						instance_destroy(_mine);
 					}
+					
+					create_slash(_dir);
 				}
 			}
 		}
