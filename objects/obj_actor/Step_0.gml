@@ -129,7 +129,7 @@ if (global.hitstop <= 0) {
             melee();
             stamina -= melee_cost;
             alarm[0] = melee_cooldown;
-            alarm[2] = 30;
+            alarm[2] = max(alarm[2], 30);
             stamina_recover = false;
             meter += 5;
         }
@@ -138,7 +138,7 @@ if (global.hitstop <= 0) {
             shoot_mines();
             shooting = true;
             stamina -= shoot_cost;
-            alarm[2] = 60;
+            alarm[2] = max(alarm[2], 60);
 
             shoot_radius = 0;
             stamina_recover = false;
@@ -175,7 +175,7 @@ if (global.hitstop <= 0) {
 			current_summon += 1;
 			summon_mine();
 			stamina -= summon_cost;
-			alarm[2] = 15;
+			alarm[2] = max(alarm[2], 15);
 			stamina_recover = false;
 		} else {
 			stamina_warning = stamina_warning_duration;
