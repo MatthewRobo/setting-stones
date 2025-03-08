@@ -11,14 +11,15 @@
 
 function decelerate_push(_amt)
 {
+	var _dir = point_direction(0, 0, push_xspd, push_yspd);
 	var prev_sign = sign(push_xspd);
-	push_xspd -= prev_sign * _amt;
+	push_xspd -= lengthdir_x(_amt, _dir);
 	if (sign(push_xspd) != prev_sign){
 		push_xspd = 0;	
 	}
 	
 	prev_sign = sign(push_yspd);
-	push_yspd -= prev_sign * _amt;
+	push_yspd -= lengthdir_y(_amt, _dir);
 	if (sign(push_yspd) != prev_sign){
 		push_yspd = 0;	
 	}
