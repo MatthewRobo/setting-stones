@@ -22,10 +22,10 @@ if (global.hitstop <= 0) {
 						_mine.y
 					);
 				} else {
-					_dir = point_direction(x, y, _mine.x, _mine.y);
+					_dir = point_direction(_mine.x, _mine.y, x, y);
 				}
 				var _r = _mine.radius;
-
+				
 				var _dx = lengthdir_x(_r, _dir + 90);
 				var _dy = lengthdir_y(_r, _dir + 90);
 
@@ -46,7 +46,12 @@ if (global.hitstop <= 0) {
 					|| point_in_triangle(x, y, _x2, _y2, _x3, _y3, _x4, _y4)
 					|| point_in_circle(x, y, _mine.x, _mine.y, _r)
 				) {
+					push_xspd = lengthdir_x(_r / 3, _dir);
+					push_yspd = lengthdir_y(_r / 3, _dir);
+
 					if (hittable && !shield_active) {
+		
+						
 						alarm[1] = iframes;
 						var damage_taken = 1 * damage_mult;
 						hp -= damage_taken;
