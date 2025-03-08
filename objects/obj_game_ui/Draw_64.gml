@@ -377,7 +377,7 @@ for (var player = 0; player < array_length(players); player++) {
 				break;
 		}
 		var _heatString = "";
-
+		draw_set_font(fnt_inter_header);
 		for (var k = 0; k < _loopLength; k++) {
 			var _len = 1;
 			var _rumble = 0;
