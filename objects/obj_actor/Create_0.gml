@@ -384,7 +384,7 @@ function create_slash(dir) {
 		part_type_direction(pt_hit_slash, dir, dir, 0, 0);
 		part_type_alpha2(pt_hit_slash, 1, 0);
 		part_type_blend(pt_hit_slash, true);
-		part_type_life(pt_hit_slash, 10 * max(1, global.hitstop), max(1, 10 * global.hitstop));
+		part_type_life(pt_hit_slash, 10 * max(2, global.hitstop), max(2, 10 * global.hitstop));
 		part_particles_create(
 			obj_particle_setup.particle_system,
 			x,

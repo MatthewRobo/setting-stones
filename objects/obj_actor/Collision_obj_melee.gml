@@ -17,7 +17,7 @@ if (global.hitstop <= 0) {
 		&& other != last_received_melee
 	) {
 		var _dir = 0;
-		if (point_distance(other.xprevious, other.yprevious, other.x, other.y) > 1) {
+		if (point_distance(other.xprevious, other.yprevious, other.x, other.y) > walk_speed + 1) {
 			_dir = point_direction(
 				other.xprevious,
 				other.yprevious,
