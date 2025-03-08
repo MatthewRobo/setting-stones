@@ -18,8 +18,17 @@ if (instance_exists(summoner) && instance_exists(mine)) {
 
 	if (mine.shot) {
 		//color = c_orange;
-		color = color_base;
-		color_point = c_white;
+		if (!was_shot) {
+			color = c_white;
+			color_point = c_white;
+			base_alpha = 0.5;
+		} else {
+			color = merge_color(color, color_base, 0.12);
+			color_point = merge_color(color_point, color_base, 0.12);
+			base_alpha = lerp(base_alpha, 0.1, 0.12);
+		}
+		was_shot = true;
+
 	} else if (
 		summoner.shooting
 		&& point_distance(mine.x, mine.y, summoner.x, summoner.y) > summoner.shoot_radius

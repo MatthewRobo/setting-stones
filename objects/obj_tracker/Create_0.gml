@@ -17,3 +17,6 @@ is_super = true;
 use_start = false;
 
 lifetime = 10;
+
+base_alpha = 0;
+was_shot = false;

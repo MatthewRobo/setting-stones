@@ -19,7 +19,7 @@ if (instance_exists(mine) && instance_exists(summoner)) {
 		color,
 		0.5
 	);
-	draw_vertex_color(summoner.x, summoner.y, color_point, 0.0);
+	draw_vertex_color(summoner.x, summoner.y, color_point, base_alpha);
 	draw_vertex_color(
 		x - lengthdir_x(_edge, _normal),
 		y - lengthdir_y(_edge, _normal),
