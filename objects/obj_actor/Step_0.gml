@@ -141,7 +141,7 @@ if (global.hitstop <= 0) {
             shoot_mines();
             shooting = true;
             stamina -= shoot_cost;
-            alarm[2] = max(alarm[2], 60);
+            alarm[2] = max(alarm[2], 30);
 
             shoot_radius = 0;
             stamina_recover = false;
