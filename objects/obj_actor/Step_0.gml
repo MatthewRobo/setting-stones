@@ -87,6 +87,9 @@ if (global.hitstop <= 0) {
 
 	if (hp <= low_hp) {
 		super_cost = super_cost_low_hp;
+		if (!shield_active) {
+			meter += danger_meter_gain;
+		}
 	}
 
 	if (shoot_radius > 9999999) {

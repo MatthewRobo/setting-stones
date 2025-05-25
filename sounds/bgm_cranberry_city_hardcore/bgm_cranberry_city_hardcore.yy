@@ -1,0 +1,25 @@
+{
+  "$GMSound":"",
+  "%Name":"bgm_cranberry_city_hardcore",
+  "audioGroupId":{
+    "name":"audiogroup_bgm",
+    "path":"audiogroups/audiogroup_bgm",
+  },
+  "bitDepth":1,
+  "bitRate":128,
+  "compression":1,
+  "conversionMode":0,
+  "duration":311.57333,
+  "name":"bgm_cranberry_city_hardcore",
+  "parent":{
+    "name":"Sounds",
+    "path":"folders/Sounds.yy",
+  },
+  "preload":false,
+  "resourceType":"GMSound",
+  "resourceVersion":"2.0",
+  "sampleRate":44100,
+  "soundFile":"bgm_cranberry_city_hardcore.ogg",
+  "type":1,
+  "volume":0.59,
+}

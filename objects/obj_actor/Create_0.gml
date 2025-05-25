@@ -27,7 +27,7 @@ damage_mult = 1;
 
 #macro iframes 15
 hittable = true;
-#macro low_hp 3
+#macro low_hp 1
 #macro max_hp 10
 hp = max_hp;
 last_received_melee = noone;
@@ -44,7 +44,8 @@ super_check = false;
 
 #macro meter_max 100
 #macro super_cost_normal 50
-#macro super_cost_low_hp 25
+#macro super_cost_low_hp 50
+danger_meter_gain = 5 / 30;
 
 super_cost = super_cost_normal;
 
