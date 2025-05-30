@@ -46,7 +46,7 @@ if (instance_exists(summoner) && instance_exists(mine)) {
 	}
 	
 	part_type_colour2(obj_particle_setup.pt_trackerdust, color_base, color_base);
-	var _scale = mine.radius / (22.5 + global.DEBUG_VALUE);
+	var _scale = mine.radius / 23;
 	
 	part_type_life(obj_particle_setup.pt_trackerdust, lifetime, lifetime);
 	part_type_size(obj_particle_setup.pt_trackerdust, _scale, _scale, -_scale/lifetime, 0);

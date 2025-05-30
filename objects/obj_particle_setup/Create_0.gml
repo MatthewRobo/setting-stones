@@ -220,3 +220,31 @@ part_type_colour1(pt_setstone, $00FF00);
 part_type_alpha2(pt_setstone, 1, 0);
 part_type_blend(pt_setstone, false);
 part_type_life(pt_setstone, 10, 10);
+
+//pt_rockwarning
+pt_rockwarning = part_type_create();
+part_type_sprite(pt_rockwarning, spr_warning, false, true, false)
+part_type_size(pt_rockwarning, 1, 1, 0, 0);
+part_type_scale(pt_rockwarning, 1, 1/50);
+part_type_speed(pt_rockwarning, 0, 0, 0, 0);
+part_type_direction(pt_rockwarning, 0, 0, 0, 0);
+part_type_gravity(pt_rockwarning, 0, 270);
+part_type_orientation(pt_rockwarning, 0, 0, 0, 0, false);
+part_type_colour1(pt_rockwarning, $FFFFF);
+part_type_alpha2(pt_rockwarning, 1, 0);
+part_type_blend(pt_rockwarning, false);
+part_type_life(pt_rockwarning, 15, 15);
+
+pt_warningsign = part_type_create();
+part_type_sprite(pt_warningsign, spr_warningarrow, false, true, false)
+part_type_size(pt_warningsign, 1, 1, 0, 0);
+part_type_scale(pt_warningsign, 1/256, 1/256);
+part_type_speed(pt_warningsign, 0, 0, 0, 0);
+part_type_direction(pt_warningsign, 0, 0, 0, 0);
+part_type_gravity(pt_warningsign, 0, 270);
+part_type_orientation(pt_warningsign, 0, 0, 0, 0, false);
+part_type_colour1(pt_warningsign, c_white);
+part_type_alpha3(pt_warningsign, 0, 1, 0);
+part_type_blend(pt_warningsign, false);
+part_type_life(pt_warningsign, 15, 15);
+
