@@ -64,6 +64,9 @@ grow = function() {
 			_y += _list[| i].y;
 			_hp += _list[| i].hp;
 			if (_list[| i] != id) {
+				if (instance_exists(_list[| i].last_melee)) {
+					last_melee = _list[| i].last_melee;
+				}
 				instance_destroy(_list[| i]);
 			}
 		}

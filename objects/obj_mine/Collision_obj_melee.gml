@@ -6,7 +6,7 @@ active = true;
 try {
 	if (other != last_melee) {
         state = mine_states.MELEED;
-		if (xspd == 0 && yspd == 0) {
+		if ((xspd == 0 && yspd == 0) || other.summoner == summoner) {
 			self.summoner = other.summoner;
 			self.target = other.target;
 			self.color = summoner.color;

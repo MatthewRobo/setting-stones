@@ -34,8 +34,8 @@ if (global.hitstop <= 0) {
 	x += xspd;
 	y += yspd;
 
-	xspd += xaccel;
-	yspd += yaccel;
+	//xspd += xaccel;
+	//yspd += yaccel;
 
 	normalise_speed();
 
@@ -48,8 +48,7 @@ if (global.hitstop <= 0) {
 		rotation = point_direction(x, y, summoner.x, summoner.y);
 		//lightDir = point_direction(x,y,summoner.x,summoner.y);
 		if (
-			!shot
-			&& summoner.shooting
+			summoner.shooting
 			&& distance_to_object(summoner) <= summoner.shoot_radius
 			&& abs(distance_to_object(summoner) - summoner.shoot_radius) < 100
 			&& state != mine_states.LAUNCHED
@@ -72,8 +71,8 @@ if (global.hitstop <= 0) {
 				
 				tracker.shoot(target);
 			}
-			xaccel = lengthdir_x(accel, direction);
-			yaccel = lengthdir_y(accel, direction);
+			xspd = lengthdir_x(maxspeed, direction);
+			yspd = lengthdir_y(maxspeed, direction);
 			//hp=1;
 			shot = true;
 			summoner.meter += 1;
