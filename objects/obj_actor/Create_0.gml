@@ -3,6 +3,8 @@
 
 trail_points = array_create(60, [x, y]);
 
+ps = part_system_create();
+
 xspd = 0;
 yspd = 0;
 //maxspeed=10;
@@ -188,6 +190,7 @@ summon_mine = function() {
 	summon.color_right = color_right;
 	summon.color_front = color_front;
 
+
 	var _isNew = true;
 	var _list = ds_list_create();
 	var _num = instance_position_list(x, y, obj_mine, _list, false);
@@ -207,6 +210,8 @@ summon_mine = function() {
 	summon.tracker = instance_create_layer(x, y, "particles", obj_tracker);
 	summon.tracker.mine = summon;
 	summon.tracker.summoner = obj_game_manager.players[player_number - 1];
+	summon.tracker.color_fast = color_fast;
+	summon.tracker.color_slow = color_slow;
 	audio_play_sound(sfx_summon, 0, false);
 	summon.grow();
 

@@ -70,7 +70,7 @@ if (global.hitstop <= 0) {
 			image_angle = direction;
 			if (instance_exists(tracker) && instance_exists(target)) {
 				
-				tracker.shoot(target.x, target.y);
+				tracker.shoot(target);
 			}
 			xaccel = lengthdir_x(accel, direction);
 			yaccel = lengthdir_y(accel, direction);

@@ -1,6 +1,8 @@
 /// @description Insert description here
 // You can write your code in this editor
 
+part_system_position(ps, x, y);
+
 if (global.hitstop >= 0) {
 	summon_mine_check = max(
 		summon_mine_check,

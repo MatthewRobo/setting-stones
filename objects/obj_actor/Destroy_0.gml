@@ -19,3 +19,6 @@ var _notMe = player_number == 1 ? 1 : 0;
 global.STREAK[player_number - 1] = 0;
 global.SCORES[_notMe] ++;
 global.STREAK[_notMe] ++;
+
+
+part_system_destroy(ps);

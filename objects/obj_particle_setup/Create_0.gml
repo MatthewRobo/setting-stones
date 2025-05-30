@@ -239,7 +239,9 @@ pt_warningsign = part_type_create();
 part_type_sprite(pt_warningsign, spr_warningarrow, false, true, false)
 part_type_size(pt_warningsign, 1, 1, 0, 0);
 part_type_scale(pt_warningsign, 1/768, 1/768);
-part_type_speed(pt_warningsign, 0, 0, 0, 0);
+var _spd = 5;
+part_type_speed(pt_warningsign, _spd, _spd, -_spd/45*2, 0);
+
 part_type_direction(pt_warningsign, 0, 0, 0, 0);
 part_type_gravity(pt_warningsign, 0, 270);
 part_type_orientation(pt_warningsign, 0, 0, 0, 0, false);

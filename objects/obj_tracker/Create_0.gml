@@ -7,6 +7,9 @@ color = c_black;
 color_point = c_black;
 color_base = c_purple;
 
+color_fast = c_lime;
+color_slow = c_green;
+
 //clouds = - 1;
 clouds = -1;
 x_start = x;
@@ -21,7 +24,7 @@ lifetime = 45;
 base_alpha = 0;
 was_shot = false;
 
-shoot = function(xTarget, yTarget) { 
+shoot = function(target) { 
 	//part_type_colour1(obj_particle_setup.pt_rockwarning, color_base);
 	////part_type_orientation(obj_particle_setup.pt_rockwarning, dir, dir, 0, 0, 0);
 	//var _scale = mine.radius;
@@ -35,24 +38,28 @@ shoot = function(xTarget, yTarget) {
 		//1
 	//);
 	
-	var _dir = point_direction(xTarget, yTarget, x, y);
+		var _xTarget = target.x;
+		var _yTarget = target.y;
+		
+		var _dir = point_direction(_xTarget, _yTarget, x, y);
 	
-	part_type_colour2(obj_particle_setup.pt_warningsign, c_white, color_base);
-	part_type_orientation(obj_particle_setup.pt_warningsign, _dir - 90, _dir - 90, 0, 0, 0);
-	part_type_direction(obj_particle_setup.pt_warningsign, _dir, _dir, 0, 0);
-	//part_type_speed(obj_particle_setup.pt_warningsign, 200 / mine.radius, 200 / mine.radius, -0.1, 0);
-	var _scale = mine.radius;
+		part_type_colour3(obj_particle_setup.pt_warningsign, c_white, color_fast, color_slow);
+		part_type_orientation(obj_particle_setup.pt_warningsign, _dir - 90, _dir - 90, 0, 0, 0);
+		part_type_direction(obj_particle_setup.pt_warningsign, _dir, _dir, 0, 0);
+		var _scale = mine.radius;
+		
+		var _dist = 45;
+		
+		part_type_size(obj_particle_setup.pt_warningsign, _scale, _scale, 0.2, 0);
+		part_particles_create(
+			target.ps,
+			lengthdir_x(_dist, _dir),
+			lengthdir_y(_dist, _dir),
+			obj_particle_setup.pt_warningsign,
+			1
+		);
 	
-	var _dist = 60;
-	
-	part_type_size(obj_particle_setup.pt_warningsign, _scale, _scale, 0.2, 0);
-	part_particles_create(
-		obj_particle_setup.particle_system,
-		xTarget + lengthdir_x(60, _dir),
-		yTarget + lengthdir_y(60, _dir),
-		obj_particle_setup.pt_warningsign,
-		1
-	);
+
 	
 	
 	//var _xOrigin = x;
