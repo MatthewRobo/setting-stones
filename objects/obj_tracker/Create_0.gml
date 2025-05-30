@@ -7,9 +7,6 @@ color = c_black;
 color_point = c_black;
 color_base = c_purple;
 
-color_fast = c_lime;
-color_slow = c_green;
-
 //clouds = - 1;
 clouds = -1;
 x_start = x;
@@ -38,27 +35,32 @@ shoot = function(target) {
 		//1
 	//);
 	
-		var _xTarget = target.x;
-		var _yTarget = target.y;
-		
-		var _dir = point_direction(_xTarget, _yTarget, x, y);
+	var _xTarget = target.x;
+	var _yTarget = target.y;
 	
-		part_type_colour3(obj_particle_setup.pt_warningsign, c_white, color_fast, color_slow);
-		part_type_orientation(obj_particle_setup.pt_warningsign, _dir - 90, _dir - 90, 0, 0, 0);
-		part_type_direction(obj_particle_setup.pt_warningsign, _dir, _dir, 0, 0);
-		var _scale = mine.radius;
-		
-		var _dist = 45;
-		
-		part_type_size(obj_particle_setup.pt_warningsign, _scale, _scale, 0.2, 0);
-		part_particles_create(
-			target.ps,
-			lengthdir_x(_dist, _dir),
-			lengthdir_y(_dist, _dir),
-			obj_particle_setup.pt_warningsign,
-			1
-		);
+	var _dir = point_direction(_xTarget, _yTarget, x, y);
 	
+	if (instance_exists(summoner)) { 
+		part_type_colour3(obj_particle_setup.pt_warningsign, c_white, summoner.color_fast, summoner.color_slow);
+	} else {
+		part_type_colour3(obj_particle_setup.pt_warningsign, c_white, color_base, c_black);
+	}
+	
+	part_type_orientation(obj_particle_setup.pt_warningsign, _dir - 90, _dir - 90, 0, 0, 0);
+	part_type_direction(obj_particle_setup.pt_warningsign, _dir, _dir, 0, 0);
+	var _scale = mine.radius;
+	
+	var _dist = 45;
+	
+	part_type_size(obj_particle_setup.pt_warningsign, _scale, _scale, 0.2, 0);
+	part_particles_create(
+		target.ps,
+		lengthdir_x(_dist, _dir),
+		lengthdir_y(_dist, _dir),
+		obj_particle_setup.pt_warningsign,
+		1
+	);
+
 
 	
 	

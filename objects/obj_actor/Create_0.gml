@@ -210,8 +210,6 @@ summon_mine = function() {
 	summon.tracker = instance_create_layer(x, y, "particles", obj_tracker);
 	summon.tracker.mine = summon;
 	summon.tracker.summoner = obj_game_manager.players[player_number - 1];
-	summon.tracker.color_fast = color_fast;
-	summon.tracker.color_slow = color_slow;
 	audio_play_sound(sfx_summon, 0, false);
 	summon.grow();
 
