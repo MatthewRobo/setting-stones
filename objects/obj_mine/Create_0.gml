@@ -3,6 +3,16 @@
 
 // Inherit the parent event
 event_inherited();
+
+enum mine_states {
+    INERT,
+    LAUNCHED,
+    MELEED,
+    SLOWED,
+}
+
+state = mine_states.INERT;
+
 color = c_white;
 color_up = c_green;
 color_down = c_fuchsia;
@@ -82,11 +92,15 @@ grow = function() {
 	depth = depth_start + floor(radius / 50);
 };
 
+// slows down a meleed rock
 shoot = function() {
-	xaccel = 0;
-	yaccel = 0;
-	xspd = xspd * 0.1;
-	yspd = yspd * 0.1;
+    if (state == mine_states.MELEED) {
+        state = mine_states.SLOWED;
+        xaccel = 0;
+    	yaccel = 0;
+    	xspd = xspd * 0.1;
+    	yspd = yspd * 0.1;
+    }
 };
 //
 //while(place_meeting(x,y,target) && !active){
@@ -98,7 +112,9 @@ shoot = function() {
 
 alarm[0] = 30;
 
+// when launched by melee hit
 shoot_melee = function(melee) {
+    state = mine_states.MELEED;
 	direction = point_direction(melee.x, melee.y, x, y);
 	image_angle = direction;
 	xspd = lengthdir_x(maxspeed, direction);

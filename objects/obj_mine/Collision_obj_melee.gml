@@ -5,6 +5,7 @@ active = true;
 
 try {
 	if (other != last_melee) {
+        state = mine_states.MELEED;
 		if (xspd == 0 && yspd == 0) {
 			self.summoner = other.summoner;
 			self.target = other.target;

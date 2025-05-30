@@ -52,7 +52,9 @@ if (global.hitstop <= 0) {
 			&& summoner.shooting
 			&& distance_to_object(summoner) <= summoner.shoot_radius
 			&& abs(distance_to_object(summoner) - summoner.shoot_radius) < 100
+            && state != mine_states.LAUNCHED
 		) {
+            state = mine_states.LAUNCHED;
 			shift_ratio = 0;
 			if (instance_exists(obj_game_manager.players[summoner.target - 1])) {
 				direction = point_direction(x, y, target.x, target.y);

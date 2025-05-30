@@ -231,11 +231,17 @@ summon_mine = function() {
 shoot_mines = function() {
 	do_shoot = true;
 	undash(true);
-	for (var i = 0; i < array_length(summons); i++) {
-		try {
-			summons[i].shoot();
-		} catch (_exception) {}
-	}
+    var _summoner = id;
+    with (obj_mine) {
+        if (summoner == _summoner) {
+            shoot();
+        }
+    }
+	//for (var i = 0; i < array_length(summons); i++) {
+		//try {
+			//summons[i].shoot();
+		//} catch (_exception) {}
+	//}
 	summons = [];
 	current_summon = 0;
 	audio_play_sound(sfx_shoot, 0, false);
