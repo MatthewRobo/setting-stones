@@ -94,6 +94,7 @@ if (global.hitstop <= 0) {
 
 	if (shoot_radius > 9999999) {
 		shoot_radius = 0;
+		mines_shot = 0;
 		shooting = false;
 	}
 
@@ -140,6 +141,7 @@ if (global.hitstop <= 0) {
         if (mine_shoot_check && stamina > 0) {
             shoot_mines();
             shooting = true;
+			mines_shot = 0;
             stamina -= shoot_cost;
             alarm[2] = max(alarm[2], 30);
 

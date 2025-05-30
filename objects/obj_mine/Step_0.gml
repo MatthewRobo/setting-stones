@@ -68,7 +68,8 @@ if (global.hitstop <= 0) {
 				);
 			}
 			image_angle = direction;
-			if (instance_exists(tracker)) {
+			if (instance_exists(tracker) && instance_exists(target)) {
+				
 				tracker.shoot(target.x, target.y);
 			}
 			xaccel = lengthdir_x(accel, direction);
@@ -77,7 +78,11 @@ if (global.hitstop <= 0) {
 			shot = true;
 			summoner.meter += 1;
 			var s_fire = audio_play_sound(sfx_fire, 0, false);
-			audio_sound_pitch(s_fire, random_range(0.8, 1.2));
+			audio_sound_pitch(s_fire, random_range(0.8, 1.2) * (1 + summoner.mines_shot * 0.025) / (radius / 50));
+			show_debug_message(radius);
+			summoner.mines_shot++;
+			//audio_sound_pitch(s_fire, summoner.shoot_radius / 999 + 0.5);
+			//audio_sound_pitch(s_fire, random_range(0.8, 1.2));
 			var _scale = 7 / 60 * radius;
 			var _shrink = -0.1 * _scale;
 			part_type_size(obj_particle_setup.pt_sendstone, _scale, _scale, _shrink, 0);

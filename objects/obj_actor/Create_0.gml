@@ -137,6 +137,7 @@ push_distance = 50;
 
 shooting = false;
 shoot_radius = 0;
+mines_shot = 0;
 
 do_summon = false;
 do_shoot = false;
