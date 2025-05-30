@@ -14,7 +14,7 @@ vmove_prev = 0;
 player_number = 1;
 target = 2;
 current_summon = 0;
-#macro max_summon 5
+#macro max_summon 500
 summons = [];
 summons_reverse = [];
 
