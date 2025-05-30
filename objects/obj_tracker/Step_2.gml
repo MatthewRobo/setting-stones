@@ -44,52 +44,55 @@ if (instance_exists(summoner) && instance_exists(mine)) {
 			)
 		);
 	}
-	
-	part_type_colour2(obj_particle_setup.pt_trackerdust, color_base, color_base);
-	var _scale = mine.radius / 23;
-	
-	part_type_life(obj_particle_setup.pt_trackerdust, lifetime, lifetime);
-	part_type_size(obj_particle_setup.pt_trackerdust, _scale, _scale, -_scale/lifetime, 0);
-	part_particles_create(
-		obj_particle_setup.particle_system,
-		x,
-		y,
-		obj_particle_setup.pt_trackerdust,
-		1
-	);
-	part_particles_create(
-		obj_particle_setup.particle_system,
-		mean(x, xprevious),
-		mean(y, yprevious),
-		obj_particle_setup.pt_trackerdust,
-		1
-	);
-	
-	//var _clouds = max(1, floor(point_distance(x, y, xprevious, yprevious) / 20));
 	//
-//
 	//part_type_colour2(obj_particle_setup.pt_trackerdust, color_base, color_base);
-	//var _scale = mine.radius / 22.5 ;
-//
-	//var _dir = point_direction(x, y, xprevious, yprevious);
-//
-	////part_type_direction(obj_particle_setup.ptype_trackerdust, _dir, _dir, 0, 0);
-	//var _x = x;
-	//var _y = y;
-	//for (var i = 0; i < _clouds; i++) {
-		//part_type_life(obj_particle_setup.pt_trackerdust, lifetime, lifetime);
-		//part_type_size(obj_particle_setup.pt_trackerdust, _scale, _scale, 0, 0);
-		//var _length =
-			//point_distance(x, y, xprevious, yprevious) / (_clouds - 1);
-		//part_particles_create(
-			//obj_particle_setup.particle_system,
-			//_x,
-			//_y,
-			//obj_particle_setup.pt_trackerdust,
-			//1
-		//);
-		//_x += lengthdir_x(_length, _dir);
-		//_y += lengthdir_y(_length, _dir);
-	//}
+	//var _scale = mine.radius / 23;
+	//
+	//part_type_life(obj_particle_setup.pt_trackerdust, lifetime, lifetime);
+	//part_type_size(obj_particle_setup.pt_trackerdust, _scale, _scale, -_scale/lifetime, 0);
+	//part_particles_create(
+		//obj_particle_setup.particle_system,
+		//x,
+		//y,
+		//obj_particle_setup.pt_trackerdust,
+		//1
+	//);
+	//part_particles_create(
+		//obj_particle_setup.particle_system,
+		//mean(x, xprevious),
+		//mean(y, yprevious),
+		//obj_particle_setup.pt_trackerdust,
+		//1
+	//);
+	
+	var _clouds = max(1, floor(point_distance(x, y, xprevious, yprevious) / 16));
+	
+
+	part_type_colour2(obj_particle_setup.pt_trackerdust, color_base, color_base);
+	var _scale = mine.radius / 30 ;
+
+	var _dir = point_direction(x, y, xprevious, yprevious);
+
+	//part_type_direction(obj_particle_setup.ptype_trackerdust, _dir, _dir, 0, 0);
+	var _x = x;
+	var _y = y;
+	if (point_distance(x, y, xprevious, yprevious) > 0) {
+		for (var i = 0; i < _clouds; i++) {
+			part_type_life(obj_particle_setup.pt_trackerdust, lifetime, lifetime);
+			part_type_size(obj_particle_setup.pt_trackerdust, _scale, _scale, 0, 0);
+			var _length =
+				point_distance(x, y, xprevious, yprevious) / (_clouds - 1);
+			part_particles_create(
+				obj_particle_setup.particle_system,
+				_x,
+				_y,
+				obj_particle_setup.pt_trackerdust,
+				1
+			);
+			_x += lengthdir_x(_length, _dir);
+			_y += lengthdir_y(_length, _dir);
+		}
+	}
+
 }
 

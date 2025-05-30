@@ -180,7 +180,7 @@ part_type_blend(pt_smoke, false);
 part_type_life(pt_smoke, 80, 80);
 
 pt_trackerdust = part_type_create();
-part_type_shape(pt_trackerdust, pt_shape_flare);
+part_type_shape(pt_trackerdust, pt_shape_sphere);
 //part_type_sprite(ptype_trackerdust, spr_triangle, false, false, false);
 part_type_size(pt_trackerdust, 1, 2, 0, 0);
 part_type_scale(pt_trackerdust, 1, 1);
