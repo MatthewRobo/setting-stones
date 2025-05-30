@@ -39,11 +39,13 @@ shoot = function(xTarget, yTarget) {
 	
 	part_type_colour2(obj_particle_setup.pt_warningsign, c_white, color_base);
 	part_type_orientation(obj_particle_setup.pt_warningsign, _dir - 90, _dir - 90, 0, 0, 0);
+	part_type_direction(obj_particle_setup.pt_warningsign, _dir, _dir, 0, 0);
+	//part_type_speed(obj_particle_setup.pt_warningsign, 200 / mine.radius, 200 / mine.radius, -0.1, 0);
 	var _scale = mine.radius;
 	
 	var _dist = 60;
 	
-	part_type_size(obj_particle_setup.pt_warningsign, _scale, _scale, 0, 0);
+	part_type_size(obj_particle_setup.pt_warningsign, _scale, _scale, 0.2, 0);
 	part_particles_create(
 		obj_particle_setup.particle_system,
 		xTarget + lengthdir_x(60, _dir),
