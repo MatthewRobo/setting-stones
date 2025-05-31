@@ -6,7 +6,7 @@ active = true;
 try {
 	if (other != last_melee) {
         state = mine_states.MELEED;
-		if ((xspd == 0 && yspd == 0) || other.summoner == summoner) {
+		if ((xspd == 0 && yspd == 0) || other.summoner == self.summoner) {
 			self.summoner = other.summoner;
 			self.target = other.target;
 			self.color = summoner.color;
@@ -28,8 +28,8 @@ try {
 				direction = point_direction(x, y, x + 1, y);
 			}
 			image_angle = direction;
-			xaccel = lengthdir_x(accel, direction);
-			yaccel = lengthdir_y(accel, direction);
+			xspd = lengthdir_x(maxspeed, direction);
+			yspd = lengthdir_y(maxspeed, direction);
 			//hp=1;
 			shot = true;
 			audio_play_sound(sfx_reflect, 0, false, 2);
