@@ -506,6 +506,7 @@
     {"id":{"name":"spr_horizon","path":"sprites/spr_horizon/spr_horizon.yy",},},
     {"id":{"name":"spr_logo","path":"sprites/spr_logo/spr_logo.yy",},},
     {"id":{"name":"spr_logoBig","path":"sprites/spr_logoBig/spr_logoBig.yy",},},
+    {"id":{"name":"spr_melee_real","path":"sprites/spr_melee_real/spr_melee_real.yy",},},
     {"id":{"name":"spr_melee","path":"sprites/spr_melee/spr_melee.yy",},},
     {"id":{"name":"spr_p1","path":"sprites/spr_p1/spr_p1.yy",},},
     {"id":{"name":"spr_p2","path":"sprites/spr_p2/spr_p2.yy",},},

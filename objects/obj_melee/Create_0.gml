@@ -11,3 +11,6 @@ color = c_white;
 
 alarm[0] = active_time;
 alarm[1] = active_time / 2;
+
+anim = 0;
+hitbox_radius = sprite_width / 2;
