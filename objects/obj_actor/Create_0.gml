@@ -56,7 +56,7 @@ dash_down = false;
 #macro summon_cost 10
 #macro summon_metergain 5
 #macro shoot_cost 20
-#macro melee_cost 20
+#macro melee_cost 10
 
 shield_check_pressed = false;
 shield_check = false;
