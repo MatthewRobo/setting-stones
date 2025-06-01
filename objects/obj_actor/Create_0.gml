@@ -137,7 +137,7 @@ push_yspd = 0;
 
 push_distance = 50;
 
-shooting = false;
+shooting = 0;
 shoot_radius = 0;
 mines_shot = 0;
 

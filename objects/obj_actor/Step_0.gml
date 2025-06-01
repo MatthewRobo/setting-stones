@@ -97,11 +97,12 @@ if (global.hitstop <= 0) {
 	if (shoot_radius > 9999999) {
 		shoot_radius = 0;
 		mines_shot = 0;
-		shooting = false;
+		shooting = 0;
 	}
 
-	if (shooting) {
+	if (shooting > 0) {
 		shoot_radius += 20;
+		shooting++;
 	}
 
 	if (stamina <= 0 && (mine_shoot_check || summon_mine_check || melee_check)) {
@@ -142,7 +143,7 @@ if (global.hitstop <= 0) {
         
         if (mine_shoot_check && stamina > 0) {
             shoot_mines();
-            shooting = true;
+            shooting = 1;
 			mines_shot = 0;
             stamina -= shoot_cost;
             alarm[2] = max(alarm[2], 30);

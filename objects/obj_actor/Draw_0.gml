@@ -69,7 +69,7 @@ if (stamina_warning > 0) {
 draw_ring2(x, y, 95, 5, 360, alarm[2] / 360, stamina/stamina_max * 360, _staminaRecoverColor, 1, _staminaRecoverColor, 1);
 draw_ring2(x, y, 110, 5, 360, alarm[2] / 360, stamina/stamina_max * 360, _staminaRecoverColor, 1, _staminaRecoverColor, 1);
 
-if (shooting) {
+if (shooting > 0) {
 	//draw_set_alpha(0.5);
 	//draw_circle_width_shoot(shoot_radius,10, 360)
 	var _ringThick = shoot_radius * 0.2;

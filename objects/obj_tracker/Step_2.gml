@@ -30,7 +30,7 @@ if (instance_exists(summoner) && instance_exists(mine)) {
 		was_shot = true;
 
 	} else if (
-		summoner.shooting
+		summoner.shooting > 0
 		&& point_distance(mine.x, mine.y, summoner.x, summoner.y) > summoner.shoot_radius
 	) {
 		//color = c_white;

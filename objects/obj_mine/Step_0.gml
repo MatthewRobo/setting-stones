@@ -48,7 +48,8 @@ if (global.hitstop <= 0) {
 		rotation = point_direction(x, y, summoner.x, summoner.y);
 		//lightDir = point_direction(x,y,summoner.x,summoner.y);
 		if (
-			summoner.shooting
+			summoner.shooting > 0
+			// && summoner.shooting - lifetime < 5 
 			&& distance_to_object(summoner) <= summoner.shoot_radius
 			&& abs(distance_to_object(summoner) - summoner.shoot_radius) < 100
 			&& state != mine_states.LAUNCHED
