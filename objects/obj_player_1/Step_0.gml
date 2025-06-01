@@ -7,4 +7,4 @@ particles = obj_particle_setup.particle_p1_trail;
 summon_particles = obj_particle_setup.pt_p1summon;
 // Inherit the parent event
 event_inherited();
-show_debug_message(current_summon);
+//show_debug_message(current_summon);

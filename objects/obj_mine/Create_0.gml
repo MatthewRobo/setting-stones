@@ -47,6 +47,7 @@ var _distMult = random_range(0.6, 0.8);
 
 lightDir = 20;
 lifetime = 0;
+despawn_timer = 0;
 
 #macro max_distance_from_center 5000
 

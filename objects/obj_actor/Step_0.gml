@@ -94,7 +94,7 @@ if (global.hitstop <= 0) {
 		}
 	}
 
-	if (shoot_radius > 9999999) {
+	if (shooting > 360) {
 		shoot_radius = 0;
 		mines_shot = 0;
 		shooting = 0;
