@@ -268,9 +268,18 @@ ultimate = function() {
 	do_super = true;
 	undash();
 	for (var i = 0; i < 5; i++) {
-		var summon = instance_create_layer(x, y, "bullets", obj_mine);
+		var _target = obj_game_manager.players[target - 1];
+		var _random_radius = sqrt(random(1)) * 240;
+		var _random_angle = random(360);
+		var _spawnAngle = _random_angle;
+
+		if (instance_exists(_target)) {
+			_spawnAngle = point_direction(x, y, _target.x, _target.y) + (i + 0.5) * 360 / 5;
+			
+		}
+		var summon = instance_create_layer(x + lengthdir_x(1, _spawnAngle), y + lengthdir_y(1, _spawnAngle), "bullets", obj_mine);
 		//var summon = instance_create_layer(x+random_range(-200,200),y+random_range(-200,200),"bullets",obj_mine)
-		summon.target = obj_game_manager.players[target - 1];
+		summon.target = _target;
 		summon.summoner = obj_game_manager.players[player_number - 1];
 		summon.summoner_original = obj_game_manager.players[player_number - 1];
 
@@ -286,8 +295,7 @@ ultimate = function() {
 		summon.tracker.summoner = obj_game_manager.players[player_number - 1];
 
 		//var _random_radius = 240;
-		var _random_radius = sqrt(random(1)) * 240;
-		var _random_angle = random(360);
+
 		summon.shift_x = x + lengthdir_x(_random_radius, _random_angle);
 		summon.shift_y = y + lengthdir_y(_random_radius, _random_angle);
 		summon.shift_ratio = random_range(0.1, 0.3);
