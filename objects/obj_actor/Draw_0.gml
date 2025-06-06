@@ -227,5 +227,5 @@ draw_sprite_ext(
 	image_yscale,
 	image_angle,
 	_sprColor,
-	alarm[1] > 0 && alarm[1] % 2 ? 0.1 : 1
+	invuln > 0 && invuln % 2 ? 0.1 : 1
 );

@@ -29,6 +29,7 @@ damage_mult = 1;
 
 #macro iframes 15
 hittable = true;
+invuln = 0;
 #macro low_hp 1
 #macro max_hp 10
 hp = max_hp;

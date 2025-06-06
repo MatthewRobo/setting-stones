@@ -52,7 +52,7 @@ if (global.hitstop <= 0) {
 					if (hittable && !shield_active) {
 		
 						
-						alarm[1] = iframes;
+						invuln = iframes;
 						var damage_taken = 1 * damage_mult;
 						hp -= damage_taken;
 						part_particles_create(

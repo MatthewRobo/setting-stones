@@ -48,7 +48,7 @@ if (global.hitstop <= 0) {
 			200 * damage_taken
 		);
 		global.hitstop += 4 * damage_taken;
-		alarm[1] = iframes;
+		invuln = iframes;
 		other.summoner.meter += 10;
 		meter += 5;
 		heat -= 33;

@@ -24,6 +24,13 @@ if (global.hitstop >= 0) {
 if (global.hitstop <= 0) {
 	was_hit = false;
 	was_shieldbroken = false;
+	
+	if (invuln > 0) {
+		hittable = false;
+		invuln--;
+	} else {
+		hittable = true;
+	}
 
 	//var _next_speed = maxspeed;
 
