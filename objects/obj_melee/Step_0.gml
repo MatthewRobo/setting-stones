@@ -4,8 +4,8 @@
 // Inherit the parent event
 event_inherited();
 try {
-	x += summoner.xspd;
-	y += summoner.yspd;
+	x = summoner.x;
+	y = summoner.y;
 } catch (_exception) {}
 
 //image_xscale += 0.75;
