@@ -55,7 +55,7 @@ if (global.hitstop <= 0) {
 			&& state != mine_states.LAUNCHED
 		) {
 			state = mine_states.LAUNCHED;
-			
+			show_debug_message([summoner.shooting, lifetime, summoner.shooting - lifetime]);
 			despawn_timer = 0;
 			shift_ratio = 0;
 			if (instance_exists(obj_game_manager.players[summoner.target - 1])) {
@@ -129,7 +129,7 @@ if (spd > 1) {
 	}
 }
 var _angleDiff = abs(angle_difference(point_direction(0, 0, xspd, yspd), point_direction(x, y, room_width / 2, room_height / 2)));
-show_debug_message(angle_difference(point_direction(0, 0, xspd, yspd), point_direction(x, y, room_width / 2, room_height / 2)));
+//show_debug_message(angle_difference(point_direction(0, 0, xspd, yspd), point_direction(x, y, room_width / 2, room_height / 2)));
 
 
 if (x < 0 || x > room_width || y < 0 || y > room_height) {
@@ -140,7 +140,7 @@ if (x < 0 || x > room_width || y < 0 || y > room_height) {
 //}
 	
 	
-	show_debug_message(despawn_timer);
+	//show_debug_message(despawn_timer);
 
 	if (_angleDiff >= 90) {
 		despawn_timer++;
