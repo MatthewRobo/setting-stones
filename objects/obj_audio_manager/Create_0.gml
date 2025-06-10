@@ -26,9 +26,7 @@ function shuffle_bgm() {
 		bgm_hype,
 		bgm_carry_me_away,
 		bgm_completeness_under_incompleteness,
-		bgm_ether_strike,
-		bgm_goldenslaughterer,
-		bgm_resurrectedreplayer
+        bgm_ether_strike,
 	);
 }
 
