@@ -44,12 +44,13 @@ var _angle_plus = 0;
 //var _angle_plus = 3/360;
 var _stamina_limit = stamina_limit / stamina_max + _angle_plus;
 var _stamina_current = stamina / stamina_max;
-var _lerp_stamina_current = lerp_stamina / stamina_max;
 
 var _lerp_stamina_limit = anim_stamina_limit / stamina_max + _angle_plus;
 var _stamina_limit_angle = 360 * _stamina_limit;
 
 var _lerp_stamina_limit_angle = 360 * _lerp_stamina_limit;
+
+var _lerp_stamina_current = min(lerp_stamina / stamina_max, _lerp_stamina_limit);
 
 //draw_ring2(
 	//x,
