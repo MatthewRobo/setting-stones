@@ -51,18 +51,31 @@ var _stamina_limit_angle = 360 * _stamina_limit;
 
 var _lerp_stamina_limit_angle = 360 * _lerp_stamina_limit;
 
+//draw_ring2(
+	//x,
+	//y,
+	//100,
+	//10,
+	//360,
+	//_lerp_stamina_current,
+	//0,
+	//draw_get_color(),
+	//0.3,
+	//draw_get_color(),
+	//0.3
+//);
 draw_ring2(
 	x,
 	y,
-	100,
-	10,
+	103,
+	4,
 	360,
 	_lerp_stamina_current,
 	0,
-	draw_get_color(),
-	0.3,
-	draw_get_color(),
-	0.3
+	c_white,
+	1,
+	c_white,
+	1
 );
 draw_circle_width(95, 5, 360, _stamina_limit);
 draw_circle_width(110, 5, 360, _stamina_limit);

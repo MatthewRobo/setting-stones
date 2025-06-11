@@ -1,6 +1,8 @@
 /// @description Insert description here
 // You can write your code in this editor
 
+var _stamina_recover_previous = stamina_recover;
+var _stamina_previous = stamina;
 part_system_position(ps, x, y);
 
 if (global.DAS[player_number - 1] >= 0) {
@@ -408,6 +410,10 @@ if (stamina > 0) {
 	stamina_warning--;
 }
 
-lerp_stamina = max(stamina, lerp(lerp_stamina, stamina, 0.1));
+lerp_stamina = max(stamina, lerp(lerp_stamina, stamina, stamina_recover * 0.1));
+if (_stamina_recover_previous && !stamina_recover) {
+	lerp_stamina = _stamina_previous;
+}
+//lerp_stamina = max(stamina, lerp(lerp_stamina, stamina, 0.1));
 lerp_heat = lerp(lerp_heat, heat, 0.1);
 summons_reverse = array_reverse(summons);
