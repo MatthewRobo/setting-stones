@@ -80,6 +80,7 @@
   },
   "name":"setting-stones",
   "resources":[
+    {"id":{"name":"fnt_inter_giant","path":"fonts/fnt_inter_giant/fnt_inter_giant.yy",},},
     {"id":{"name":"fnt_inter_header","path":"fonts/fnt_inter_header/fnt_inter_header.yy",},},
     {"id":{"name":"fnt_inter_small","path":"fonts/fnt_inter_small/fnt_inter_small.yy",},},
     {"id":{"name":"fnt_inter_xlarge","path":"fonts/fnt_inter_xlarge/fnt_inter_xlarge.yy",},},

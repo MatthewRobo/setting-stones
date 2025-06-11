@@ -82,7 +82,7 @@ if (end_game) {
 			}
 			text_outline(
 				_width * (0.5 + 0.25 * _xOffset),
-				_height * (0.6 + 0.05 * j),
+				_height * (0.725 + 0.05 * j),
 				_text,
 				1,
 				c_black,
