@@ -13,7 +13,7 @@ meter_offset_x = 0.025;
 initial_camera_size = 1500;
 
 alpha = [1, 1];
-
+game_over = false;
 global.MAP_ROCKS = false;
 draw_circle_width = function(inner_radius, width, segment, percentage) {
 	var radius = argument[0];

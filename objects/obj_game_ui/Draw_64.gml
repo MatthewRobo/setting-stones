@@ -8,6 +8,21 @@ var _guiWidth = display_get_gui_width();
 var _colors = [c_aqua, c_orange];
 //p1 hp bar
 
+draw_set_color(c_white);
+
+if (game_over) {
+	var _vMid = display_get_gui_height() * 0.5;
+	draw_set_halign(fa_center);
+	draw_set_valign(fa_middle);
+	draw_set_font(fnt_inter_giant);
+	draw_text_transformed(_hMid, _vMid, "-", 2, 2, 0);
+	//draw_set_halign(fa_right);
+	draw_text_transformed(_hMid * 0.5, _vMid,global.SCORES[0], 2, 2, 0);
+	//draw_set_halign(fa_left);
+	draw_text_transformed(_hMid * 1.5, _vMid,global.SCORES[1], 2, 2, 0);
+
+}
+
 draw_set_halign(fa_center);
 draw_set_valign(fa_middle);
 draw_set_font(fnt_inter_header);
@@ -36,7 +51,6 @@ if (instance_exists(obj_game_manager)) {
 	}
 
 	draw_set_alpha(0.25);
-	draw_set_color(c_white);
 	draw_circle(_hMid, _vMid, _radMax, false);
 	draw_set_alpha(1);
 
