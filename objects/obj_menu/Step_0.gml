@@ -283,6 +283,9 @@ switch (menuState) {
 			}
 		}
 		if (_bindReady) {
+			for (var player = 0; player < 2; player++) {
+				input_verb_consume("summon", player);
+			}
 			room_goto(gameplay);
 		}
 		break;
