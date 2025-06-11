@@ -40,7 +40,7 @@ if (obj_game_manager.countdown > 0) {
 
 	draw_set_font(fnt_inter);
 	//text_outline(midpoint[0], midpoint[1], "SET YOUR STONES", 2, c_black, 4, 20, 500);
-	draw_text(midpoint[0], midpoint[1], "SET YOUR STONES");
+	draw_text_transformed(midpoint[0], midpoint[1], "SET YOUR STONES", 1 - power(obj_game_manager.countdown / 360, 2) * 0.3, 1 - power(obj_game_manager.countdown / 360, 2) * 0.3, 0);
 } else if (obj_game_manager.countup < 60) {
 	var _percent = 1 - obj_game_manager.countup / 60;
 	draw_set_color(c_black);

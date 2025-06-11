@@ -11,7 +11,7 @@ for (var i = 0; i < array_length(players); i++) {
 		hps[i] = 0;
 		hittables[i] = 0;
 		playersExist = false;
-		game_over = true;
+		game_over = lerp(game_over, 1, 0.125);
 	}
 
 	lerp_meters[i] = lerp(lerp_meters[i], meters[i], lerpfactor_meters);
