@@ -3,6 +3,21 @@
 
 part_system_position(ps, x, y);
 
+if (das >= 0) {
+	summon_mine_held = input_check("summon", player_number - 1);
+	if (summon_mine_held) {
+		summon_mine_auto++;
+		if (summon_mine_auto >= arr) {
+			summon_mine_auto = 0;
+		}
+	} else {
+		summon_mine_auto = 1 - das;
+	}
+} else {
+	summon_mine_auto = -1;
+}
+
+
 if (global.hitstop >= 0) {
 	summon_mine_check = max(
 		summon_mine_check,
@@ -185,11 +200,14 @@ if (global.hitstop <= 0) {
 		}
 	}
 
-	if (summon_mine_check) {
+	if (summon_mine_check || summon_mine_auto == 0) {
 		if (stamina > 0) {
-			current_summon += 1;
-			summon_mine();
-			stamina -= summon_cost;
+			do {
+				current_summon += 1;
+				summon_mine();
+				stamina -= summon_cost;
+			} until (!(stamina > 0 && summon_mine_auto >= 0 && arr == 0))
+
 			alarm[2] = max(alarm[2], 15);
 			stamina_recover = false;
 		} else {
@@ -262,6 +280,7 @@ if (global.hitstop <= 0) {
 	if (dash_init) {
 		dash_lock = false;
 		tapdashing = tapdash_duration;
+		input_verb_consume("summon", player_number - 1);
 		audio_play_sound(sfx_dash, 0, false);
 		part_type_direction(
 			obj_particle_setup.pt_dash,

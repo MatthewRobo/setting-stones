@@ -41,6 +41,11 @@ last_received_melee = noone;
 actionable = false;
 
 summon_mine_check = false;
+summon_mine_held = false;
+summon_mine_auto = 0;
+arr = 5;
+das = 15;
+
 mine_shoot_check = false;
 melee_check = false;
 super_check = false;
