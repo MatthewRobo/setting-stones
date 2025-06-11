@@ -51,6 +51,8 @@ despawn_timer = 0;
 
 #macro max_distance_from_center 5000
 
+spawn_debris = true;
+
 grow = function() {
 	var _list = ds_list_create();
 	var _num = instance_position_list(x, y, obj_mine, _list, false);
@@ -65,6 +67,7 @@ grow = function() {
 			_y += _list[| i].y;
 			_hp += _list[| i].hp;
 			if (_list[| i] != id) {
+				_list[| i].spawn_debris = false;
 				if (instance_exists(_list[| i].last_melee)) {
 					last_melee = _list[| i].last_melee;
 				}
