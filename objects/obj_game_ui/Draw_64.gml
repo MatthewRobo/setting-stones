@@ -42,9 +42,16 @@ if (instance_exists(obj_game_manager)) {
 
 	draw_set_color(c_aqua);
 	draw_primitive_begin(pr_trianglestrip);
-	for (var player = player_angle - 180 - 45; player < player_angle - 180 + 45; player++) {
+	for (
+		var player = player_angle - 180 - 45;
+		player < player_angle - 180 + 45;
+		player++
+	) {
 		draw_vertex(_pxs[0], _pys[0]);
-		draw_vertex(_hMid + lengthdir_x(_radMax, player), _vMid + lengthdir_y(_radMax, player));
+		draw_vertex(
+			_hMid + lengthdir_x(_radMax, player),
+			_vMid + lengthdir_y(_radMax, player)
+		);
 	}
 	//draw_vertex(_hMid, _vMid);
 	draw_primitive_end();
@@ -53,7 +60,10 @@ if (instance_exists(obj_game_manager)) {
 	draw_primitive_begin(pr_trianglestrip);
 	for (var player = player_angle - 45; player < player_angle + 45; player++) {
 		draw_vertex(_pxs[1], _pys[1]);
-		draw_vertex(_hMid + lengthdir_x(_radMax, player), _vMid + lengthdir_y(_radMax, player));
+		draw_vertex(
+			_hMid + lengthdir_x(_radMax, player),
+			_vMid + lengthdir_y(_radMax, player)
+		);
 	}
 	//draw_vertex(_hMid, _vMid);
 	draw_primitive_end();
@@ -304,7 +314,8 @@ for (var player = 0; player < array_length(players); player++) {
 			}
 
 			if (k >= supercosts[player] / _div) {
-				var _lenExtra = 20 * clamp(k - (lerp_supercosts[player] / _div) + 1, 0, 1);
+				var _lenExtra =
+					20 * clamp(k - (lerp_supercosts[player] / _div) + 1, 0, 1);
 				_len *= 60 + _lenExtra;
 			} else if (k >= fd_cost / _div) {
 				_len *= 60;
@@ -387,9 +398,13 @@ for (var player = 0; player < array_length(players); player++) {
 				if (instance_exists(players[player])) {
 					_rumble = power(players[player].damage_mult - 1, 2) * 5;
 					draw_set_alpha(1 - random((players[player].damage_mult - 1)));
-					switch(players[player].damage_mult) {
-						case 2: _heatString = "OVERHEAT!"; break;
-						case 3: _heatString = "FATAL HEAT!!"; break;
+					switch (players[player].damage_mult) {
+						case 2:
+							_heatString = "OVERHEAT!";
+							break;
+						case 3:
+							_heatString = "FATAL HEAT!!";
+							break;
 					}
 				}
 			}
@@ -441,21 +456,25 @@ for (var player = 0; player < array_length(players); player++) {
 
 		if (_sign == -1) {
 			var _reverse = "";
-			for(var ci = string_length(_heatString); ci > 0; ci--) {
+			for (var ci = string_length(_heatString); ci > 0; ci--) {
 				_reverse += string_char_at(_heatString, ci);
 			}
 			_heatString = _reverse;
 		}
-		
+
 		draw_set_alpha(1);
 		for (var k = 0; k < string_length(_heatString); k++) {
 			var _rumble = players[player].damage_mult * 5;
 			draw_set_alpha(1 - random((players[player].damage_mult - 1)));
 			draw_set_color(merge_color(c_red, c_white, random(1)));
-			var _x1 = _hMid * (1 + _sign * (0.2)) + _sign * (58 * k);
-			draw_text(_x1 + random_range(-_rumble, _rumble), _guiHeight * 0.06 + random_range(-_rumble, _rumble), string_char_at(_heatString, k + 1));
+			var _x1 = _hMid * (1 + _sign * 0.2) + _sign * (58 * k);
+			draw_text(
+				_x1 + random_range(-_rumble, _rumble),
+				_guiHeight * 0.06 + random_range(-_rumble, _rumble),
+				string_char_at(_heatString, k + 1)
+			);
 		}
-		
+
 		draw_set_font(fnt_inter_small);
 
 		draw_set_color(c_white);
@@ -463,23 +482,24 @@ for (var player = 0; player < array_length(players); player++) {
 		_y = _guiHeight * 0.03;
 
 		var _totalGames = global.SCORES[0] + global.SCORES[1];
-			_x = _hMid * (1 + _sign * _scoreXOffset);
-			//_y = 0;
-			
+		_x = _hMid * (1 + _sign * _scoreXOffset);
+		//_y = 0;
 
-			var _scoreString = $"[ {global.SCORES[player]}/{_totalGames} ]";
-			var _streakString = global.STREAK[player] > 0 ? $"{global.STREAK[player]} STREAK" : "";
+		var _scoreString = $"[ {global.SCORES[player]}/{_totalGames} ]";
+		var _streakString = global.STREAK[player] > 0
+			? $"{global.STREAK[player]} STREAK"
+			: "";
 
-			//if (global.STREAK[i] > 0) {
-				if (_sign == -1) {
-					draw_set_halign(fa_right);
-					_scoreString = $"{_streakString} {_scoreString}";
-				} else {
-					draw_set_halign(fa_left);
-					_scoreString = $"{_scoreString} {_streakString}";
-				}
-			//}
-			text_outline(_x, _y, _scoreString, 3, c_black, 8, 30, 100000);
+		//if (global.STREAK[i] > 0) {
+		if (_sign == -1) {
+			draw_set_halign(fa_right);
+			_scoreString = $"{_streakString} {_scoreString}";
+		} else {
+			draw_set_halign(fa_left);
+			_scoreString = $"{_scoreString} {_streakString}";
+		}
+		//}
+		text_outline(_x, _y, _scoreString, 3, c_black, 8, 30, 100000);
 	}
 
 	surface_reset_target();

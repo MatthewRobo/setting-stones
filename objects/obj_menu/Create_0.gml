@@ -160,7 +160,7 @@ function unset_players(playerToKeep, position) {
 			controllerAssign[i] = -1;
 		}
 	}
-	
+
 	controllerAssignReady[position] = false;
 }
 

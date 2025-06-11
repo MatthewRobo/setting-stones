@@ -223,9 +223,9 @@ part_type_life(pt_setstone, 10, 10);
 
 //pt_rockwarning
 pt_rockwarning = part_type_create();
-part_type_sprite(pt_rockwarning, spr_warning, false, true, false)
+part_type_sprite(pt_rockwarning, spr_warning, false, true, false);
 part_type_size(pt_rockwarning, 1, 1, 0, 0);
-part_type_scale(pt_rockwarning, 1, 1/50);
+part_type_scale(pt_rockwarning, 1, 1 / 50);
 part_type_speed(pt_rockwarning, 0, 0, 0, 0);
 part_type_direction(pt_rockwarning, 0, 0, 0, 0);
 part_type_gravity(pt_rockwarning, 0, 270);
@@ -236,11 +236,11 @@ part_type_blend(pt_rockwarning, false);
 part_type_life(pt_rockwarning, 15, 15);
 
 pt_warningsign = part_type_create();
-part_type_sprite(pt_warningsign, spr_warningarrow, false, true, false)
+part_type_sprite(pt_warningsign, spr_warningarrow, false, true, false);
 part_type_size(pt_warningsign, 1, 1, 0, 0);
-part_type_scale(pt_warningsign, 1/768, 1/768);
+part_type_scale(pt_warningsign, 1 / 768, 1 / 768);
 var _spd = 5;
-part_type_speed(pt_warningsign, _spd, _spd, -_spd/45*2, 0);
+part_type_speed(pt_warningsign, _spd, _spd, -_spd / 45 * 2, 0);
 
 part_type_direction(pt_warningsign, 0, 0, 0, 0);
 part_type_gravity(pt_warningsign, 0, 270);
@@ -250,4 +250,3 @@ part_type_alpha2(pt_warningsign, 1, 0);
 //part_type_alpha3(pt_warningsign, 0, 1, 0);
 part_type_blend(pt_warningsign, false);
 part_type_life(pt_warningsign, 45, 45);
-

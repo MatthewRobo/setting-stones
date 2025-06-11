@@ -80,7 +80,6 @@ switch (menuState) {
 						break;
 				}
 			}
-			
 
 			if (input_check_pressed("right", i)) {
 				audio_play_sound(sfx_menuclick, 0, false);
@@ -149,7 +148,6 @@ switch (menuState) {
 		}
 		break;
 	case menu_states.CONTROLLER_BINDING:
-		
 		menuWidth = menu_widths[menu_states.CONTROLLER_BINDING];
 		lerpMenuWidth = lerp(lerpMenuWidth, menuWidth, 0.2);
 
@@ -247,7 +245,7 @@ switch (menuState) {
 					inputLock[i] = inputLockTime;
 					bindReady[i] = false;
 				}
-				
+
 				if (input_check_pressed(["left", "right"], i)) {
 					var _val =
 						input_check_pressed("right", i) - input_check_pressed("left", i);

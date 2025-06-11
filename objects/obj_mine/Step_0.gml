@@ -49,13 +49,15 @@ if (global.hitstop <= 0) {
 		//lightDir = point_direction(x,y,summoner.x,summoner.y);
 		if (
 			summoner.shooting > 0
-			&& summoner.shooting - lifetime < 5 
+			&& summoner.shooting - lifetime < 5
 			&& distance_to_object(summoner) <= summoner.shoot_radius
 			&& abs(distance_to_object(summoner) - summoner.shoot_radius) < 100
 			&& state != mine_states.LAUNCHED
 		) {
 			state = mine_states.LAUNCHED;
-			show_debug_message([summoner.shooting, lifetime, summoner.shooting - lifetime]);
+			show_debug_message(
+				[summoner.shooting, lifetime, summoner.shooting - lifetime]
+			);
 			despawn_timer = 0;
 			shift_ratio = 0;
 			if (instance_exists(obj_game_manager.players[summoner.target - 1])) {
@@ -70,7 +72,6 @@ if (global.hitstop <= 0) {
 			}
 			image_angle = direction;
 			if (instance_exists(tracker) && instance_exists(target)) {
-				
 				tracker.shoot(target);
 			}
 			xspd = lengthdir_x(maxspeed, direction);
@@ -79,7 +80,10 @@ if (global.hitstop <= 0) {
 			shot = true;
 			summoner.meter += 1;
 			var s_fire = audio_play_sound(sfx_fire, 0, false);
-			audio_sound_pitch(s_fire, random_range(0.8, 1.2) * (1 + summoner.mines_shot * 0.025) / (radius / 50));
+			audio_sound_pitch(
+				s_fire,
+				random_range(0.8, 1.2) * (1 + summoner.mines_shot * 0.025) / (radius / 50)
+			);
 			show_debug_message(radius);
 			summoner.mines_shot++;
 			//audio_sound_pitch(s_fire, summoner.shoot_radius / 999 + 0.5);
@@ -105,19 +109,19 @@ if (global.hitstop <= 0) {
 		y = lerp(y, shift_y, shift_ratio);
 	}
 	//if (point_distance(x, y, room_width / 2, room_height / 2) > max_distance_from_center) {
-		//if (instance_exists(summoner_original)) {
-			//for (var i = 0; i < array_length(summoner_original.summons); i++) {
-				//if (summoner_original.summons[i] == id) {
-					//array_delete(summoner_original.summons, i, 1);
-					//summoner_original.current_summon -= 1;
-					//break;
-				//}
-			//}
-		//}
-		//if (instance_exists(tracker)) {
-			//tracker.clouds = 0;
-		//}
-		//instance_destroy();
+	//if (instance_exists(summoner_original)) {
+	//for (var i = 0; i < array_length(summoner_original.summons); i++) {
+	//if (summoner_original.summons[i] == id) {
+	//array_delete(summoner_original.summons, i, 1);
+	//summoner_original.current_summon -= 1;
+	//break;
+	//}
+	//}
+	//}
+	//if (instance_exists(tracker)) {
+	//tracker.clouds = 0;
+	//}
+	//instance_destroy();
 	//}
 }
 
@@ -128,18 +132,21 @@ if (spd > 1) {
 		tracker.use_start = true;
 	}
 }
-var _angleDiff = abs(angle_difference(point_direction(0, 0, xspd, yspd), point_direction(x, y, room_width / 2, room_height / 2)));
+var _angleDiff = abs(
+	angle_difference(
+		point_direction(0, 0, xspd, yspd),
+		point_direction(x, y, room_width / 2, room_height / 2)
+	)
+);
 //show_debug_message(angle_difference(point_direction(0, 0, xspd, yspd), point_direction(x, y, room_width / 2, room_height / 2)));
-
 
 if (x < 0 || x > room_width || y < 0 || y > room_height) {
 	//if (state == mine_states.LAUNCHED) {
 	//if (x < 0 && xspd < 0 || y < 0 && yspd < 0 || x > room_width && xspd > 0 || y > room_height && yspd > 0) {
-		//instance_destroy();
+	//instance_destroy();
 	//}
-//}
-	
-	
+	//}
+
 	//show_debug_message(despawn_timer);
 
 	if (_angleDiff >= 90) {
@@ -153,7 +160,4 @@ if (x < 0 || x > room_width || y < 0 || y > room_height) {
 	} else {
 		despawn_timer = 0;
 	}
-	
-	
-
 }

@@ -136,9 +136,9 @@ switch (menuState) {
 			} else {
 				draw_set_color(_colorBody);
 			}
-			
+
 			switch (controllerAssign[i]) {
-				case 0: 
+				case 0:
 					_xOffset = -1;
 					break;
 				case 1:
@@ -208,7 +208,6 @@ switch (menuState) {
 				draw_set_halign(fa_right);
 				draw_set_alpha(_alpha);
 				if (j <= controls_options.CANCEL) {
-
 					text_outline(
 						_width * _xMultRight,
 						_height * 0.2 + _lineHeight * j,
@@ -222,7 +221,9 @@ switch (menuState) {
 				} else {
 					switch (j) {
 						case controls_options.ARR:
-							_text = global.ARR[i] == 0 ? $"{global.ARR[i]}F \u2192" : $"\u2190 {global.ARR[i]}F \u2192";
+							_text = global.ARR[i] == 0
+								? $"{global.ARR[i]}F \u2192"
+								: $"\u2190 {global.ARR[i]}F \u2192";
 							if (global.DAS[i] == -1) {
 								_text = "Disabled";
 							}
@@ -238,7 +239,9 @@ switch (menuState) {
 							);
 							break;
 						case controls_options.DAS:
-							_text = global.DAS[i] == -1 ? "Off \u2192" : $"\u2190 {global.DAS[i]}F \u2192";
+							_text = global.DAS[i] == -1
+								? "Off \u2192"
+								: $"\u2190 {global.DAS[i]}F \u2192";
 							text_outline(
 								_width * _xMultRight,
 								_height * 0.2 + _lineHeight * j,

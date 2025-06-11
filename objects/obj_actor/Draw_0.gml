@@ -40,7 +40,6 @@ draw_set_color(
 	)
 );
 
-
 var _angle_plus = 0;
 //var _angle_plus = 3/360;
 var _stamina_limit = stamina_limit / stamina_max + _angle_plus;
@@ -52,8 +51,19 @@ var _stamina_limit_angle = 360 * _stamina_limit;
 
 var _lerp_stamina_limit_angle = 360 * _lerp_stamina_limit;
 
-
-draw_ring2(x, y, 100, 10, 360, _lerp_stamina_current, 0, draw_get_color(), 0.3, draw_get_color(), 0.3);
+draw_ring2(
+	x,
+	y,
+	100,
+	10,
+	360,
+	_lerp_stamina_current,
+	0,
+	draw_get_color(),
+	0.3,
+	draw_get_color(),
+	0.3
+);
 draw_circle_width(95, 5, 360, _stamina_limit);
 draw_circle_width(110, 5, 360, _stamina_limit);
 //draw_circle_width(100, 10, 360, _stamina_limit);
@@ -72,9 +82,32 @@ if (stamina_warning > 0) {
 	);
 }
 
-
-draw_ring2(x, y, 95, 5, 360, alarm[2] / 360, stamina/stamina_max * 360, _staminaRecoverColor, 1, _staminaRecoverColor, 1);
-draw_ring2(x, y, 110, 5, 360, alarm[2] / 360, stamina/stamina_max * 360, _staminaRecoverColor, 1, _staminaRecoverColor, 1);
+draw_ring2(
+	x,
+	y,
+	95,
+	5,
+	360,
+	alarm[2] / 360,
+	stamina / stamina_max * 360,
+	_staminaRecoverColor,
+	1,
+	_staminaRecoverColor,
+	1
+);
+draw_ring2(
+	x,
+	y,
+	110,
+	5,
+	360,
+	alarm[2] / 360,
+	stamina / stamina_max * 360,
+	_staminaRecoverColor,
+	1,
+	_staminaRecoverColor,
+	1
+);
 
 if (shooting > 0) {
 	//draw_set_alpha(0.5);
@@ -148,7 +181,13 @@ for (var i = 360; i > _lerp_stamina_limit_angle; i -= 6) {
 		//_color = merge_color(_color2, c_yellow, clamp((i - 90) / 180, 0, 1));
 		if (i < 0) {
 			_color = merge_color(c_red, c_black, _d);
-			_radius2 = random(9 * (1 - _d)) * clamp((nodash_heat_recovery_delay + dashing) / nodash_heat_recovery_delay, 0, 1);
+			_radius2 =
+				random(9 * (1 - _d))
+				* clamp(
+					(nodash_heat_recovery_delay + dashing) / nodash_heat_recovery_delay,
+					0,
+					1
+				);
 		}
 
 		if (heat >= heat_max) {
@@ -187,14 +226,26 @@ _lineRadius = 10;
 
 draw_set_color(stamina_color);
 //draw_line_width(
-	//x - lengthdir_x(105 - _lineRadius, 360 * _stamina_current),
-	//y + lengthdir_y(105 - _lineRadius, 360 * _stamina_current),
-	//x - lengthdir_x(105 + _lineRadius, 360 * _stamina_current),
-	//y + lengthdir_y(105 + _lineRadius, 360 * _stamina_current),
-	//5
+//x - lengthdir_x(105 - _lineRadius, 360 * _stamina_current),
+//y + lengthdir_y(105 - _lineRadius, 360 * _stamina_current),
+//x - lengthdir_x(105 + _lineRadius, 360 * _stamina_current),
+//y + lengthdir_y(105 + _lineRadius, 360 * _stamina_current),
+//5
 //);
 
-draw_ring2(x, y, 95, 20, 360, 0.008, 360 * (_stamina_current - 0.008 / 2), stamina_color, 1, stamina_color, 1);
+draw_ring2(
+	x,
+	y,
+	95,
+	20,
+	360,
+	0.008,
+	360 * (_stamina_current - 0.008 / 2),
+	stamina_color,
+	1,
+	stamina_color,
+	1
+);
 
 _lineRadius = 15;
 

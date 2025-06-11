@@ -42,19 +42,31 @@ if (obj_game_manager.countdown > 0) {
 	//text_outline(midpoint[0], midpoint[1], "SET YOUR STONES", 2, c_black, 4, 20, 500);
 	draw_text(midpoint[0], midpoint[1], "SET YOUR STONES");
 } else if (obj_game_manager.countup < 60) {
-	var _percent = 1 - obj_game_manager.countup / 60
+	var _percent = 1 - obj_game_manager.countup / 60;
 	draw_set_color(c_black);
 	draw_set_alpha(_percent / 2);
 	//draw_rectangle(lerp(midpoint[0], obj_cam_ctrl.cam_left, _percent), midpoint[1] - 50, lerp(midpoint[0], obj_cam_ctrl.cam_right, _percent), midpoint[1] + 50, false);
 	var _powcent = power(_percent, 2);
-	draw_rectangle(lerp(obj_cam_ctrl.cam_right, midpoint[0], _powcent), midpoint[1] - 50, obj_cam_ctrl.cam_right, midpoint[1] + 50, false);
-	draw_rectangle(obj_cam_ctrl.cam_left, midpoint[1] - 50, lerp(obj_cam_ctrl.cam_left, midpoint[0], _powcent), midpoint[1] + 50, false);
+	draw_rectangle(
+		lerp(obj_cam_ctrl.cam_right, midpoint[0], _powcent),
+		midpoint[1] - 50,
+		obj_cam_ctrl.cam_right,
+		midpoint[1] + 50,
+		false
+	);
+	draw_rectangle(
+		obj_cam_ctrl.cam_left,
+		midpoint[1] - 50,
+		lerp(obj_cam_ctrl.cam_left, midpoint[0], _powcent),
+		midpoint[1] + 50,
+		false
+	);
 
 	draw_set_font(fnt_inter_header);
 	draw_set_halign(fa_center);
 	draw_set_valign(fa_middle);
 	draw_set_color(c_pink);
 	draw_set_alpha(_percent);
-	
+
 	draw_text(midpoint[0], midpoint[1], "SEND 'EM");
 }

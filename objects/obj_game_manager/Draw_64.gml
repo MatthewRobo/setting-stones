@@ -31,16 +31,16 @@ if (winner > 0) {
 	if (winner == 3) {
 		text_outline(_hmid, _vmid, "DRAW", 1, c_black, 8, 30, 100000);
 	} // else {
-		//text_outline(
-			//750,
-			//750,
-			//"PLAYER " + string(winner) + " WINS!",
-			//1,
-			//c_black,
-			//8,
-			//30,
-			//100000
-		//);
+	//text_outline(
+	//750,
+	//750,
+	//"PLAYER " + string(winner) + " WINS!",
+	//1,
+	//c_black,
+	//8,
+	//30,
+	//100000
+	//);
 	//}
 }
 

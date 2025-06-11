@@ -11,12 +11,11 @@ if (global.DAS[player_number - 1] >= 0) {
 			summon_mine_auto = 0;
 		}
 	} else {
-		summon_mine_auto = 1 - global.DAS[player_number - 1];;
+		summon_mine_auto = 1 - global.DAS[player_number - 1];
 	}
 } else {
 	summon_mine_auto = -1;
 }
-
 
 if (global.hitstop >= 0) {
 	summon_mine_check = max(
@@ -39,7 +38,7 @@ if (global.hitstop >= 0) {
 if (global.hitstop <= 0) {
 	was_hit = false;
 	was_shieldbroken = false;
-	
+
 	if (invuln > 0) {
 		hittable = false;
 		invuln--;
@@ -154,26 +153,26 @@ if (global.hitstop <= 0) {
 			ultimate();
 		}
 
-        if (melee_check && can_melee && stamina > 0) {
-            melee();
-            stamina -= melee_cost;
-            alarm[0] = melee_cooldown;
-            alarm[2] = max(alarm[2], 30);
-            stamina_recover = false;
-            meter += 5;
-        }
-        
-        if (mine_shoot_check && stamina > 0) {
-            shoot_mines();
-            shooting = 1;
-			mines_shot = 0;
-            stamina -= shoot_cost;
-            alarm[2] = max(alarm[2], 30);
+		if (melee_check && can_melee && stamina > 0) {
+			melee();
+			stamina -= melee_cost;
+			alarm[0] = melee_cooldown;
+			alarm[2] = max(alarm[2], 30);
+			stamina_recover = false;
+			meter += 5;
+		}
 
-            shoot_radius = 0;
-            stamina_recover = false;
-            meter += 5;
-        }
+		if (mine_shoot_check && stamina > 0) {
+			shoot_mines();
+			shooting = 1;
+			mines_shot = 0;
+			stamina -= shoot_cost;
+			alarm[2] = max(alarm[2], 30);
+
+			shoot_radius = 0;
+			stamina_recover = false;
+			meter += 5;
+		}
 
 		if (shield_check_pressed && meter >= fd_cost) {
 			audio_play_sound(sfx_faultless, 0, false, 2);
@@ -206,7 +205,13 @@ if (global.hitstop <= 0) {
 				current_summon += 1;
 				summon_mine();
 				stamina -= summon_cost;
-			} until (!(stamina > 0 && summon_mine_auto >= 0 && global.ARR[player_number - 1] == 0))
+			} until (
+				!(
+					stamina > 0
+						&& summon_mine_auto >= 0
+						&& global.ARR[player_number - 1] == 0
+				)
+			)
 
 			alarm[2] = max(alarm[2], 15);
 			stamina_recover = false;
@@ -357,18 +362,18 @@ if (global.hitstop <= 0) {
 } else {
 	if (was_hit) {
 		//repeat (50) {
-			//var _dir = 45 + choose(0, 90, 180, 270);
-			//var _x = x + random_range(-25, 25);
-			//var _y = y + random_range(-25, 25);
-			//part_type_colour3(pt_hit_x, $FFFFFF, color, color);
-			//part_type_direction(pt_hit_x, _dir, _dir, 0, 0);
-			//part_particles_create(
-				//obj_particle_setup.particle_system,
-				//_x,
-				//_y,
-				//pt_hit_x,
-				//1
-			//);
+		//var _dir = 45 + choose(0, 90, 180, 270);
+		//var _x = x + random_range(-25, 25);
+		//var _y = y + random_range(-25, 25);
+		//part_type_colour3(pt_hit_x, $FFFFFF, color, color);
+		//part_type_direction(pt_hit_x, _dir, _dir, 0, 0);
+		//part_particles_create(
+		//obj_particle_setup.particle_system,
+		//_x,
+		//_y,
+		//pt_hit_x,
+		//1
+		//);
 		//}
 	}
 	if (was_shieldbroken) {

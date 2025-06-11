@@ -5,7 +5,7 @@ active = true;
 
 try {
 	if (other != last_melee) {
-        state = mine_states.MELEED;
+		state = mine_states.MELEED;
 		self.lifetime = 0;
 		if ((xspd == 0 && yspd == 0) || other.summoner == self.summoner) {
 			self.summoner = other.summoner;

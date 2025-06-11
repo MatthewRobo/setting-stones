@@ -28,7 +28,6 @@ if (instance_exists(summoner) && instance_exists(mine)) {
 			base_alpha = lerp(base_alpha, 0.1, 0.12);
 		}
 		was_shot = true;
-
 	} else if (
 		summoner.shooting > 0
 		&& point_distance(mine.x, mine.y, summoner.x, summoner.y) > summoner.shoot_radius
@@ -51,25 +50,24 @@ if (instance_exists(summoner) && instance_exists(mine)) {
 	//part_type_life(obj_particle_setup.pt_trackerdust, lifetime, lifetime);
 	//part_type_size(obj_particle_setup.pt_trackerdust, _scale, _scale, -_scale/lifetime, 0);
 	//part_particles_create(
-		//obj_particle_setup.particle_system,
-		//x,
-		//y,
-		//obj_particle_setup.pt_trackerdust,
-		//1
+	//obj_particle_setup.particle_system,
+	//x,
+	//y,
+	//obj_particle_setup.pt_trackerdust,
+	//1
 	//);
 	//part_particles_create(
-		//obj_particle_setup.particle_system,
-		//mean(x, xprevious),
-		//mean(y, yprevious),
-		//obj_particle_setup.pt_trackerdust,
-		//1
+	//obj_particle_setup.particle_system,
+	//mean(x, xprevious),
+	//mean(y, yprevious),
+	//obj_particle_setup.pt_trackerdust,
+	//1
 	//);
-	
+
 	var _clouds = max(1, floor(point_distance(x, y, xprevious, yprevious) / 16));
-	
 
 	part_type_colour2(obj_particle_setup.pt_trackerdust, color_base, color_base);
-	var _scale = mine.radius / 30 ;
+	var _scale = mine.radius / 30;
 
 	var _dir = point_direction(x, y, xprevious, yprevious);
 
@@ -80,8 +78,7 @@ if (instance_exists(summoner) && instance_exists(mine)) {
 		for (var i = 0; i < _clouds; i++) {
 			part_type_life(obj_particle_setup.pt_trackerdust, lifetime, lifetime);
 			part_type_size(obj_particle_setup.pt_trackerdust, _scale, _scale, 0, 0);
-			var _length =
-				point_distance(x, y, xprevious, yprevious) / (_clouds - 1);
+			var _length = point_distance(x, y, xprevious, yprevious) / (_clouds - 1);
 			part_particles_create(
 				obj_particle_setup.particle_system,
 				_x,
@@ -93,6 +90,4 @@ if (instance_exists(summoner) && instance_exists(mine)) {
 			_y += lengthdir_y(_length, _dir);
 		}
 	}
-
 }
-

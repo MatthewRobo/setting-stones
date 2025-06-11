@@ -35,7 +35,6 @@ invuln = 0;
 hp = max_hp;
 last_received_melee = noone;
 
-
 #macro invuln_heat_recovery 0.4
 
 actionable = false;
@@ -197,7 +196,6 @@ summon_mine = function() {
 	summon.color_right = color_right;
 	summon.color_front = color_front;
 
-
 	var _isNew = true;
 	var _list = ds_list_create();
 	var _num = instance_position_list(x, y, obj_mine, _list, false);
@@ -242,16 +240,16 @@ summon_mine = function() {
 shoot_mines = function() {
 	do_shoot = true;
 	undash(true);
-    var _summoner = id;
-    with (obj_mine) {
-        if (summoner == _summoner) {
-            shoot();
-        }
-    }
+	var _summoner = id;
+	with (obj_mine) {
+		if (summoner == _summoner) {
+			shoot();
+		}
+	}
 	//for (var i = 0; i < array_length(summons); i++) {
-		//try {
-			//summons[i].shoot();
-		//} catch (_exception) {}
+	//try {
+	//summons[i].shoot();
+	//} catch (_exception) {}
 	//}
 	summons = [];
 	current_summon = 0;
@@ -281,10 +279,16 @@ ultimate = function() {
 		var _spawnAngle = _random_angle;
 
 		if (instance_exists(_target)) {
-			_spawnAngle = point_direction(x, y, _target.x, _target.y) + (i + 0.5) * 360 / 5;
-			
+			_spawnAngle =
+				point_direction(x, y, _target.x, _target.y)
+				+ (i + 0.5) * 360 / 5;
 		}
-		var summon = instance_create_layer(x + lengthdir_x(1, _spawnAngle), y + lengthdir_y(1, _spawnAngle), "bullets", obj_mine);
+		var summon = instance_create_layer(
+			x + lengthdir_x(1, _spawnAngle),
+			y + lengthdir_y(1, _spawnAngle),
+			"bullets",
+			obj_mine
+		);
 		//var summon = instance_create_layer(x+random_range(-200,200),y+random_range(-200,200),"bullets",obj_mine)
 		summon.target = _target;
 		summon.summoner = obj_game_manager.players[player_number - 1];
@@ -306,7 +310,7 @@ ultimate = function() {
 		summon.shift_x = x + lengthdir_x(_random_radius, _random_angle);
 		summon.shift_y = y + lengthdir_y(_random_radius, _random_angle);
 		summon.shift_ratio = random_range(0.1, 0.3);
-		
+
 		part_type_color1(obj_particle_setup.pt_setstone, color);
 		part_type_size(obj_particle_setup.pt_setstone, summon.radius / 50, -1, 0.6, 0);
 		part_particles_create(
@@ -401,7 +405,6 @@ trail.summoner = id;
 
 function create_slash(dir) {
 	for (var percent = 0; percent <= 1; percent += 1 / max(500, 80 * global.hitstop)) {
-
 		part_type_colour3(pt_hit_slash, c_white, color, color);
 		var _pSize = lerp(0.5, 0.1, percent);
 		var _pSpd = lerp(0, 16, percent);
@@ -410,25 +413,14 @@ function create_slash(dir) {
 		part_type_direction(pt_hit_slash, dir, dir, 0, 0);
 		part_type_alpha2(pt_hit_slash, 1, 0);
 		part_type_blend(pt_hit_slash, true);
-		part_type_life(pt_hit_slash, 10 * max(2, global.hitstop), max(2, 10 * global.hitstop));
-		part_particles_create(
-			obj_particle_setup.particle_system,
-			x,
-			y,
+		part_type_life(
 			pt_hit_slash,
-			1
+			10 * max(2, global.hitstop),
+			max(2, 10 * global.hitstop)
 		);
-		
-		part_type_direction(pt_hit_slash, dir + 180, dir + 180, 0, 0);
-		part_particles_create(
-			obj_particle_setup.particle_system,
-			x,
-			y,
-			pt_hit_slash,
-			1
-		);
+		part_particles_create(obj_particle_setup.particle_system, x, y, pt_hit_slash, 1);
 
+		part_type_direction(pt_hit_slash, dir + 180, dir + 180, 0, 0);
+		part_particles_create(obj_particle_setup.particle_system, x, y, pt_hit_slash, 1);
 	}
 }
-
-

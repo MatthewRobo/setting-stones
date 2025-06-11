@@ -11,9 +11,17 @@ if (follow_target) {
 	if (instance_exists(player2)) {
 		player2coords = [player2.x, player2.y];
 	}
-	
-	player_center = lerp(player_center, mean(player1coords[0], player2coords[0]), cam_lerp_t);
-	player_middle = lerp(player_middle, mean(player1coords[1], player2coords[1]), cam_lerp_t);
+
+	player_center = lerp(
+		player_center,
+		mean(player1coords[0], player2coords[0]),
+		cam_lerp_t
+	);
+	player_middle = lerp(
+		player_middle,
+		mean(player1coords[1], player2coords[1]),
+		cam_lerp_t
+	);
 
 	if (cam_wid_min > abs(player1coords[0] - player2coords[0]) + 150 * 2) {
 		follow_offset_x = (cam_wid_min - abs(player1coords[0] - player2coords[0])) / 2;
@@ -63,7 +71,6 @@ var _cam_wid = cam_hei * 4 / 3;
 cam_center = (cam_x + cam_wid) / 2;
 cam_middle = (cam_y + cam_hei) / 2;
 
-
 camera_set_view_size(global.cam, _cam_wid, cam_hei);
 cam_x = player_center - _cam_wid / 2;
 cam_y = player_middle - cam_hei / 2;
@@ -90,7 +97,7 @@ cam_right = cam_x + _cam_wid;
 cam_bottom = cam_y + cam_hei;
 //
 //if (global.hitstop > 0) {
-	//layer_background_alpha(_bgElem, 0.2);
+//layer_background_alpha(_bgElem, 0.2);
 //} else {
-	//layer_background_alpha(_bgElem, 1);
-//}
+//layer_background_alpha(_bgElem, 1);
+//} 

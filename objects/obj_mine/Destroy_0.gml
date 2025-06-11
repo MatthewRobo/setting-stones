@@ -10,10 +10,9 @@ if (spawn_debris) {
 			1
 		);
 	}
-	
-	
+
 	var _init = angles[0] + rotation + 360 / 10;
-	
+
 	for (var i = 0; i < 360; i += 360 / 5) {
 		//pt_shard
 		var _shard = obj_particle_setup.pt_shard;
@@ -21,7 +20,7 @@ if (spawn_debris) {
 		part_type_scale(_shard, _scale, _scale);
 		var _dir = _init + i;
 		part_type_direction(_shard, _dir, _dir, 0, 0);
-	
+
 		var nGradientX = lengthdir_x(1, _dir - lightDir);
 		var nGradientY = lengthdir_y(1, _dir - lightDir);
 		var gradient = 0.5 + abs(nGradientX) / 2;
@@ -40,7 +39,7 @@ if (spawn_debris) {
 		part_type_colour1(_shard, _color);
 		part_particles_create(obj_particle_setup.particle_system, x, y, _shard, 1);
 	}
-	
+
 	if (instance_exists(summoner_original)) {
 		for (var i = 0; i < array_length(summoner_original.summons); i++) {
 			if (summoner_original.summons[i] == id) {
@@ -49,10 +48,7 @@ if (spawn_debris) {
 			}
 		}
 	}
-	
 }
-
-
 
 if (instance_exists(tracker)) {
 	instance_destroy(tracker);

@@ -59,4 +59,3 @@ rematch = [false, false];
 
 alarm[2] = 20 * 60;
 audio_play_sound(sfx_matchstart, 0, false);
-
