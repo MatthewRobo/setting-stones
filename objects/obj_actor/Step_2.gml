@@ -2,6 +2,9 @@
 part_system_position(guard_particles, x, y);
 
 if (global.hitstop <= 0) {
+	if (stamina_recover > 0) {
+		stamina_recover++;
+	}
 	array_delete(trail_points, 0, 1);
 	array_push(trail_points, [x, y]);
 

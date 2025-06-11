@@ -224,6 +224,7 @@ if (global.hitstop <= 0) {
 
 	if (stamina_recover) {
 		stamina += stamina_recovery;
+		stamina += stamina_recover * 0.01;
 	}
 
 	if (dashing <= -1 * nodash_heat_recovery_delay) {
@@ -410,7 +411,7 @@ if (stamina > 0) {
 	stamina_warning--;
 }
 
-lerp_stamina = max(stamina, lerp(lerp_stamina, stamina, stamina_recover * 0.1));
+lerp_stamina = max(stamina, lerp(lerp_stamina, stamina, (stamina_recover > 0) * 0.1));
 if (_stamina_recover_previous && !stamina_recover) {
 	lerp_stamina = _stamina_previous;
 }
