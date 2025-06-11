@@ -403,5 +403,6 @@ if (stamina > 0) {
 	stamina_warning--;
 }
 
+lerp_stamina = max(stamina, lerp(lerp_stamina, stamina, 0.1));
 lerp_heat = lerp(lerp_heat, heat, 0.1);
 summons_reverse = array_reverse(summons);

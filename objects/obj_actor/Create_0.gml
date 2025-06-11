@@ -137,6 +137,7 @@ summon_particles = noone;
 sound_played = [false, false];
 
 stamina_color = c_white;
+lerp_stamina = stamina;
 
 push_xspd = 0;
 push_yspd = 0;

@@ -40,15 +40,20 @@ draw_set_color(
 	)
 );
 
+
 var _angle_plus = 0;
 //var _angle_plus = 3/360;
 var _stamina_limit = stamina_limit / stamina_max + _angle_plus;
 var _stamina_current = stamina / stamina_max;
+var _lerp_stamina_current = lerp_stamina / stamina_max;
 
 var _lerp_stamina_limit = anim_stamina_limit / stamina_max + _angle_plus;
 var _stamina_limit_angle = 360 * _stamina_limit;
 
 var _lerp_stamina_limit_angle = 360 * _lerp_stamina_limit;
+
+
+draw_ring2(x, y, 100, 10, 360, _lerp_stamina_current, 0, draw_get_color(), 0.3, draw_get_color(), 0.3);
 draw_circle_width(95, 5, 360, _stamina_limit);
 draw_circle_width(110, 5, 360, _stamina_limit);
 //draw_circle_width(100, 10, 360, _stamina_limit);
@@ -66,6 +71,8 @@ if (stamina_warning > 0) {
 		stamina_warning / stamina_warning_duration
 	);
 }
+
+
 draw_ring2(x, y, 95, 5, 360, alarm[2] / 360, stamina/stamina_max * 360, _staminaRecoverColor, 1, _staminaRecoverColor, 1);
 draw_ring2(x, y, 110, 5, 360, alarm[2] / 360, stamina/stamina_max * 360, _staminaRecoverColor, 1, _staminaRecoverColor, 1);
 
