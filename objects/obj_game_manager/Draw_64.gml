@@ -23,7 +23,7 @@ draw_set_valign(fa_middle);
 //}
 //
 if (shrink && winner == 0) {
-	text_outline(750, 750, "HURRY UP!", 1, c_black, 8, 30, 100000);
+	text_outline(_hmid, _vmid, "HURRY UP!", 1, c_black, 8, 30, 100000);
 }
 
 draw_set_alpha(1);
