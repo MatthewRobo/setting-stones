@@ -33,6 +33,8 @@ enum controls_options {
 	CANCEL,
 	//REBIND,
 	//PAUSE,
+	ARR,
+	DAS,
 	RESET,
 	DONE,
 }
@@ -69,6 +71,8 @@ verbDisplay = [
 	"Menu Cancel",
 	//"Menu 3",
 	//"Start",
+	"ARR",
+	"DAS",
 	"Reset to Default",
 	"Ready"
 ];

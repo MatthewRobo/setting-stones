@@ -177,7 +177,7 @@ switch (menuState) {
 
 			cursorVerb[i] = "";
 			//show_debug_message(cursorVerb);
-			if (bindCursor[i] < controls_options.RESET) {
+			if (bindCursor[i] <= controls_options.CANCEL) {
 				cursorVerb[i] = verbs[bindCursor[i]];
 			}
 
@@ -228,6 +228,9 @@ switch (menuState) {
 									input_profile_reset_bindings("keyboard_and_mouse", i);
 									input_profile_reset_bindings("gamepad", i);
 									break;
+								case controls_options.ARR:
+								case controls_options.DAS:
+									break;
 								default:
 									input_binding_scan_start(_bs.rebind, _bs.abort, i);
 							}
@@ -244,11 +247,28 @@ switch (menuState) {
 					inputLock[i] = inputLockTime;
 					bindReady[i] = false;
 				}
+				
+				if (input_check_pressed(["left", "right"], i)) {
+					var _val =
+						input_check_pressed("right", i) - input_check_pressed("left", i);
+					switch (bindCursor[i]) {
+						case controls_options.ARR:
+							if (global.DAS[i] != -1) {
+								global.ARR[i] += _val;
+							}
+							global.ARR[i] = max(global.ARR[i], 0);
+							break;
+						case controls_options.DAS:
+							global.DAS[i] += _val;
+							global.DAS[i] = max(global.DAS[i], -1);
+							break;
+					}
+				}
 			}
 
 			for (var j = 0; j < array_length(verbDisplay); j++) {
 				var _icon = "N/A";
-				if (j < controls_options.RESET) {
+				if (j <= controls_options.CANCEL) {
 					_icon = input_verb_get_icon(verbs[j], i);
 				}
 				//show_debug_message([i,  bindCursor[i] == j, verbDisplay[j], _icon]);

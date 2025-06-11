@@ -3,15 +3,15 @@
 
 part_system_position(ps, x, y);
 
-if (das >= 0) {
+if (global.DAS[player_number - 1] >= 0) {
 	summon_mine_held = input_check("summon", player_number - 1);
 	if (summon_mine_held) {
 		summon_mine_auto++;
-		if (summon_mine_auto >= arr) {
+		if (summon_mine_auto >= global.ARR[player_number - 1]) {
 			summon_mine_auto = 0;
 		}
 	} else {
-		summon_mine_auto = 1 - das;
+		summon_mine_auto = 1 - global.DAS[player_number - 1];;
 	}
 } else {
 	summon_mine_auto = -1;
@@ -206,7 +206,7 @@ if (global.hitstop <= 0) {
 				current_summon += 1;
 				summon_mine();
 				stamina -= summon_cost;
-			} until (!(stamina > 0 && summon_mine_auto >= 0 && arr == 0))
+			} until (!(stamina > 0 && summon_mine_auto >= 0 && global.ARR[player_number - 1] == 0))
 
 			alarm[2] = max(alarm[2], 15);
 			stamina_recover = false;

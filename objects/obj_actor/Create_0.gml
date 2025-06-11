@@ -43,8 +43,8 @@ actionable = false;
 summon_mine_check = false;
 summon_mine_held = false;
 summon_mine_auto = 0;
-arr = 5;
-das = 15;
+//global.ARR[player_number - 1] = global.ARR[player_number - 1]
+//global.DAS[player_number - 1] = global.DAS[player_number - 1]
 
 mine_shoot_check = false;
 melee_check = false;
@@ -429,3 +429,5 @@ function create_slash(dir) {
 
 	}
 }
+
+
