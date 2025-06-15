@@ -226,7 +226,6 @@ switch (menuState) {
 									input_profile_reset_bindings("keyboard_and_mouse", i);
 									input_profile_reset_bindings("gamepad", i);
 									break;
-								case controls_options.ARR:
 								case controls_options.DAS:
 									break;
 								default:
@@ -250,15 +249,9 @@ switch (menuState) {
 					var _val =
 						input_check_pressed("right", i) - input_check_pressed("left", i);
 					switch (bindCursor[i]) {
-						case controls_options.ARR:
-							if (global.DAS[i] != -1) {
-								global.ARR[i] += _val;
-							}
-							global.ARR[i] = max(global.ARR[i], 0);
-							break;
 						case controls_options.DAS:
 							global.DAS[i] += _val;
-							global.DAS[i] = max(global.DAS[i], -1);
+							global.DAS[i] = max(global.DAS[i], 7);
 							break;
 					}
 				}

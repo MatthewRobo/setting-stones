@@ -5,7 +5,7 @@ var _stamina_recover_previous = stamina_recover;
 var _stamina_previous = stamina;
 part_system_position(ps, x, y);
 
-if (global.DAS[player_number - 1] >= 0) {
+if (global.DAS[player_number - 1] >= 8) {
 	summon_mine_held = input_check("summon", player_number - 1);
 	if (summon_mine_held) {
 		summon_mine_auto++;
