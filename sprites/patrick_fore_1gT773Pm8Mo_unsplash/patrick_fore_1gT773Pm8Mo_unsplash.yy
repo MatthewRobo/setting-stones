@@ -1,5 +1,5 @@
 {
-  "$GMSprite":"",
+  "$GMSprite":"v2",
   "%Name":"patrick_fore_1gT773Pm8Mo_unsplash",
   "bboxMode":0,
   "bbox_bottom":3749,
@@ -12,7 +12,7 @@
   "edgeFiltering":false,
   "For3D":false,
   "frames":[
-    {"$GMSpriteFrame":"","%Name":"89fa0aae-6fa8-413c-babb-8d14e04853a2","name":"89fa0aae-6fa8-413c-babb-8d14e04853a2","resourceType":"GMSpriteFrame","resourceVersion":"2.0",},
+    {"$GMSpriteFrame":"v1","%Name":"89fa0aae-6fa8-413c-babb-8d14e04853a2","name":"89fa0aae-6fa8-413c-babb-8d14e04853a2","resourceType":"GMSpriteFrame","resourceVersion":"2.0",},
   ],
   "gridX":0,
   "gridY":0,

@@ -1,5 +1,5 @@
 {
-  "$GMSprite":"",
+  "$GMSprite":"v2",
   "%Name":"spr_pentagon",
   "bboxMode":0,
   "bbox_bottom":542,
@@ -12,7 +12,7 @@
   "edgeFiltering":false,
   "For3D":false,
   "frames":[
-    {"$GMSpriteFrame":"","%Name":"f58ee0f8-e3e4-4548-a0fc-fff124561153","name":"f58ee0f8-e3e4-4548-a0fc-fff124561153","resourceType":"GMSpriteFrame","resourceVersion":"2.0",},
+    {"$GMSpriteFrame":"v1","%Name":"f58ee0f8-e3e4-4548-a0fc-fff124561153","name":"f58ee0f8-e3e4-4548-a0fc-fff124561153","resourceType":"GMSpriteFrame","resourceVersion":"2.0",},
   ],
   "gridX":0,
   "gridY":0,

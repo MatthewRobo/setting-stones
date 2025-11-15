@@ -1,15 +1,17 @@
 {
-  "$GMSound":"",
+  "$GMSound":"v2",
   "%Name":"bgm_completeness_under_incompleteness",
   "audioGroupId":{
     "name":"audiogroup_bgm",
     "path":"audiogroups/audiogroup_bgm",
   },
   "bitDepth":1,
-  "bitRate":128,
+  "channelFormat":1,
   "compression":1,
+  "compressionQuality":4,
   "conversionMode":0,
   "duration":292.48,
+  "exportDir":"",
   "name":"bgm_completeness_under_incompleteness",
   "parent":{
     "name":"Sounds",
@@ -20,6 +22,5 @@
   "resourceVersion":"2.0",
   "sampleRate":44100,
   "soundFile":"bgm_completeness_under_incompleteness.ogg",
-  "type":1,
   "volume":1.0,
 }

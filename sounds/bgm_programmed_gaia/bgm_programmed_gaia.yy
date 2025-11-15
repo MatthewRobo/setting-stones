@@ -1,15 +1,17 @@
 {
-  "$GMSound":"",
+  "$GMSound":"v2",
   "%Name":"bgm_programmed_gaia",
   "audioGroupId":{
     "name":"audiogroup_bgm",
     "path":"audiogroups/audiogroup_bgm",
   },
   "bitDepth":1,
-  "bitRate":128,
+  "channelFormat":1,
   "compression":1,
+  "compressionQuality":4,
   "conversionMode":0,
   "duration":415.27582,
+  "exportDir":"",
   "name":"bgm_programmed_gaia",
   "parent":{
     "name":"Sounds",
@@ -20,6 +22,5 @@
   "resourceVersion":"2.0",
   "sampleRate":44100,
   "soundFile":"bgm_programmed_gaia.ogg",
-  "type":1,
   "volume":1.0,
 }

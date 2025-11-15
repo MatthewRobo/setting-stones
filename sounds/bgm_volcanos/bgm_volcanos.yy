@@ -1,15 +1,17 @@
 {
-  "$GMSound":"",
+  "$GMSound":"v2",
   "%Name":"bgm_volcanos",
   "audioGroupId":{
     "name":"audiogroup_bgm",
     "path":"audiogroups/audiogroup_bgm",
   },
   "bitDepth":1,
-  "bitRate":128,
+  "channelFormat":1,
   "compression":1,
+  "compressionQuality":4,
   "conversionMode":0,
   "duration":231.96,
+  "exportDir":"",
   "name":"bgm_volcanos",
   "parent":{
     "name":"Sounds",
@@ -20,6 +22,5 @@
   "resourceVersion":"2.0",
   "sampleRate":44100,
   "soundFile":"bgm_volcanos.mp3",
-  "type":1,
   "volume":1.0,
 }
