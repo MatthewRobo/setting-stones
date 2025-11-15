@@ -187,7 +187,12 @@ if (global.hitstop <= 0) {
 
 		if (shield_check && meter > 0 && shield_active) {
 			//hittable=false;
-			meter -= 0.5;
+			
+            if (dash_down && !dash_lock) {
+                meter -= fd_dashcostperframe;
+            } else {
+                meter -= fd_costperframe;
+            }
 		}
 		if (!shield_check) {
 			shield_active = false;

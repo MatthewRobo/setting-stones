@@ -66,6 +66,8 @@ dash_down = false;
 shield_check_pressed = false;
 shield_check = false;
 #macro fd_cost 20
+#macro fd_costperframe 0.5
+#macro fd_dashcostperframe 1.2
 shield_active = false;
 
 #macro melee_cooldown 10
